@@ -2,6 +2,7 @@ plugins {
     id 'ata-curriculum.snippets-conventions'
     id 'org.springframework.boot' version '2.6.3'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'org.jetbrains.kotlin.jvm' version '1.8.20-RC'
 }
 
 group = 'com.kenzie.unit.four'
@@ -43,6 +44,7 @@ dependencies {
 
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
     testImplementation 'net.andreinc:mockneat:0.4.8'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
 }
 
 processResources {
@@ -67,6 +69,7 @@ repositories {
         url 'https://repo.maven.apache.org/maven2'
         name 'Maven Central'
     }
+    mavenCentral()
 }
 
 task copyFrontend(type: Copy) {
@@ -85,3 +88,13 @@ task bootRunDev {
 }
 
 bootRunDev.finalizedBy bootRun
+compileKotlin {
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}
+compileTestKotlin {
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}
