@@ -8,10 +8,10 @@ public class VideoGame {
     public String title;
     public String developer;
     public String genre;
-    public static UUID id = UUID.randomUUID();       // Create a randomly generated ID.
+
+    public static UUID id;       // Create a randomly generated ID.
     public LinkedList<String> platforms;
     public LinkedList<String> tags;
-    public double price;                            // Should we keep price on there as something to display on the page?
     public String description;
 
     public VideoGame(String title, String developer, String genre) {
@@ -24,77 +24,28 @@ public class VideoGame {
         return title;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
     public String getDeveloper() {
         return developer;
-    }
-
-    public void setDeveloper(String developer) {
-        this.developer = developer;
     }
 
     public String getGenre() {
         return genre;
     }
 
-    public void setGenre(String genre) {
-        this.genre = genre;
-    }
-
     public static UUID getId() {
         return id;
-    }
-
-    public static void setId(UUID id) {
-        VideoGame.id = id;
     }
 
     public LinkedList<String> getPlatforms() {
         return platforms;
     }
 
-    public void setPlatforms(LinkedList<String> platforms) {
-        this.platforms = platforms;
-    }
-
     public LinkedList<String> getTags() {
         return tags;
     }
 
-    public void setTags(LinkedList<String> tags) {
-        this.tags = tags;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
     public String getDescription() {
         return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    @Override
-    public String toString() {
-        return "VideoGame{" +
-                "title='" + title + '\'' +
-                ", developer='" + developer + '\'' +
-                ", genre='" + genre + '\'' +
-                ", id=" + id +
-                ", console='" + platforms + '\'' +
-                ", tags=" + tags +
-                ", price=" + price +
-                '}';
     }
 
 

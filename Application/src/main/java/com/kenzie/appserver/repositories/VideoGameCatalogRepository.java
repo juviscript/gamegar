@@ -1,9 +1,10 @@
 package com.kenzie.appserver.repositories;
 
-import com.kenzie.appserver.service.model.VideoGame;
+import com.kenzie.appserver.repositories.model.VideoGameCatalogRecord;
+
 import org.socialsignin.spring.data.dynamodb.repository.EnableScan;
 import org.springframework.data.repository.CrudRepository;
 
 @EnableScan
-public interface VideoGameRepository extends CrudRepository<VideoGame,String> {
+public interface VideoGameCatalogRepository extends CrudRepository<VideoGameCatalogRecord,String>{
 }
