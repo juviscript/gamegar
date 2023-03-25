@@ -14,13 +14,14 @@ public class VideoGame {
     public LinkedList<String> tags;
     public String description;
 
-    public VideoGame(String title, String developer, String genre) {
+    public VideoGame(String title, String developer, String genre, UUID id) {
         this.title = title;
         this.developer = developer;
         this.genre = genre;
+        id = UUID.randomUUID();
     }
 
-    public String getTitle() {
+    public String getGameTitle() {
         return title;
     }
 
