@@ -9,7 +9,7 @@ public class VideoGame {
     public String developer;
     public String genre;
     public static UUID id = UUID.randomUUID();       // Create a randomly generated ID.
-    public String console;
+    public LinkedList<String> platforms;
     public LinkedList<String> tags;
     public double price;                            // Should we keep price on there as something to display on the page?
     public String description;
@@ -52,12 +52,12 @@ public class VideoGame {
         VideoGame.id = id;
     }
 
-    public String getConsole() {
-        return console;
+    public LinkedList<String> getPlatforms() {
+        return platforms;
     }
 
-    public void setConsole(String console) {
-        this.console = console;
+    public void setPlatforms(LinkedList<String> platforms) {
+        this.platforms = platforms;
     }
 
     public LinkedList<String> getTags() {
@@ -91,7 +91,7 @@ public class VideoGame {
                 ", developer='" + developer + '\'' +
                 ", genre='" + genre + '\'' +
                 ", id=" + id +
-                ", console='" + console + '\'' +
+                ", console='" + platforms + '\'' +
                 ", tags=" + tags +
                 ", price=" + price +
                 '}';
