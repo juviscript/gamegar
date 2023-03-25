@@ -22,7 +22,7 @@ public class VideoGameCatalogRecord {
     public String description;
 
     @DynamoDBHashKey(attributeName = "title")
-    public String getGameName() {
+    public String getGameTitle() {
         return title;
     }
 
@@ -68,9 +68,9 @@ public class VideoGameCatalogRecord {
         this.genre = genre;
     }
 
+
     public static void setId(UUID id) {
-        UUID random = UUID.randomUUID();
-        random = id;
+        VideoGameCatalogRecord.id = id;
     }
 
     public void setPlatforms(LinkedList<String> platforms) {
