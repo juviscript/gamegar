@@ -1,11 +1,11 @@
 package com.kenzie.appserver.service.model;
 
-public class GameService {
+public class Game {
     private final String gameName;
     private final String gameId;
     private final String gameDescription;
 
-    public GameService(String gameName,String gameId, String gameDescription){
+    public Game(String gameName, String gameId, String gameDescription){
         this.gameName = gameName;
         this.gameId = gameId;
         this.gameDescription = gameDescription;
