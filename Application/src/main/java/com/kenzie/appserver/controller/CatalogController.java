@@ -1,7 +1,7 @@
 package com.kenzie.appserver.controller;
 
 import com.kenzie.appserver.controller.model.CatalogCreateRequest;
-import com.kenzie.appserver.controller.model.CatalogReponse;
+import com.kenzie.appserver.controller.model.CatalogResponse;
 
 import com.kenzie.appserver.service.VideoGameService;
 import com.kenzie.appserver.service.model.Game;
@@ -9,6 +9,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
+import java.util.ArrayList;
+import java.util.List;
 
 import static java.util.UUID.randomUUID;
 
@@ -23,30 +25,49 @@ public class CatalogController {
         this.videoGameService = videoGameService;
     }
 
-    @GetMapping("/{name}")
-    public ResponseEntity<CatalogReponse>get(@PathVariable("name") String id){
+    @GetMapping("/{gameId}")
+    public ResponseEntity<CatalogResponse>get(@PathVariable("name") String id){
 
         Game game = videoGameService.findById(id);
         if(game == null){
             return ResponseEntity.notFound().build();
         }
-        CatalogReponse catalogReponse = new CatalogReponse();
-        catalogReponse.setId(game.getGameId());
-        catalogReponse.setName(game.getGameName());
-        catalogReponse.setDescription(game.getGameDescription());
-        return ResponseEntity.ok(catalogReponse);
+        CatalogResponse catalogResponse = new CatalogResponse();
+        catalogResponse.setId(game.getGameId());
+        catalogResponse.setName(game.getGameName());
+        catalogResponse.setDescription(game.getGameDescription());
+        return ResponseEntity.ok(catalogResponse);
     }
     @PostMapping
-    public ResponseEntity<CatalogReponse> addNewGame(@RequestBody CatalogCreateRequest catalogCreateRequest){
+    public ResponseEntity<CatalogResponse> addNewGame(@RequestBody CatalogCreateRequest catalogCreateRequest){
         Game game = new Game(randomUUID().toString(),
                 catalogCreateRequest.getName(), catalogCreateRequest.getDescription());
         videoGameService.addNewGame(game);
 
-        CatalogReponse catalogReponse = new CatalogReponse();
-        catalogReponse.setId(game.getGameId());
-        catalogReponse.setName(game.getGameName());
-        catalogReponse.setDescription(game.getGameDescription());
+        CatalogResponse catalogResponse = new CatalogResponse();
+        catalogResponse.setId(game.getGameId());
+        catalogResponse.setName(game.getGameName());
+        catalogResponse.setDescription(game.getGameDescription());
 
-        return ResponseEntity.created(URI.create("/game/" + catalogReponse.getId())).body(catalogReponse);
+        return ResponseEntity.created(URI.create("/game/" + catalogResponse.getId())).body(catalogResponse);
+    }
+    @GetMapping
+    public ResponseEntity<List<CatalogResponse>> getAllGames(){
+        List<Game> games = videoGameService.findAllGames();
+        if(games == null || games.isEmpty()){
+            return ResponseEntity.noContent().build();
+        }
+        List<CatalogResponse> response = new ArrayList<>();
+        for(Game listOfGames : games){
+            response.add(this.createGameResponse(listOfGames));
+        }
+        return ResponseEntity.ok(response);
+    }
+    public CatalogResponse createGameResponse(Game game){
+        CatalogResponse catalogResponse = new CatalogResponse();
+        catalogResponse.setId(game.getGameId());
+        catalogResponse.setName(game.getGameName());
+        catalogResponse.setDescription(game.getGameDescription());
+        return catalogResponse;
     }
 }
