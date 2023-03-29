@@ -1,4 +1,4 @@
-package com.kenzie.appserver.service.model;
+package com.kenzie.appserver.examples;
 
 public class Example {
     private final String id;

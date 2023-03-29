@@ -1,8 +1,6 @@
-package com.kenzie.appserver.service;
+package com.kenzie.appserver.examples;
 
 import com.kenzie.appserver.repositories.model.ExampleRecord;
-import com.kenzie.appserver.repositories.ExampleRepository;
-import com.kenzie.appserver.service.model.Example;
 
 import org.springframework.stereotype.Service;
 

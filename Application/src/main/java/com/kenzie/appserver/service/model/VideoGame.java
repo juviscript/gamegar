@@ -19,8 +19,16 @@ public class VideoGame {
         this.developer = developer;
         this.genre = genre;
         id = UUID.randomUUID();
+<<<<<<< HEAD
     }
 
+=======
+
+    }
+
+
+
+>>>>>>> origin/juvisbranch
     public String getGameTitle() {
         return title;
     }
