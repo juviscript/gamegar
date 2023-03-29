@@ -7,18 +7,28 @@ import java.time.LocalDate;
 
 public class UserUpdateRequest {
     @NotEmpty
+    @JsonProperty("userId")
+    private String userId;
+    @NotEmpty
     @JsonProperty("name")
     private String name;
-    @NotEmpty
-    @JsonProperty("email")                                 // I omitted birthday in this request because I don't believe
-    private String email;                                  // that you can typically update your birthday after account creation so...
 
+    @NotEmpty
+    @JsonProperty("email")
+    private String email;
     @NotEmpty
     @JsonProperty("username")
     private String username;
 
+    @NotEmpty
+    @JsonProperty("birthday")
+    private LocalDate birthday;
 
     /* ---------------- Getters ---------------- */
+
+    public String getUserId() {
+        return userId;
+    }
 
     public String getName() {
         return name;
@@ -32,10 +42,16 @@ public class UserUpdateRequest {
         return username;
     }
 
+    public LocalDate getBirthday() {
+        return birthday;
+    }
 
 
     /* ---------------- Setters ---------------- */
 
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
     public void setName(String name) {
         this.name = name;
     }
@@ -46,6 +62,10 @@ public class UserUpdateRequest {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public void setBirthday(LocalDate birthday) {
+        this.birthday = birthday;
     }
 
 

@@ -46,7 +46,7 @@ public class VideoGameCatalogService {
         videoGameCatalogRecord.setDeveloper(game.getDeveloper());
         videoGameCatalogRecord.setGenre(game.getGenre());
         videoGameCatalogRecord.setDescription(game.getDescription());
-        videoGameCatalogRepository.save(videoGameCatalogRecord);                  // Help :(
+        videoGameCatalogRepository.save(videoGameCatalogRecord);
         return game;
     }
 

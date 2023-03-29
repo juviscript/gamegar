@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,15 +34,14 @@ public class CatalogController {
 
     private VideoGameResponse createVideoGameResponse(VideoGame videoGame) {
         VideoGameResponse videoGameResponse = new VideoGameResponse();
-//        videoGameResponse.setId(videoGame.getId());                           <---- Uncomment this line once we switch the class from UUID to String.
+        videoGameResponse.setId(videoGame.getId());
         videoGameResponse.setTitle(videoGame.getGameTitle());
         videoGameResponse.setDeveloper((videoGame.getDeveloper()));
         videoGameResponse.setGenre(videoGame.getGenre());
         videoGameResponse.setPlatforms(videoGame.getPlatforms());
         videoGameResponse.setTags(videoGame.getTags());
-        videoGameResponse.setDescription(videoGame.getDescription());        //  <---- Should we keep description as something that is required?
-
-        return videoGameResponse;
+        videoGameResponse.setDescription(videoGame.getDescription());        //  TODO: Response: Should we keep description as something that is required to create a new instance
+        return videoGameResponse;                                            //         of a game?
     }
 
 
@@ -62,13 +62,13 @@ public class CatalogController {
 //    public ResponseEntity<List<VideoGameResponse>> getAllGames() {
 //       List<VideoGame> allGames = catalogService.findAllGames();
 //
-//        if (allGames == null || allGames.isEmpty()) {
+//        if (allGames == null || allGames.isEmpty()) {                                // If no games or all are listed as 'null', return a 204 response.
 //            return ResponseEntity.status(204).build();
 //        }
 //
-//        List<VideoGameResponse> response = new ArrayList<>();                         <---- Uncomment this once the findAllGames() method has been created in VideoGameCatalogService.
+//        List<VideoGameResponse> response = new ArrayList<>();                        TODO: <-- Uncomment this once the findAllGames() method has been created in VideoGameCatalogService.
 //        for (VideoGame game : allGames) {
-//            response.add(this.createVideoGameResponse(game));
+//            response.add(this.createVideoGameResponse(game));                         // Otherwise, return list.
 //        }
 //
 //        return ResponseEntity.ok(response);
@@ -85,7 +85,7 @@ public class CatalogController {
 
         VideoGameResponse gameResponse = createVideoGameResponse(videoGame);
 
-        return ResponseEntity.ok(gameResponse);
+        return ResponseEntity.created(URI.create("/games/" + gameResponse.getId())).body(gameResponse);         // Created a new endpoint for specific game instance.
 
     }
 
@@ -96,7 +96,7 @@ public class CatalogController {
                 gameUpdateRequest.getGenre(),
                 gameUpdateRequest.getId());
 
-//        catalogService.updateGame(videoGame);                                  <---- Uncomment this once the updateGame() method has been created in VideoGameCatalogService.
+//        catalogService.updateGame(videoGame);                                  TODO: <---- Uncomment this once the updateGame() method has been created in VideoGameCatalogService.
 
         VideoGameResponse gameResponse = createVideoGameResponse(videoGame);
 
@@ -105,7 +105,7 @@ public class CatalogController {
 
     @DeleteMapping("/{title}")
     public ResponseEntity deleteConcertByTitle(@PathVariable("title") String title) {
-//        catalogService.deleteGame(title);                                     <---- Uncomment this once the deleteGame() method has been created in VideoGameCatalogService.
+//        catalogService.deleteGame(title);                                     TODO: <---- Uncomment this once the deleteGame() method has been created in VideoGameCatalogService.
         return ResponseEntity.status(204).build();
     }
 

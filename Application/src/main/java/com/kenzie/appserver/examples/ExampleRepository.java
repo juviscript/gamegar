@@ -1,4 +1,4 @@
-package com.kenzie.appserver.repositories;
+package com.kenzie.appserver.examples;
 
 import com.kenzie.appserver.repositories.model.ExampleRecord;
 

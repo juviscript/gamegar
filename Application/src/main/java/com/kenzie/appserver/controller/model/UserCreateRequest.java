@@ -8,6 +8,10 @@ import java.time.LocalDate;
 
 public class UserCreateRequest {
     @NotEmpty
+    @JsonProperty("userId")
+    private String userId;
+
+    @NotEmpty
     @JsonProperty("name")
     private String name;
     @NotEmpty
@@ -21,6 +25,10 @@ public class UserCreateRequest {
     private LocalDate birthday;
 
     /* ---------------- Getters ---------------- */
+
+    public String getUserId() {
+        return userId;
+    }
 
     public String getName() {
         return name;
@@ -41,6 +49,9 @@ public class UserCreateRequest {
 
     /* ---------------- Setters ---------------- */
 
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
     public void setName(String name) {
         this.name = name;
     }
