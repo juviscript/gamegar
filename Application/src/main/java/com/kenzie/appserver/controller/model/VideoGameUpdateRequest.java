@@ -14,10 +14,14 @@ public class VideoGameUpdateRequest {
     public String developer;
     @JsonProperty("genre")
     public String genre;
+    @JsonProperty("year")
+    public Integer year;
+    @JsonProperty("country")
+    public String country;
 
     @NotEmpty
     @JsonProperty("id")
-    public static UUID id;
+    public String id;
     @JsonProperty("platforms")
     public LinkedList<String> platforms;
     @JsonProperty("tags")
@@ -27,6 +31,8 @@ public class VideoGameUpdateRequest {
 
 
     /* ---------------- Getters ---------------- */
+
+    public String getId() { return id; }
 
     public String getGameTitle() {
         return title;
@@ -40,9 +46,7 @@ public class VideoGameUpdateRequest {
         return genre;
     }
 
-    public static UUID getId() {
-        return id;
-    }
+    public Integer getYear() { return year; }
 
     public LinkedList<String> getPlatforms() {
         return platforms;
@@ -56,9 +60,11 @@ public class VideoGameUpdateRequest {
         return description;
     }
 
-
+    public String getCountry() { return country; }
 
     /* ---------------- Setters ---------------- */
+
+    public void setId(String id) { this.id = id; }
 
     public void setTitle(String title) {
         this.title = title;
@@ -72,9 +78,7 @@ public class VideoGameUpdateRequest {
         this.genre = genre;
     }
 
-    public static void setId(UUID id) {
-        VideoGameResponse.id = id;
-    }
+    public void setYear(Integer year) { this.year = year; }
 
     public void setPlatforms(LinkedList<String> platforms) {
         this.platforms = platforms;
@@ -87,4 +91,6 @@ public class VideoGameUpdateRequest {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public void setCountry(String country) { this.country = country; }
 }
