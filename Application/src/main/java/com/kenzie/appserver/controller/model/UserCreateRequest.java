@@ -10,7 +10,6 @@ public class UserCreateRequest {
     @NotEmpty
     @JsonProperty("userId")
     private String userId;
-
     @NotEmpty
     @JsonProperty("name")
     private String name;
@@ -66,5 +65,6 @@ public class UserCreateRequest {
 
     public void setBirthday(LocalDate birthday) {
         this.birthday = birthday;
-    }
+   }
 }
+
