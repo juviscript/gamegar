@@ -12,23 +12,24 @@ import java.util.UUID;
 @DynamoDBTable(tableName = "VideoGameCatalog")
 public class VideoGameCatalogRecord {
 
+    public String id;
+
     public String title;
     public String developer;
     public String genre;
-
-    public static UUID id;
+    public Integer year;
     public LinkedList<String> platforms;
     public LinkedList<String> tags;
     public String description;
+    public String country;
 
-    @DynamoDBHashKey(attributeName = "title")
+    @DynamoDBHashKey(attributeName = "id")
+    public String getGameId() {
+        return id;}
+
+    @DynamoDBRangeKey(attributeName = "title")
     public String getGameTitle() {
         return title;
-    }
-
-    @DynamoDBRangeKey(attributeName = "id")
-    public UUID getGameId() {
-        return id;
     }
 
     @DynamoDBAttribute(attributeName = "developer")
@@ -40,6 +41,9 @@ public class VideoGameCatalogRecord {
     public String getGenre() {
         return genre;
     }
+
+    @DynamoDBAttribute(attributeName = "year")
+    public Integer getYear() { return year; }
 
     @DynamoDBAttribute(attributeName = "platforms")
     public LinkedList<String> getPlatforms() {
@@ -56,6 +60,9 @@ public class VideoGameCatalogRecord {
         return description;
     }
 
+    @DynamoDBAttribute(attributeName = "country")
+    public String getCountry() { return country; }
+
     public void setTitle(String title) {
         this.title = title;
     }
@@ -68,10 +75,9 @@ public class VideoGameCatalogRecord {
         this.genre = genre;
     }
 
+    public void setCountry(String country) { this.country = country; }
 
-    public static void setId(UUID id) {
-        VideoGameCatalogRecord.id = id;
-    }
+    public void setId(String id) { this.id = id;}
 
     public void setPlatforms(LinkedList<String> platforms) {
         this.platforms = platforms;
@@ -85,6 +91,9 @@ public class VideoGameCatalogRecord {
         this.description = description;
     }
 
+    public void setYear(Integer year) { this.year = year; }
+
+    // TODO: 3/29/2023  Not sure about the overrides!!
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
