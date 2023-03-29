@@ -8,18 +8,33 @@ import java.util.UUID;
 
 public class VideoGameCreateRequest {
     @NotEmpty
+
+    @JsonProperty("id")
+    public String id;
+
     @JsonProperty("title")
     public String title;
     @JsonProperty("developer")
     public String developer;
     @JsonProperty("genre")
     public String genre;
+    @JsonProperty("year")
+    public Integer year;
     @JsonProperty("platforms")
     public LinkedList<String> platforms;
     @JsonProperty("tags")
     public LinkedList<String> tags;
+    @JsonProperty("description")
+    public String description;
+    @JsonProperty("country")
+    public String country;
+
+
+
 
     /* ---------------- Getters ---------------- */
+
+    public String getId() { return id; }
 
     public String getTitle() {
         return title;
@@ -33,6 +48,8 @@ public class VideoGameCreateRequest {
         return genre;
     }
 
+    public Integer getYear() { return year; }
+
     public LinkedList<String> getPlatforms() {
         return platforms;
     }
@@ -41,8 +58,13 @@ public class VideoGameCreateRequest {
         return tags;
     }
 
+    public String getDescription() { return description; }
+
+    public String getCountry() { return country; }
 
     /* ---------------- Setters ---------------- */
+
+    public void setId(String id) { this.id = id; }
 
     public void setTitle(String title) {
         this.title = title;
@@ -56,6 +78,8 @@ public class VideoGameCreateRequest {
         this.genre = genre;
     }
 
+    public void setYear(Integer year) { this.year = year; }
+
     public void setPlatforms(LinkedList<String> platforms) {
         this.platforms = platforms;
     }
@@ -63,4 +87,8 @@ public class VideoGameCreateRequest {
     public void setTags(LinkedList<String> tags) {
         this.tags = tags;
     }
+
+    public void setDescription(String description) { this.description = description; }
+
+    public void setCountry(String country) { this.country = country; }
 }
