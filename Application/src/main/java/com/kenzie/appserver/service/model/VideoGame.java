@@ -1,34 +1,39 @@
 package com.kenzie.appserver.service.model;
 
 import java.util.LinkedList;
-import java.util.UUID;
 
 public class VideoGame {
+
+
+    public String id;
 
     public String title;
     public String developer;
     public String genre;
-
-    public static UUID id;       // Create a randomly generated ID.
+    public Integer year;
     public LinkedList<String> platforms;
     public LinkedList<String> tags;
     public String description;
+    public String country;
 
-    public VideoGame(String title, String developer, String genre, UUID id) {
+
+    public VideoGame(String id, String title, String developer, String genre, Integer year,
+                     LinkedList<String> platforms, LinkedList<String> tags, String description, String country) {
+        this.id = id;
         this.title = title;
         this.developer = developer;
         this.genre = genre;
-        id = UUID.randomUUID();
-<<<<<<< HEAD
+        this.year = year;
+        this.platforms = platforms;
+        this.tags = tags;
+        this.description = description;
+        this.country = country;
     }
 
-=======
-
+    public String getId() {
+        return id;
     }
 
-
-
->>>>>>> origin/juvisbranch
     public String getGameTitle() {
         return title;
     }
@@ -41,8 +46,8 @@ public class VideoGame {
         return genre;
     }
 
-    public static UUID getId() {
-        return id;
+    public Integer getYear() {
+        return year;
     }
 
     public LinkedList<String> getPlatforms() {
@@ -57,5 +62,7 @@ public class VideoGame {
         return description;
     }
 
-
+    public String getCountry() {
+        return country;
+    }
 }
