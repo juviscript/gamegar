@@ -9,26 +9,33 @@ import java.util.UUID;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 
 public class VideoGameResponse {
+
+    @JsonProperty("id")
+    public String id;
+
     @JsonProperty("title")
     public String title;
     @JsonProperty("developer")
     public String developer;
     @JsonProperty("genre")
     public String genre;
-
-    @JsonProperty("id")
-    public static UUID id;
+    @JsonProperty("year")
+    public Integer year;
     @JsonProperty("platforms")
     public LinkedList<String> platforms;
     @JsonProperty("tags")
     public LinkedList<String> tags;
     @JsonProperty("description")
     public String description;
-
+    @JsonProperty("country")
+    public String country;
 
 
     /* ---------------- Getters ---------------- */
 
+    public String getId() {
+        return id;
+    }
     public String getGameTitle() {
         return title;
     }
@@ -41,9 +48,7 @@ public class VideoGameResponse {
         return genre;
     }
 
-    public static UUID getId() {
-        return id;
-    }
+    public Integer getYear() { return year; }
 
     public LinkedList<String> getPlatforms() {
         return platforms;
@@ -57,10 +62,17 @@ public class VideoGameResponse {
         return description;
     }
 
+    public String getCountry() {
+        return country;
+    }
+
 
 
     /* ---------------- Setters ---------------- */
 
+    public void setId (String id) {
+        this.id = id;
+    }
     public void setTitle(String title) {
         this.title = title;
     }
@@ -73,9 +85,7 @@ public class VideoGameResponse {
         this.genre = genre;
     }
 
-    public static void setId(UUID id) {
-        VideoGameResponse.id = id;
-    }
+    public void setYear(Integer year) { this.year = year; }
 
     public void setPlatforms(LinkedList<String> platforms) {
         this.platforms = platforms;
@@ -88,4 +98,6 @@ public class VideoGameResponse {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public void setCountry(String country) { this.country = country; }
 }
