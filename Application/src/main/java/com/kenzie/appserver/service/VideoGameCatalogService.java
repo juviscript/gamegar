@@ -6,6 +6,12 @@ import com.kenzie.appserver.repositories.model.VideoGameCatalogRecord;
 import com.kenzie.appserver.service.model.VideoGame;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.ThemeResolver;
+
+
+//    FIXME: If we change the partition key from 'title' to 'ID' will need to change methods to match.
+//           These methods are used in the CatalogController class.
+//           Please update accordingly.
 
 @Service
 public class VideoGameCatalogService {
@@ -15,8 +21,6 @@ public class VideoGameCatalogService {
    public VideoGameCatalogService(VideoGameCatalogRepository videoGameCatalogRepository) {
         this.videoGameCatalogRepository = videoGameCatalogRepository;
     }
-
-    //TODO** Have not made the findByName in the controller just yet**//
 
     public VideoGame findGameByTitle (String title) {
 
@@ -42,8 +46,14 @@ public class VideoGameCatalogService {
         videoGameCatalogRecord.setDeveloper(game.getDeveloper());
         videoGameCatalogRecord.setGenre(game.getGenre());
         videoGameCatalogRecord.setDescription(game.getDescription());
-        videoGameCatalogRepository.save(game);                  // Help :(
+        videoGameCatalogRepository.save(videoGameCatalogRecord);                  // Help :(
         return game;
     }
+
+//        TODO: Create these methods:
+//                getAllGames()
+//                updateGame()
+//                deleteGameById() or deleteGameByTitle()
+
 }
 

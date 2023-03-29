@@ -19,7 +19,10 @@ public class VideoGame {
         this.developer = developer;
         this.genre = genre;
         id = UUID.randomUUID();
+
     }
+
+
 
     public String getGameTitle() {
         return title;
