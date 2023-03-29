@@ -1,25 +1,6 @@
 package com.kenzie.appserver.controller;
 
 
-<<<<<<< HEAD
-
-
-
-import com.kenzie.appserver.repositories.VideoGameCatalogRepository;
-import com.kenzie.appserver.service.model.VideoGame;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-//TODO need to make Response and Request
-@RestController
-@RequestMapping("/games")           // This is the API extension name (ex: localhost:8000/games) will pull this up.
-
-public class CatalogController {
-
-=======
 import com.amazonaws.Response;
 import com.kenzie.appserver.controller.model.VideoGameCreateRequest;
 import com.kenzie.appserver.controller.model.VideoGameResponse;
@@ -39,6 +20,7 @@ import static java.util.UUID.randomUUID;
 
 // FIXME - I spoke with Melissa about this, but we may change the partition key from the 'title' to 'ID'. If we do that, the names of these methods are going to change.
 // FIXME - Change them from 'searchByTitle' to 'searchByID' etc...
+//Could we maybe keep the searchByTitle and add the searchById?
 
 
 @RestController
@@ -59,8 +41,20 @@ public class CatalogController {
         videoGameResponse.setGenre(videoGame.getGenre());
         videoGameResponse.setPlatforms(videoGame.getPlatforms());
         videoGameResponse.setTags(videoGame.getTags());
-        videoGameResponse.setDescription(videoGame.getDescription());        //  TODO: Response: Should we keep description as something that is required to create a new instance
+        videoGameResponse.setDescription(videoGame.getDescription());        //  TODO: Response: Should we keep description and country as something that is required to create a new instance
         return videoGameResponse;                                            //         of a game?
+    }
+
+    @GetMapping("{id}")
+    public ResponseEntity<VideoGameResponse> searchById(@PathVariable("id") String id) {
+        VideoGame videoGame = catalogService.findGameByTitle(id);
+
+        if (videoGame == null) {
+            return ResponseEntity.notFound().build();
+        }
+
+        VideoGameResponse videoGameResponse = createVideoGameResponse(videoGame);
+        return ResponseEntity.ok(videoGameResponse);
     }
 
 
@@ -77,28 +71,33 @@ public class CatalogController {
     }
 
 
-//    @GetMapping("all")              //      http://localhost:8000/games/all will pull this up.
-//    public ResponseEntity<List<VideoGameResponse>> getAllGames() {
-//       List<VideoGame> allGames = catalogService.findAllGames();
-//
-//        if (allGames == null || allGames.isEmpty()) {                                // If no games or all are listed as 'null', return a 204 response.
-//            return ResponseEntity.status(204).build();
-//        }
-//
-//        List<VideoGameResponse> response = new ArrayList<>();                        TODO: <-- Uncomment this once the findAllGames() method has been created in VideoGameCatalogService.
-//        for (VideoGame game : allGames) {
-//            response.add(this.createVideoGameResponse(game));                         // Otherwise, return list.
-//        }
-//
-//        return ResponseEntity.ok(response);
-//    }
+    @GetMapping("all")              //      http://localhost:8000/games/all will pull this up.
+    public ResponseEntity<List<VideoGameResponse>> getAllGames() {
+       List<VideoGame> allGames = catalogService.findAllGames();
+
+        if (allGames == null || allGames.isEmpty()) {                                // If no games or all are listed as 'null', return a 204 response.
+            return ResponseEntity.status(204).build();
+        }
+
+        List<VideoGameResponse> response = new ArrayList<>();
+        for (VideoGame game : allGames) {
+            response.add(this.createVideoGameResponse(game));                         // Otherwise, return list.
+        }
+
+        return ResponseEntity.ok(response);
+    }
 
     @PostMapping
     public ResponseEntity<VideoGameResponse> addNewGame(@RequestBody VideoGameCreateRequest gameCreateRequest) {
-        VideoGame videoGame = new VideoGame(gameCreateRequest.getTitle(),
+        VideoGame videoGame = new VideoGame(gameCreateRequest.getId(),
+                gameCreateRequest.getTitle(),
                 gameCreateRequest.getDeveloper(),
                 gameCreateRequest.getGenre(),
-                randomUUID());
+                gameCreateRequest.getYear(),
+                gameCreateRequest.getPlatforms(),
+                gameCreateRequest.getTags(),
+                gameCreateRequest.getDescription(),
+                gameCreateRequest.getCountry());
 
         catalogService.addNewGame(videoGame);
 
@@ -110,12 +109,17 @@ public class CatalogController {
 
     @PutMapping
     public ResponseEntity<VideoGameResponse> updateGame(@RequestBody VideoGameUpdateRequest gameUpdateRequest) {
-        VideoGame videoGame = new VideoGame((gameUpdateRequest.getGameTitle()),
+        VideoGame videoGame = new VideoGame((gameUpdateRequest.getId()),
+                gameUpdateRequest.getGameTitle(),
                 gameUpdateRequest.getDeveloper(),
                 gameUpdateRequest.getGenre(),
-                gameUpdateRequest.getId());
+                gameUpdateRequest.getYear(),
+                gameUpdateRequest.getPlatforms(),
+                gameUpdateRequest.getTags(),
+                gameUpdateRequest.getDescription(),
+                gameUpdateRequest.getCountry());
 
-//        catalogService.updateGame(videoGame);                                  TODO: <---- Uncomment this once the updateGame() method has been created in VideoGameCatalogService.
+        catalogService.updateGame(videoGame);
 
         VideoGameResponse gameResponse = createVideoGameResponse(videoGame);
 
@@ -124,9 +128,8 @@ public class CatalogController {
 
     @DeleteMapping("/{title}")
     public ResponseEntity deleteConcertByTitle(@PathVariable("title") String title) {
-//        catalogService.deleteGame(title);                                     TODO: <---- Uncomment this once the deleteGame() method has been created in VideoGameCatalogService.
+        catalogService.deleteGameById(title);
         return ResponseEntity.status(204).build();
     }
->>>>>>> origin/juvisbranch
 
 }
