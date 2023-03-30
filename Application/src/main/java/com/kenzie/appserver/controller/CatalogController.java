@@ -49,7 +49,7 @@ public class CatalogController {
 
     @GetMapping("{id}")
     public ResponseEntity<VideoGameResponse> searchById(@PathVariable("id") String id) {
-        VideoGame videoGame = catalogService.findGameByTitle(id);
+        VideoGame videoGame = catalogService.findGameById(id);
 
         if (videoGame == null) {
             return ResponseEntity.notFound().build();
