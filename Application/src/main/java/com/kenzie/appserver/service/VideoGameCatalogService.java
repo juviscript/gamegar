@@ -77,6 +77,7 @@ public class VideoGameCatalogService {
         VideoGameCatalogRecord videoGameCatalogRecord = new VideoGameCatalogRecord();
 
         //Do we want the users to create an id for the video game?****
+        videoGameCatalogRecord.setId(game.getId());
         videoGameCatalogRecord.setTitle(game.getGameTitle());
         videoGameCatalogRecord.setDeveloper(game.getDeveloper());
         videoGameCatalogRecord.setGenre(game.getGenre());
