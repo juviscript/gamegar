@@ -39,9 +39,11 @@ public class CatalogController {
         videoGameResponse.setTitle(videoGame.getGameTitle());
         videoGameResponse.setDeveloper((videoGame.getDeveloper()));
         videoGameResponse.setGenre(videoGame.getGenre());
+        videoGameResponse.setYear(videoGame.getYear());
         videoGameResponse.setPlatforms(videoGame.getPlatforms());
         videoGameResponse.setTags(videoGame.getTags());
         videoGameResponse.setDescription(videoGame.getDescription());        //  TODO: Response: Should we keep description and country as something that is required to create a new instance
+        videoGameResponse.setCountry(videoGame.getCountry());
         return videoGameResponse;                                            //         of a game?
     }
 
