@@ -55,8 +55,8 @@ public class VideoGameCatalogService {
 
         VideoGame gameFromService = videoGameCatalogRepository
                 .findById(title)
-                .map(game -> new VideoGame(game.getGameId(),
-                        game.getGameTitle(),
+                .map(game -> new VideoGame(game.getGameTitle(),
+                        game.getGameId(),
                         game.getDeveloper(),
                         game.getGenre(),
                         game.getYear(),
