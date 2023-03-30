@@ -32,34 +32,34 @@ public class UserController {
         return userResponse;
     }
 
-//    @GetMapping("/{userId}")
-//    public ResponseEntity<UserResponse> searchByUserId(@PathVariable("userId") String userId) {
-////        User user = userService.findUserById(userId);
-//
-//        if (user == null) {
-//            return ResponseEntity.notFound().build();
-//        }                                                         TODO: Uncomment this line once findByUserId is created in UserService class.
-//
-//        UserResponse userResponse = createUserResponse(user);
-//
-//        return ResponseEntity.ok(userResponse);
-//    }
+    @GetMapping("/{userId}")
+    public ResponseEntity<UserResponse> searchByUserId(@PathVariable("userId") String userId) {
+        User user = userService.findUserById(userId);
 
-//    @GetMapping
-//    public ResponseEntity<List<UserResponse>> getAllUsers() {
-////        List<User> users = userService.findAllUsers();
-//
-//        if (users == null || users.isEmpty()) {
-//            return ResponseEntity.status(204).build();
-//        }
-//                                                                  TODO: Uncomment this once findAllUsers() is created in UserService class.
-//        List<UserResponse> response = new ArrayList<>();
-//        for (User user : users) {
-//            response.add(this.createUserResponse(user)):
-//        }
-//
-//        return ResponseEntity.ok(response);
-//    }
+        if (user == null) {
+            return ResponseEntity.notFound().build();
+        }                                                        
+
+        UserResponse userResponse = createUserResponse(user);
+
+        return ResponseEntity.ok(userResponse);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<UserResponse>> getAllUsers() {
+        List<User> users = userService.findAllUsers();
+
+        if (users == null || users.isEmpty()) {
+            return ResponseEntity.status(204).build();
+        }
+                                                                 
+        List<UserResponse> response = new ArrayList<>();
+        for (User user : users) {
+            response.add(this.createUserResponse(user));
+        }
+
+        return ResponseEntity.ok(response);
+    }
 
     @PostMapping
     public ResponseEntity<UserResponse> addNewUser(@RequestBody UserCreateRequest userCreateRequest) {
@@ -72,8 +72,8 @@ public class UserController {
 
         UserResponse userResponse = createUserResponse(user);
 
-//        return ResponseEntity.created(URI.create("/users/" + userResponse.getId())).body(userResponse);       TODO: Uncomment this line once findById() is created in UserService class.
-        return ResponseEntity.ok(userResponse);                                                              // TODO: Also delete this line once that is created!
+        return ResponseEntity.created(URI.create("/users/" + userResponse.getUserId())).body(userResponse);       
+        //return ResponseEntity.ok(userResponse);                                                              // TODO: Also delete this line once that is created!
     }
 
     @PutMapping
@@ -84,7 +84,7 @@ public class UserController {
                 userUpdateRequest.getUsername(),
                 userUpdateRequest.getBirthday());
 
-//        userService.updateUser(user);                                  TODO: <---- Uncomment this once the updateUser() method has been created in UserService.
+        userService.updateUser(user);                                  
 
         UserResponse userResponse = createUserResponse(user);
 
@@ -93,9 +93,10 @@ public class UserController {
 
     @DeleteMapping("/{userId}")
     public ResponseEntity deleteConcertByTitle(@PathVariable("userId") String userId) {
-//        userService.deleteUser(user);                                     TODO: <---- Uncomment this once the deleteUser() method has been created in UserService.
+        userService.deleteUserById(userId);                                     
         return ResponseEntity.status(204).build();
     }
 
 
 }
+
