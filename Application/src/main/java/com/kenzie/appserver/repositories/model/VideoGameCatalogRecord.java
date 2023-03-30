@@ -93,17 +93,17 @@ public class VideoGameCatalogRecord {
 
     public void setYear(Integer year) { this.year = year; }
 
-    // TODO: 3/29/2023  Not sure about the overrides!!
-    @Override
+     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         VideoGameCatalogRecord that = (VideoGameCatalogRecord) o;
-        return title.equals(that.title) && developer.equals(that.developer) && Objects.equals(genre, that.genre) && Objects.equals(platforms, that.platforms) && Objects.equals(tags, that.tags) && Objects.equals(description, that.description);
+        return Objects.equals(id, that.id) && Objects.equals(title, that.title) && Objects.equals(developer, that.developer) && Objects.equals(genre, that.genre) && Objects.equals(year, that.year) && Objects.equals(platforms, that.platforms) && Objects.equals(tags, that.tags) && Objects.equals(description, that.description) && Objects.equals(country, that.country);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(title, developer, genre, platforms, tags, description);
+        return Objects.hash(id, title, developer, genre, year, platforms, tags, description, country);
     }
 }
+
