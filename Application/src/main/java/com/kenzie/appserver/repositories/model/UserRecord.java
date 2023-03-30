@@ -8,20 +8,26 @@ import java.util.Objects;
 @DynamoDBTable(tableName = "Users")
 public class UserRecord {
 
+    private String userId;
     private String name;
     private String email;
     private String username;
 
     private LocalDate birthday;
 
-    @DynamoDBHashKey(attributeName = "name")
-    public String getName() {
-        return name;
+    @DynamoDBHashKey(attributeName = "userId")
+    public String getUserId() {
+        return userId;
     }
 
     @DynamoDBRangeKey(attributeName = "username")
     public String getUsername() {
         return username;
+    }
+
+    @DynamoDBAttribute(attributeName = "name")
+    public String getName() {
+        return name;
     }
 
     @DynamoDBAttribute(attributeName = "email")
@@ -33,6 +39,8 @@ public class UserRecord {
     public LocalDate getBirthday() {                                        // a string in the table (LocalDate -> String) in
         return birthday;                                                    // Will be in ISO_8601 format: Year-Month-Day
     }
+
+    public void setUserId(String userId) { this.userId = userId; }
 
     public void setName (String name) {
         this.name = name;
@@ -50,6 +58,7 @@ public class UserRecord {
         this.birthday = birthday;
     }
 
+    //need to modify override methods!
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
