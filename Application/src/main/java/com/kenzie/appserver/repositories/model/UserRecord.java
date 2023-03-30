@@ -58,17 +58,16 @@ public class UserRecord {
         this.birthday = birthday;
     }
 
-    //need to modify override methods!
-    @Override
+  @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         UserRecord that = (UserRecord) o;
-        return name.equals(that.name) && email.equals(that.email) && username.equals(that.username) && birthday.equals(that.birthday);
+        return Objects.equals(userId, that.userId) && Objects.equals(name, that.name) && Objects.equals(email, that.email) && Objects.equals(username, that.username) && Objects.equals(birthday, that.birthday);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, email, username, birthday);
+        return Objects.hash(userId, name, email, username, birthday);
     }
 }
