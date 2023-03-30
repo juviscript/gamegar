@@ -91,7 +91,7 @@ public class CatalogController {
 
     @PostMapping
     public ResponseEntity<VideoGameResponse> addNewGame(@RequestBody VideoGameCreateRequest gameCreateRequest) {
-        VideoGame videoGame = new VideoGame(gameCreateRequest.getId(),
+        VideoGame videoGame = new VideoGame(randomUUID().toString(),
                 gameCreateRequest.getTitle(),
                 gameCreateRequest.getDeveloper(),
                 gameCreateRequest.getGenre(),
