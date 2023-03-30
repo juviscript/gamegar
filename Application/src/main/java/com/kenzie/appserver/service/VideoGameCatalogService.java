@@ -120,7 +120,11 @@ public class VideoGameCatalogService {
             gameRecord.setCountry(game.getCountry());
             videoGameCatalogRepository.save(gameRecord);
         }
-        //**Should we add the cache??**
+        VideoGame gameFromCache = null;
+        gameFromCache = cache.get(game.getId());
+        if(gameFromCache != null){
+            cache.evict(gameFromCache.getId());
+        }
     }
 
         public void deleteGameById(String gameId){
