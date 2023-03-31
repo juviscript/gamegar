@@ -8,5 +8,6 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @EnableScan
+@Repository
 public interface VideoGameCatalogRepository extends CrudRepository<VideoGameCatalogRecord, String>{
 }
