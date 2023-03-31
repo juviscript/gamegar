@@ -25,7 +25,7 @@ import java.util.List;
 @Service
 public class VideoGameCatalogService {
     private final VideoGameCatalogRepository videoGameCatalogRepository;
-    private CacheStore cache;
+    public CacheStore cache;
 
     @Autowired
     public VideoGameCatalogService(VideoGameCatalogRepository videoGameCatalogRepository, CacheStore cache) {

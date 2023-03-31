@@ -16,7 +16,7 @@ public class UserService {
 
     private final UserRepository userRepository;
 
-    private CacheStoreUser cache;
+    public CacheStoreUser cache;
 
     public UserService(UserRepository userRepository, CacheStoreUser cache) {
         this.userRepository = userRepository;

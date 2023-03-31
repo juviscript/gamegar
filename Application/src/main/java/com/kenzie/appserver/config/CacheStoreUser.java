@@ -8,7 +8,7 @@ import com.kenzie.appserver.service.model.VideoGame;
 import java.util.concurrent.TimeUnit;
 
 public class CacheStoreUser {
-    private Cache<String, User> cache;
+    public Cache<String, User> cache;
 
     public CacheStoreUser(int expiry, TimeUnit timeUnit) {
         this.cache = CacheBuilder.newBuilder()
