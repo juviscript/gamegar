@@ -27,7 +27,7 @@ public class VideoGameCatalogRecord {
     public String getGameId() {
         return id;}
 
-    @DynamoDBRangeKey(attributeName = "title")
+    @DynamoDBAttribute(attributeName = "title")
     public String getGameTitle() {
         return title;
     }

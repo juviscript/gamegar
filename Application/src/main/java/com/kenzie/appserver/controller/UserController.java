@@ -69,6 +69,7 @@ public class UserController {
                 userCreateRequest.getUsername(),
                 userCreateRequest.getBirthday()
                 );
+        userService.addNewUser(user);
 
         UserResponse userResponse = createUserResponse(user);
 

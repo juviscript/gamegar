@@ -6,7 +6,6 @@ public class VideoGame {
 
 
     public String id;
-
     public String title;
     public String developer;
     public String genre;

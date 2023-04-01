@@ -6,6 +6,7 @@ import com.kenzie.appserver.repositories.UserRepository;
 import com.kenzie.appserver.repositories.model.UserRecord;
 import com.kenzie.appserver.service.model.User;
 import com.kenzie.appserver.service.model.VideoGame;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -18,6 +19,7 @@ public class UserService {
 
     public CacheStoreUser cache;
 
+    @Autowired
     public UserService(UserRepository userRepository, CacheStoreUser cache) {
         this.userRepository = userRepository;
         this.cache = cache;
@@ -38,7 +40,6 @@ public class UserService {
     }
 
     public User findUserByName (String names) {
-
         User nameFromService = userRepository
                 .findById(names)
                 .map(users -> new User(users.getName(),
@@ -59,7 +60,7 @@ public class UserService {
         userRecord.setName(user.getName());
         userRecord.setEmail(user.getEmail());
         userRecord.setBirthday(user.getBirthday());
-
+        userRepository.save(userRecord);
         return user;
     }
 
@@ -87,6 +88,7 @@ public class UserService {
             userRecord.setBirthday(user.getBirthday());
             userRepository.save(userRecord);
         }
+
         User userFromCache = null;
         userFromCache = cache.get(user.getUserId());
         if(userFromCache != null){

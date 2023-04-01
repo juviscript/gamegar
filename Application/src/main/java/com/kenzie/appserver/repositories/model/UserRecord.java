@@ -20,7 +20,7 @@ public class UserRecord {
         return userId;
     }
 
-    @DynamoDBRangeKey(attributeName = "username")
+    @DynamoDBAttribute(attributeName = "username")
     public String getUsername() {
         return username;
     }
