@@ -31,6 +31,7 @@ public class VideoGameService {
         catalogRecord.setGameId(game.getGameId());
         catalogRecord.setGameName(game.getGameName());
         catalogRecord.setGameDescription(game.getGameDescription());
+
         return game;
     }
     public List<Game> findAllGames(){
