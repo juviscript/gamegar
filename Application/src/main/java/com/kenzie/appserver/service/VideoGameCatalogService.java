@@ -1,11 +1,6 @@
 package com.kenzie.appserver.service;
-<<<<<<< Updated upstream
-
 import com.kenzie.appserver.config.CacheStore;
-=======
->>>>>>> Stashed changes
 import com.kenzie.appserver.repositories.VideoGameCatalogRepository;
-
 import com.kenzie.appserver.repositories.model.VideoGameCatalogRecord;
 import com.kenzie.appserver.service.model.VideoGame;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,18 +9,15 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.servlet.ThemeResolver;
-
 import java.util.ArrayList;
 import java.util.List;
-<<<<<<< Updated upstream
-=======
 import java.util.stream.Collectors;
 import com.kenzie.appserver.repositories.model.VideoGameCatalogRecord;
 import com.kenzie.appserver.repositories.VideoGameCatalogRepository;
-import com.kenzie.appserver.service.model.GameService;
+//import com.kenzie.appserver.service.model.GameService;
 
 import org.springframework.stereotype.Service;
->>>>>>> Stashed changes
+
 
 
 //    FIXME: If we change the partition key from 'title' to 'ID' will need to change methods to match.
@@ -47,7 +39,7 @@ public class VideoGameCatalogService {
 
     public VideoGame findGameById (String id) {
 
-        VideoGame gameFromService = videoGameCatalogRepository
+        return videoGameCatalogRepository
                 .findById(id)
                 .map(game -> new VideoGame(game.getGameId(),
                         game.getGameTitle(),
@@ -59,13 +51,11 @@ public class VideoGameCatalogService {
                         game.getGameDescription(),
                         game.getCountry()))
                 .orElse(null);
-
-        return gameFromService;
     }
 
     public VideoGame findGameByTitle (String title) {
 
-        VideoGame gameFromService = videoGameCatalogRepository
+        return videoGameCatalogRepository
                 .findById(title)
                 .map(game -> new VideoGame(game.getGameTitle(),
                         game.getGameId(),
@@ -78,11 +68,99 @@ public class VideoGameCatalogService {
                         game.getCountry()))
                 .orElse(null);
 
-        return gameFromService;
-
         // We can choose to create a cache so that the items get stored and accessed easier.
         // I don't think that was a requirement of the project, but if you guys want to!
 
+    }
+    public VideoGame findGameByDeveloper (String developer) {
+
+        return videoGameCatalogRepository
+                .findById(developer)
+                .map(game -> new VideoGame(game.getGameTitle(),
+                        game.getGameId(),
+                        game.getDeveloper(),
+                        game.getGenre(),
+                        game.getYear(),
+                        game.getPlatforms(),
+                        game.getTags(),
+                        game.getGameDescription(),
+                        game.getCountry()))
+                .orElse(null);
+    }
+    public VideoGame findGameByGenre (String genre) {
+
+        return videoGameCatalogRepository
+                .findById(genre)
+                .map(game -> new VideoGame(game.getGameTitle(),
+                        game.getGameId(),
+                        game.getDeveloper(),
+                        game.getGenre(),
+                        game.getYear(),
+                        game.getPlatforms(),
+                        game.getTags(),
+                        game.getGameDescription(),
+                        game.getCountry()))
+                .orElse(null);
+    }
+    public VideoGame findGameByTag (String tags) {
+
+        return videoGameCatalogRepository
+                .findById(tags)
+                .map(game -> new VideoGame(game.getGameTitle(),
+                        game.getGameId(),
+                        game.getDeveloper(),
+                        game.getGenre(),
+                        game.getYear(),
+                        game.getPlatforms(),
+                        game.getTags(),
+                        game.getGameDescription(),
+                        game.getCountry()))
+                .orElse(null);
+    }
+    public VideoGame findGameByCountry (String country) {
+
+        return videoGameCatalogRepository
+                .findById(country)
+                .map(game -> new VideoGame(game.getGameTitle(),
+                        game.getGameId(),
+                        game.getDeveloper(),
+                        game.getGenre(),
+                        game.getYear(),
+                        game.getPlatforms(),
+                        game.getTags(),
+                        game.getGameDescription(),
+                        game.getCountry()))
+                .orElse(null);
+    }
+    public VideoGame findGamesByYear (String year) {
+
+        return videoGameCatalogRepository
+                .findById(year)
+                .map(game -> new VideoGame(game.getGameTitle(),
+                        game.getGameId(),
+                        game.getDeveloper(),
+                        game.getGenre(),
+                        game.getYear(),
+                        game.getPlatforms(),
+                        game.getTags(),
+                        game.getGameDescription(),
+                        game.getCountry()))
+                .orElse(null);
+    }
+    public VideoGame findGameByPlatforms (String platforms) {
+
+        return videoGameCatalogRepository
+                .findById(platforms)
+                .map(game -> new VideoGame(game.getGameTitle(),
+                        game.getGameId(),
+                        game.getDeveloper(),
+                        game.getGenre(),
+                        game.getYear(),
+                        game.getPlatforms(),
+                        game.getTags(),
+                        game.getGameDescription(),
+                        game.getCountry()))
+                .orElse(null);
     }
 
     public VideoGame addNewGame(VideoGame game){
@@ -100,7 +178,6 @@ public class VideoGameCatalogService {
         videoGameCatalogRepository.save(videoGameCatalogRecord);
         return game;
     }
-<<<<<<< Updated upstream
 
     public List<VideoGame> findAllGames() {
         List<VideoGame> games = new ArrayList<>();
@@ -154,9 +231,4 @@ public class VideoGameCatalogService {
         }
 
 }
-=======
 
-}
-
-
->>>>>>> Stashed changes

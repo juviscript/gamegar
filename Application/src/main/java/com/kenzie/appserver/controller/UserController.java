@@ -44,6 +44,28 @@ public class UserController {
 
         return ResponseEntity.ok(userResponse);
     }
+    @GetMapping("/{name}")
+    public ResponseEntity<UserResponse> searchByName(@PathVariable("name") String name) {
+        User user = userService.findUserByName(name);
+
+        if (user == null) {
+            return ResponseEntity.notFound().build();
+        }
+
+        UserResponse userResponse = createUserResponse(user);
+
+        return ResponseEntity.ok(userResponse);
+    }
+    @GetMapping("/{email}")
+    public ResponseEntity<UserResponse> searchByEmail(@PathVariable("email") String email){
+        User user = userService.findUserByEmail(email);
+
+        if (user == null) {
+            return ResponseEntity.notFound().build();
+        }
+        UserResponse userResponse = createUserResponse(user);
+        return ResponseEntity.ok(userResponse);
+    }
 
     @GetMapping
     public ResponseEntity<List<UserResponse>> getAllUsers() {

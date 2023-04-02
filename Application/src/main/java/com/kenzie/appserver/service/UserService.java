@@ -18,7 +18,8 @@ public class UserService {
     private final UserRepository userRepository;
 
     public CacheStoreUser cache;
-
+    public List<VideoGame> favoriteGames;
+    public List<VideoGame> ownGames;
     @Autowired
     public UserService(UserRepository userRepository, CacheStoreUser cache) {
         this.userRepository = userRepository;
@@ -27,7 +28,7 @@ public class UserService {
 
     public User findUserById (String id) {
 
-        User userFromService = userRepository
+        return userRepository
                 .findById(id)
                 .map(users -> new User(users.getUserId(),
                         users.getName(),
@@ -35,12 +36,11 @@ public class UserService {
                         users.getUsername(),
                         users.getBirthday()))
                 .orElse(null);
-
-        return userFromService;
     }
 
     public User findUserByName (String names) {
-        User nameFromService = userRepository
+
+        return userRepository
                 .findById(names)
                 .map(users -> new User(users.getName(),
                         users.getUserId(),
@@ -48,8 +48,17 @@ public class UserService {
                         users.getUsername(),
                         users.getBirthday()))
                 .orElse(null);
+    }
+    public User findUserByEmail (String email) {
 
-        return nameFromService;
+        return userRepository
+                .findById(email)
+                .map(users -> new User(users.getUserId(),
+                        users.getName(),
+                        users.getEmail(),
+                        users.getUsername(),
+                        users.getBirthday()))
+                .orElse(null);
     }
 
     public User addNewUser(User user){
@@ -108,5 +117,35 @@ public class UserService {
             cache.evict(user.getUserId());
         }
     }
+    public List<VideoGame> getFavoriteGames() {
+        return favoriteGames;
+    }
 
+    public boolean addFavoriteGame(VideoGame game) {
+        if (!favoriteGames.contains(game)) {
+            return favoriteGames.add(game);
+        }
+        return false;
+    }
+
+    public boolean removeFavoriteGame(VideoGame game) {
+        return favoriteGames.remove(game);
+    }
+    public List<VideoGame> getOwnGames() {
+        return ownGames;
+    }
+
+    public boolean addOwnGame(VideoGame game) {
+        if (!ownGames.contains(game)) {
+            return ownGames.add(game);
+        }
+        return false;
+    }
+
+    public boolean removeOwnGame(VideoGame game) {
+        return ownGames.remove(game);
+    }
 }
+
+
+

@@ -1,16 +1,15 @@
 package com.kenzie.appserver.controller;
 
 
-import com.kenzie.appserver.controller.model.CatalogCreateRequest;
-import com.kenzie.appserver.controller.model.CatalogResponse;
+import com.kenzie.appserver.controller.model.*;
 import com.amazonaws.Response;
-import com.kenzie.appserver.controller.model.VideoGameCreateRequest;
-import com.kenzie.appserver.controller.model.VideoGameResponse;
-import com.kenzie.appserver.controller.model.VideoGameUpdateRequest;
 import com.kenzie.appserver.repositories.VideoGameCatalogRepository;
 import com.kenzie.appserver.service.VideoGameCatalogService;
 import com.kenzie.appserver.service.model.VideoGame;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,7 +18,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.net.URI;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 import static java.util.UUID.randomUUID;
 
@@ -54,6 +56,7 @@ public class CatalogController {
         return ResponseEntity.ok(catalogResponse);
     }
 
+
     private VideoGameResponse createVideoGameResponse(VideoGame videoGame) {
         VideoGameResponse videoGameResponse = new VideoGameResponse();
         videoGameResponse.setId(videoGame.getId());
@@ -73,7 +76,7 @@ public class CatalogController {
         VideoGame videoGame = catalogService.findGameById(id);
 
         if (videoGame == null) {
-            return ResponseEntity.notFound().build();
+            return ResponseEntity.noContent().build();
         }
 
         VideoGameResponse videoGameResponse = createVideoGameResponse(videoGame);
@@ -86,28 +89,86 @@ public class CatalogController {
         VideoGame videoGame = catalogService.findGameByTitle(title);
 
         if (videoGame == null) {
-            return ResponseEntity.notFound().build();                                   // If there are no titles, return a 204 error.
+            return ResponseEntity.noContent().build();                                   // If there are no titles, return a 204 error.
         }
 
         VideoGameResponse videoGameResponse = createVideoGameResponse(videoGame);       // If there is a match, convert the title into a VideoGameResponse and return it.
         return ResponseEntity.ok(videoGameResponse);
     }
+    @GetMapping("{developer}")  //     http://localhost:8000/games/title will pull this up.
+    public ResponseEntity<VideoGameResponse> searchByDeveloper(@PathVariable("developer") String developer){
+        VideoGame videoGame = catalogService.findGameByDeveloper(developer);
 
+        if (videoGame == null) {                            // If there are no developers, return a 204 error.
+            return ResponseEntity.noContent().build();
+        }
+        VideoGameResponse videoGameResponse = createVideoGameResponse(videoGame);       // If there is a match, convert the title into a VideoGameResponse and return it.
+        return ResponseEntity.ok(videoGameResponse);
+    }
+    @GetMapping("{genre}")  //     http://localhost:8000/games/title will pull this up.
+    public ResponseEntity<VideoGameResponse> searchByGenre(@PathVariable("genre") String genre){
+        VideoGame videoGame = catalogService.findGameByGenre(genre);
 
-    @GetMapping("all")              //      http://localhost:8000/games/all will pull this up.
+        if (videoGame == null) {                            // If there are no genre, return a 204 error.
+            return ResponseEntity.noContent().build();
+        }
+        VideoGameResponse videoGameResponse = createVideoGameResponse(videoGame);       // If there is a match, convert the title into a VideoGameResponse and return it.
+        return ResponseEntity.ok(videoGameResponse);
+    }
+    @GetMapping("{platforms}")  //     http://localhost:8000/games/title will pull this up.
+    public ResponseEntity<VideoGameResponse> searchByPlatforms(@PathVariable("platforms") String platforms){
+        VideoGame videoGame = catalogService.findGameByPlatforms(platforms);
+
+        if (videoGame == null) {                            // If there are no genre, return a 204 error.
+            return ResponseEntity.noContent().build();
+        }
+        VideoGameResponse videoGameResponse = createVideoGameResponse(videoGame);       // If there is a match, convert the title into a VideoGameResponse and return it.
+        return ResponseEntity.ok(videoGameResponse);
+    }
+    @GetMapping("{tags}")  //     http://localhost:8000/games/title will pull this up.
+    public ResponseEntity<VideoGameResponse> searchByTag(@PathVariable("tags") String tags){
+        VideoGame videoGame = catalogService.findGameByTag(tags);
+
+        if (videoGame == null) {                            // If there are no genre, return a 204 error.
+            return ResponseEntity.noContent().build();
+        }
+        VideoGameResponse videoGameResponse = createVideoGameResponse(videoGame);       // If there is a match, convert the title into a VideoGameResponse and return it.
+        return ResponseEntity.ok(videoGameResponse);
+    }
+    @GetMapping("{country}")  //     http://localhost:8000/games/title will pull this up.
+    public ResponseEntity<VideoGameResponse> searchByCountry(@PathVariable("country") String country){
+        VideoGame videoGame = catalogService.findGameByCountry(country);
+
+        if (videoGame == null) {                            // If there are no genre, return a 204 error.
+            return ResponseEntity.noContent().build();
+        }
+        VideoGameResponse videoGameResponse = createVideoGameResponse(videoGame);       // If there is a match, convert the title into a VideoGameResponse and return it.
+        return ResponseEntity.ok(videoGameResponse);
+    }
+
+    @GetMapping("{year}")  //     http://localhost:8000/games/title will pull this up.
+    public ResponseEntity<VideoGameResponse> searchByYear(@PathVariable("year") String year){
+        VideoGame videoGame = catalogService.findGamesByYear(year);
+
+        if (videoGame == null) {                            // If there are no genre, return a 204 error.
+            return ResponseEntity.noContent().build();
+        }
+        VideoGameResponse videoGameResponse = createVideoGameResponse(videoGame);       // If there is a match, convert the title into a VideoGameResponse and return it.
+        return ResponseEntity.ok(videoGameResponse);
+    }
+
+    @GetMapping("all")      //     http://localhost:8000/games/title will pull this up.
     public ResponseEntity<List<VideoGameResponse>> getAllGames() {
-        List<VideoGame> allGames = catalogService.findAllGames();
+        Collection<VideoGame> allGames = catalogService.findAllGames();
 
-        if (allGames == null || allGames.isEmpty()) {                                // If no games or all are listed as 'null', return a 204 response.
-            return ResponseEntity.status(204).build();
-        }
+        List<VideoGameResponse> response = allGames.stream()
+                .map(this::createVideoGameResponse)
+                .collect(Collectors.toList());
 
-        List<VideoGameResponse> response = new ArrayList<>();
-        for (VideoGame game : allGames) {
-            response.add(this.createVideoGameResponse(game));                         // Otherwise, return list.
-        }
-
-        return ResponseEntity.ok(response);
+        return Optional.ofNullable(response)                        // If there is a match, convert the title into a VideoGameResponse and return it.
+                .filter(list -> !list.isEmpty())
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.noContent().build());     // If there are no genre, return a 204 error.
     }
 
     @PostMapping
