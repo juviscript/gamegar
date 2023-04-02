@@ -1,6 +1,9 @@
 package com.kenzie.appserver.service;
+<<<<<<< Updated upstream
 
 import com.kenzie.appserver.config.CacheStore;
+=======
+>>>>>>> Stashed changes
 import com.kenzie.appserver.repositories.VideoGameCatalogRepository;
 
 import com.kenzie.appserver.repositories.model.VideoGameCatalogRecord;
@@ -14,6 +17,15 @@ import org.springframework.web.servlet.ThemeResolver;
 
 import java.util.ArrayList;
 import java.util.List;
+<<<<<<< Updated upstream
+=======
+import java.util.stream.Collectors;
+import com.kenzie.appserver.repositories.model.VideoGameCatalogRecord;
+import com.kenzie.appserver.repositories.VideoGameCatalogRepository;
+import com.kenzie.appserver.service.model.GameService;
+
+import org.springframework.stereotype.Service;
+>>>>>>> Stashed changes
 
 
 //    FIXME: If we change the partition key from 'title' to 'ID' will need to change methods to match.
@@ -88,6 +100,7 @@ public class VideoGameCatalogService {
         videoGameCatalogRepository.save(videoGameCatalogRecord);
         return game;
     }
+<<<<<<< Updated upstream
 
     public List<VideoGame> findAllGames() {
         List<VideoGame> games = new ArrayList<>();
@@ -141,3 +154,9 @@ public class VideoGameCatalogService {
         }
 
 }
+=======
+
+}
+
+
+>>>>>>> Stashed changes

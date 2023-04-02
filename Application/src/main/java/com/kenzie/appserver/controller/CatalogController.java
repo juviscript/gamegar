@@ -1,8 +1,8 @@
 package com.kenzie.appserver.controller;
 
+
 import com.kenzie.appserver.controller.model.CatalogCreateRequest;
 import com.kenzie.appserver.controller.model.CatalogResponse;
-
 import com.amazonaws.Response;
 import com.kenzie.appserver.controller.model.VideoGameCreateRequest;
 import com.kenzie.appserver.controller.model.VideoGameResponse;
@@ -11,9 +11,12 @@ import com.kenzie.appserver.repositories.VideoGameCatalogRepository;
 import com.kenzie.appserver.service.VideoGameCatalogService;
 import com.kenzie.appserver.service.model.VideoGame;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +26,6 @@ import static java.util.UUID.randomUUID;
 // FIXME - I spoke with Melissa about this, but we may change the partition key from the 'title' to 'ID'. If we do that, the names of these methods are going to change.
 // FIXME - Change them from 'searchByTitle' to 'searchByID' etc...
 //Could we maybe keep the searchByTitle and add the searchById?
-
 
 @RestController
 @RequestMapping("/games")           //  This is the API extension name (ex: http://localhost:8000/games) will pull this up.
@@ -146,4 +148,11 @@ public class CatalogController {
 
         return ResponseEntity.ok(gameResponse);
     }
+
+    @DeleteMapping("/{title}")
+    public ResponseEntity deleteConcertByTitle(@PathVariable("title") String title) {
+        catalogService.deleteGameById(title);
+        return ResponseEntity.status(204).build();
+    }
+
 }
