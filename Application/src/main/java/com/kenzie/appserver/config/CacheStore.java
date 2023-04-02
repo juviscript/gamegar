@@ -15,7 +15,8 @@ public class CacheStore {
                 .concurrencyLevel(Runtime.getRuntime().availableProcessors())
                 .build();
     }
-        public VideoGame get(String key) {
+
+    public VideoGame get(String key) {
         return cache.getIfPresent(key);
     }
 

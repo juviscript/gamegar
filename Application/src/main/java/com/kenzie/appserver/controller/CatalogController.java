@@ -1,9 +1,8 @@
 package com.kenzie.appserver.controller;
 
 import com.kenzie.appserver.controller.model.CatalogCreateRequest;
-import com.kenzie.appserver.controller.model.CatalogReponse;
+import com.kenzie.appserver.controller.model.CatalogResponse;
 
-//<<<<<<< HEAD
 import com.amazonaws.Response;
 import com.kenzie.appserver.controller.model.VideoGameCreateRequest;
 import com.kenzie.appserver.controller.model.VideoGameResponse;
@@ -35,6 +34,23 @@ public class CatalogController {
         this.catalogService = catalogService;
     }
 
+    @GetMapping("/{gameId}")
+    public ResponseEntity<VideoGameResponse> get(@PathVariable("name") String id) {
+        VideoGame game = catalogService.findGameById(id);
+        if(game == null){
+            return ResponseEntity.notFound().build();
+        }
+        VideoGameResponse catalogResponse = new VideoGameResponse();
+        catalogResponse.setId(game.getId());
+        catalogResponse.setTitle(game.getGameTitle());
+        catalogResponse.setDeveloper(game.getDeveloper());
+        catalogResponse.setGenre(game.getGenre());
+        catalogResponse.setYear(game.getYear());
+        catalogResponse.setPlatforms(game.getPlatforms());
+        catalogResponse.setTags(game.getTags());
+        catalogResponse.setCountry(game.getCountry());
+        return ResponseEntity.ok(catalogResponse);
+    }
 
     private VideoGameResponse createVideoGameResponse(VideoGame videoGame) {
         VideoGameResponse videoGameResponse = new VideoGameResponse();
@@ -60,7 +76,7 @@ public class CatalogController {
 
         VideoGameResponse videoGameResponse = createVideoGameResponse(videoGame);
         return ResponseEntity.ok(videoGameResponse);
-    }
+}
 
 
     @GetMapping("{title}")           //     http://localhost:8000/games/title will pull this up.
@@ -130,60 +146,4 @@ public class CatalogController {
 
         return ResponseEntity.ok(gameResponse);
     }
-
-    @DeleteMapping("/{title}")
-    public ResponseEntity deleteConcertByTitle(@PathVariable("title") String title) {
-        catalogService.deleteGameById(title);
-        return ResponseEntity.status(204).build();
-    }
 }
-//
-//=======
-//import com.kenzie.appserver.service.VideoGameService;
-//import com.kenzie.appserver.service.model.Game;
-//import org.springframework.http.ResponseEntity;
-//import org.springframework.web.bind.annotation.*;
-//
-//import java.net.URI;
-//
-//import static java.util.UUID.randomUUID;
-//
-////TODO need to make Response and Request
-//@RestController
-//@RequestMapping("/catalog")
-//public class CatalogController {
-//
-//    private VideoGameService videoGameService;
-//
-//    CatalogController(VideoGameService videoGameService){
-//        this.videoGameService = videoGameService;
-//    }
-//
-//    @GetMapping("/{name}")
-//    public ResponseEntity<CatalogReponse>get(@PathVariable("name") String id){
-//
-//        Game game = videoGameService.findById(id);
-//        if(game == null){
-//            return ResponseEntity.notFound().build();
-//        }
-//        CatalogReponse catalogReponse = new CatalogReponse();
-//        catalogReponse.setId(game.getGameId());
-//        catalogReponse.setName(game.getGameName());
-//        catalogReponse.setDescription(game.getGameDescription());
-//        return ResponseEntity.ok(catalogReponse);
-//    }
-//    @PostMapping
-//    public ResponseEntity<CatalogReponse> addNewGame(@RequestBody CatalogCreateRequest catalogCreateRequest){
-//        Game game = new Game(randomUUID().toString(),
-//                catalogCreateRequest.getName(), catalogCreateRequest.getDescription());
-//        videoGameService.addNewGame(game);
-//
-//        CatalogReponse catalogReponse = new CatalogReponse();
-//        catalogReponse.setId(game.getGameId());
-//        catalogReponse.setName(game.getGameName());
-//        catalogReponse.setDescription(game.getGameDescription());
-//
-//        return ResponseEntity.created(URI.create("/game/" + catalogReponse.getId())).body(catalogReponse);
-//    }
-//>>>>>>> efaa1ac (added CatalogResponse and CatalogCreateResponse, plus renamed GameService to Game VideoGameCatalog to VideoGameService. As well as add mothods to said classes)
-//}
