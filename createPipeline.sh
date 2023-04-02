@@ -17,7 +17,7 @@ fi
 
 echo "Outputting parameters for the pipeline..."
 echo "Project name: $LBC_PROJECT_NAME"
-echo "LBC Group Name: $$LBC_GROUP_NAME"
+echo "LBC Group Name: $LBC_GROUP_NAME"
 echo "Repo path: $LBC_REPO_NAME"
 echo "Branch: $branch"
 
