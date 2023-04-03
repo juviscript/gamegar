@@ -1,16 +1,10 @@
 package com.kenzie.appserver.controller;
 
-import com.kenzie.appserver.controller.model.CatalogCreateRequest;
-import com.kenzie.appserver.controller.model.CatalogResponse;
-
-import com.amazonaws.Response;
 import com.kenzie.appserver.controller.model.VideoGameCreateRequest;
 import com.kenzie.appserver.controller.model.VideoGameResponse;
 import com.kenzie.appserver.controller.model.VideoGameUpdateRequest;
-import com.kenzie.appserver.repositories.VideoGameCatalogRepository;
 import com.kenzie.appserver.service.VideoGameCatalogService;
 import com.kenzie.appserver.service.model.VideoGame;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
