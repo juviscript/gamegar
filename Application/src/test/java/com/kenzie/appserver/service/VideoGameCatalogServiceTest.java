@@ -179,5 +179,75 @@ public class VideoGameCatalogServiceTest {
         assertEquals(capturedGameRecord.getCountry(), videoGameCatalogRecord.getCountry());
 
     }
+    
+     @Test
+    public void findGameByTitle_titleIsNull(){
+        VideoGameCatalogRecord nullGame = new VideoGameCatalogRecord();
+        nullGame.setTitle(null);
 
+        when(videoGameCatalogRepository.findById(nullGame.getGameId())).thenReturn(Optional.empty());
+        VideoGame response = videoGameCatalogService.findGameByTitle(nullGame.getGameTitle());
+
+        Assertions.assertNull(response);
+    }
+    @Test
+    public void findAllGames(){
+        VideoGameCatalogRecord game1 = new VideoGameCatalogRecord();
+        game1.setId(randomUUID().toString());
+        game1.setTitle("Destiny 2");
+        game1.setDeveloper("Bungie");
+        game1.setGenre("Action/Adventure");
+        game1.setYear(2017);
+        game1.setPlatforms(new LinkedList<>());
+        game1.setTags(new LinkedList<>());
+        game1.setDescription("Big shooty shooty space adventure game");
+        game1.setCountry("USA");
+
+        VideoGameCatalogRecord game2 = new VideoGameCatalogRecord();
+        game2.setId(randomUUID().toString());
+        game2.setTitle("The Legend of Zelda: Breath of the Wild");
+        game2.setDeveloper("Nintendo");
+        game2.setGenre("Action/Adventure");
+        game2.setYear(2017);
+        game2.setPlatforms(new LinkedList<>());
+        game2.setTags(new LinkedList<>());
+        game2.setDescription("117 year old boy awakens to save princess from the evil clutches of Ganon");
+        game2.setCountry("Japan");
+
+        List<VideoGameCatalogRecord> records = new ArrayList<>();
+
+        records.add(game1);
+        records.add(game2);
+
+        when(videoGameCatalogRepository.findAll()).thenReturn(records);
+
+        List<VideoGame> recordList = videoGameCatalogService.findAllGames();
+
+        Assertions.assertNotNull(recordList, "The list of games is returned");
+        Assertions.assertEquals(2, recordList.size(), "Here are 2 games");
+
+        for(VideoGame videoGame : recordList) {
+            if(videoGame.getId() == game1.getGameId()){
+                Assertions.assertEquals(game1.getGameTitle(), videoGame.getGameTitle(), "The game title matches");
+                Assertions.assertEquals(game1.getDeveloper(), videoGame.getDeveloper(), "The developers matches");
+                Assertions.assertEquals(game1.getGenre(), videoGame.getGenre(), "The game genre matches");
+                Assertions.assertEquals(game1.getYear(), videoGame.getYear(), "The game year matches");
+                Assertions.assertEquals(game1.getPlatforms(), videoGame.getPlatforms(), "The game platforms matches");
+                Assertions.assertEquals(game1.getTags(), videoGame.getTags(), "The game tags matches");
+                Assertions.assertEquals(game1.getGameDescription(), videoGame.getDescription(), "The game description matches");
+                Assertions.assertEquals(game1.getCountry(), videoGame.getCountry(), "The game country matches");
+            } else if(videoGame.getId() == game2.getGameId()){
+                Assertions.assertEquals(game2.getGameTitle(), videoGame.getGameTitle(), "The game title matches");
+                Assertions.assertEquals(game2.getDeveloper(), videoGame.getDeveloper(), "The developers matches");
+                Assertions.assertEquals(game2.getGenre(), videoGame.getGenre(), "The game genre matches");
+                Assertions.assertEquals(game2.getYear(), videoGame.getYear(), "The game year matches");
+                Assertions.assertEquals(game2.getPlatforms(), videoGame.getPlatforms(), "The game platforms matches");
+                Assertions.assertEquals(game2.getTags(), videoGame.getTags(), "The game tags matches");
+                Assertions.assertEquals(game2.getGameDescription(), videoGame.getDescription(), "The game description matches");
+                Assertions.assertEquals(game2.getCountry(), videoGame.getCountry(), "The game country matches");
+            }else {
+                Assertions.assertTrue(false, "Video Game returned is not in the records!");
+            }
+        }
+    }
 }
