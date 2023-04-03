@@ -2,13 +2,14 @@ package com.kenzie.appserver.service;
 
 import com.kenzie.appserver.config.CacheStore;
 import com.kenzie.appserver.config.CacheStoreUser;
+import com.kenzie.appserver.controller.CatalogController;
 import com.kenzie.appserver.repositories.UserRepository;
 import com.kenzie.appserver.repositories.model.UserRecord;
 import com.kenzie.appserver.service.model.User;
 import com.kenzie.appserver.service.model.VideoGame;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import com.kenzie.appserver.service.VideoGameCatalogService;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -73,6 +74,7 @@ public class UserService {
         return user;
     }
 
+
     public List<User> findAllUsers() {
         List<User> users = new ArrayList<>();
 
@@ -117,35 +119,42 @@ public class UserService {
             cache.evict(user.getUserId());
         }
     }
-    public List<VideoGame> getFavoriteGames() {
-        return favoriteGames;
+    public List<VideoGame> getFavoriteGames(String userId) {
+        User user = cache.get(userId);
+        if (user != null) {
+            return user.getFavoriteGames();
+        }
+        return new ArrayList<>();
     }
 
-    public boolean addFavoriteGame(VideoGame game) {
-        if (!favoriteGames.contains(game)) {
-            return favoriteGames.add(game);
+    public boolean addFavoriteGame(String userId, VideoGame game) {
+        User user = cache.get(userId);
+        if (user != null) {
+            return user.addFavoriteGame(game);
         }
         return false;
     }
 
-    public boolean removeFavoriteGame(VideoGame game) {
-        return favoriteGames.remove(game);
-    }
-    public List<VideoGame> getOwnGames() {
-        return ownGames;
-    }
-
-    public boolean addOwnGame(VideoGame game) {
-        if (!ownGames.contains(game)) {
-            return ownGames.add(game);
+    public boolean removeFavoriteGame(String userId, VideoGame game) {
+        User user = cache.get(userId);
+        if (user != null) {
+            return user.removeFavoriteGame(game);
         }
         return false;
     }
 
-    public boolean removeOwnGame(VideoGame game) {
-        return ownGames.remove(game);
+    public List<VideoGame> getOwnGames(String userId) {
+        User user = cache.get(userId);
+        if (user != null) {
+            return user.getOwnedGames();
+        }
+        return new ArrayList<>();
+    }
+    public boolean addOwnGame(String userId, VideoGame game) {
+        User user = cache.get(userId);
+        if (user != null) {
+            return user.addOwnedGame(game);
+        }
+        return false;
     }
 }
-
-
-

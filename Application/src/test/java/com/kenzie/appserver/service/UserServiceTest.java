@@ -101,6 +101,7 @@ public class UserServiceTest {
         assertEquals(record.getBirthday(), user.getBirthday(), "The user's birthday matches");
     }
 
+
     @Test
     void addNewUser() {
         // GIVEN
