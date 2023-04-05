@@ -83,7 +83,7 @@ class GameSearchPage extends BaseClass {
             for (const concert of concerts) {
                 gameHTML += `
                     <div class="card">
-                        <h2>${concert.name}</h2>
+                        <h2>${game.title}</h2>
                         <div>Date: ${concert.date}</div>
                         <div>Base Price: ${this.formatCurrency(concert.ticketBasePrice)}</div>
                         <p>
