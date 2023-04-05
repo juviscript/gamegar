@@ -1,11 +1,11 @@
 import BaseClass from "../util/baseClass";
 import axios from 'axios'
 
-export default class VideoGameClient extends BaseClass {
+export default class UserClient extends BaseClass {
 
     constructor(props = {}){
         super();
-        const methodsToBind = ['clientLoaded', 'getGames', 'getGame', 'createGame', 'getGameByTitle'];
+        const methodsToBind = ['clientLoaded', 'getAllUsers', 'getUserById', 'createUser', 'getUserByUsername', 'getUserByEmail', 'getGameByDeveloper'];
         this.bindClassMethods(methodsToBind, this);
         this.props = props;
         this.clientLoaded(axios);
@@ -27,12 +27,12 @@ export default class VideoGameClient extends BaseClass {
      * @param errorCallback (Optional) A function to execute if the call fails.
      * @returns an array of games
      */
-    async getGames(errorCallback) {
+    async getAllUsers(errorCallback) {
         try {
-            const response = await this.client.get(`/games`);
+            const response = await this.client.get(`/users`);
             return response.data;
         } catch(error) {
-            this.handleError("getGames", error, errorCallback);
+            this.handleError("getAllUsers", error, errorCallback);
         }
     }
 
@@ -42,45 +42,44 @@ export default class VideoGameClient extends BaseClass {
      * @param errorCallback (Optional) A function to execute if the call fails.
      * @returns The game
      */
-    async getGame(id, errorCallback) {
+    async getUserById(id, errorCallback) {
         try {
-            const response = await this.client.get(`/games/${id}`);
+            const response = await this.client.get(`/users/${id}`);
             return response.data.game;
         } catch (error) {
-            this.handleError("getGame", error, errorCallback)
+            this.handleError("getUserById", error, errorCallback)
         }
     }
 
-    async createGame(title, developer, genre, year, platforms, tags, description, country, errorCallback) {
+    async getUserByUsername(username, errorCallback) {
+        try {
+            const response = await this.client.get(`/games/${username}`);
+            return response.data.game;
+        } catch (error) {
+            this.handleError("getUserByUsername", error, errorCallback)
+        }
+    }
+
+    async getUserByEmail(email, errorCallback) {
+        try {
+            const response = await this.client.get(`/games/${email}`);
+            return response.data.game;
+        } catch (error) {
+            this.handleError("getUserByEmail", error, errorCallback)
+        }
+    }
+
+    async createUser (name, username, email, birthday, errorCallback) {
         try {
             const response = await this.client.post(`games`, {
-                title: title,
-                developer: developer,
-                genre: genre,
-                year: year,
-                platforms: platforms,
-                tags: tags,
-                description: description,
-                country: country
+                name: name,
+                username: username,
+                email: email,
+                birthday: birthday
             });
             return response.data;
         } catch (error) {
-            this.handleError("createGame", error, errorCallback);
-        }
-    }
-
-    /**
-     *
-     * @param title
-     * @param errorCallback
-     * @returns {Promise<*>}
-     */
-    async getGameByTitle(title, errorCallback) {
-        try {
-            const response = await this.client.get(`games/${title}`);
-            return response.data;
-        } catch (error) {
-            this.handleError("getGameByTitle", error, errorCallback);
+            this.handleError("createUser", error, errorCallback);
         }
     }
 
