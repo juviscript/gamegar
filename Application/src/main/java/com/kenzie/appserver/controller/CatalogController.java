@@ -28,23 +28,26 @@ public class CatalogController {
         this.catalogService = catalogService;
     }
 
-    @GetMapping("/{gameId}")
-    public ResponseEntity<VideoGameResponse> get(@PathVariable("name") String id) {
-        VideoGame game = catalogService.findGameById(id);
-        if(game == null){
-            return ResponseEntity.notFound().build();
-        }
-        VideoGameResponse catalogResponse = new VideoGameResponse();
-        catalogResponse.setId(game.getId());
-        catalogResponse.setTitle(game.getGameTitle());
-        catalogResponse.setDeveloper(game.getDeveloper());
-        catalogResponse.setGenre(game.getGenre());
-        catalogResponse.setYear(game.getYear());
-        catalogResponse.setPlatforms(game.getPlatforms());
-        catalogResponse.setTags(game.getTags());
-        catalogResponse.setCountry(game.getCountry());
-        return ResponseEntity.ok(catalogResponse);
-    }
+//    @GetMapping("/{gameId}")
+//    public ResponseEntity<VideoGameResponse> searchGameById (@PathVariable("gameId") String gameId) {
+//        VideoGame game = catalogService.findGameById(gameId);
+//        if(game == null){
+//            return ResponseEntity.notFound().build();
+//        }
+
+//        VideoGameResponse videoGameResponse = createVideoGameResponse(game);
+//        return ResponseEntity.ok(videoGameResponse);
+//        VideoGameResponse catalogResponse = new VideoGameResponse();
+//        catalogResponse.setId(game.getId());
+//        catalogResponse.setTitle(game.getGameTitle());
+//        catalogResponse.setDeveloper(game.getDeveloper());
+//        catalogResponse.setGenre(game.getGenre());
+//        catalogResponse.setYear(game.getYear());
+//        catalogResponse.setPlatforms(game.getPlatforms());
+//        catalogResponse.setTags(game.getTags());
+//        catalogResponse.setCountry(game.getCountry());
+//        return ResponseEntity.ok(catalogResponse);
+//    }
 
     private VideoGameResponse createVideoGameResponse(VideoGame videoGame) {
         VideoGameResponse videoGameResponse = new VideoGameResponse();
@@ -55,9 +58,9 @@ public class CatalogController {
         videoGameResponse.setYear(videoGame.getYear());
         videoGameResponse.setPlatforms(videoGame.getPlatforms());
         videoGameResponse.setTags(videoGame.getTags());
-        videoGameResponse.setDescription(videoGame.getDescription());        //  TODO: Response: Should we keep description and country as something that is required to create a new instance
+        videoGameResponse.setDescription(videoGame.getDescription());
         videoGameResponse.setCountry(videoGame.getCountry());
-        return videoGameResponse;                                            //         of a game?
+        return videoGameResponse;
     }
 
     @GetMapping("{id}")
@@ -73,7 +76,7 @@ public class CatalogController {
 }
 
 
-    @GetMapping("{title}")           //     http://localhost:8000/games/title will pull this up.
+    @GetMapping("title/{title}")           //     http://localhost:8000/games/title will pull this up.
     public ResponseEntity<VideoGameResponse> searchByTitle(@PathVariable("title") String title) {
         VideoGame videoGame = catalogService.findGameByTitle(title);
 
@@ -139,5 +142,11 @@ public class CatalogController {
         VideoGameResponse gameResponse = createVideoGameResponse(videoGame);
 
         return ResponseEntity.ok(gameResponse);
+    }
+    @DeleteMapping("/{gameId}")
+    public ResponseEntity deleteGameById(@PathVariable("gameId") String gameId) {
+        // Your code here
+        catalogService.deleteGameById(gameId);
+        return ResponseEntity.status(204).build();
     }
 }
