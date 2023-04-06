@@ -76,20 +76,20 @@ public class CatalogController {
 }
 
 
-    @GetMapping("/{title}")           //     http://localhost:8000/games/title will pull this up.
-    public ResponseEntity<VideoGameResponse> searchByTitle(@PathVariable("title") String title) {
-        VideoGame videoGame = catalogService.findGameByTitle(title);
+//    @GetMapping("/{title}")           //     http://localhost:8000/games/title will pull this up.
+//    public ResponseEntity<VideoGameResponse> searchByTitle(@PathVariable("title") String title) {
+//        VideoGame videoGame = catalogService.findGameByTitle(title);
+//
+//        if (videoGame == null) {
+//            return ResponseEntity.notFound().build();                                   // If there are no titles, return a 204 error.
+//        }
+//
+//        VideoGameResponse videoGameResponse = createVideoGameResponse(videoGame);       // If there is a match, convert the title into a VideoGameResponse and return it.
+//        return ResponseEntity.ok(videoGameResponse);
+//    }
 
-        if (videoGame == null) {
-            return ResponseEntity.notFound().build();                                   // If there are no titles, return a 204 error.
-        }
 
-        VideoGameResponse videoGameResponse = createVideoGameResponse(videoGame);       // If there is a match, convert the title into a VideoGameResponse and return it.
-        return ResponseEntity.ok(videoGameResponse);
-    }
-
-
-    @GetMapping("all")              //      http://localhost:8000/games/all will pull this up.
+    @GetMapping("/all")              //      http://localhost:8000/games/all will pull this up.
     public ResponseEntity<List<VideoGameResponse>> getAllGames() {
         List<VideoGame> allGames = catalogService.findAllGames();
 
@@ -121,8 +121,7 @@ public class CatalogController {
 
         VideoGameResponse gameResponse = createVideoGameResponse(videoGame);
 
-        return ResponseEntity.created(URI.create("/games/" + gameResponse.getId())).body(gameResponse);         // Created a new endpoint for specific game instance.
-
+        return ResponseEntity.created(URI.create("/games/" + gameResponse.getId())).body(gameResponse);             // Created a new endpoint location for specific game instance for I
     }
 
     @PutMapping
