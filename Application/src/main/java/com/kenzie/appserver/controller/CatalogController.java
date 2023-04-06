@@ -34,7 +34,7 @@ public class CatalogController {
 //        if(game == null){
 //            return ResponseEntity.notFound().build();
 //        }
-
+//
 //        VideoGameResponse videoGameResponse = createVideoGameResponse(game);
 //        return ResponseEntity.ok(videoGameResponse);
 //        VideoGameResponse catalogResponse = new VideoGameResponse();
@@ -63,7 +63,7 @@ public class CatalogController {
         return videoGameResponse;
     }
 
-    @GetMapping("{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<VideoGameResponse> searchById(@PathVariable("id") String id) {
         VideoGame videoGame = catalogService.findGameById(id);
 
@@ -76,7 +76,7 @@ public class CatalogController {
 }
 
 
-    @GetMapping("title/{title}")           //     http://localhost:8000/games/title will pull this up.
+    @GetMapping("/{title}")           //     http://localhost:8000/games/title will pull this up.
     public ResponseEntity<VideoGameResponse> searchByTitle(@PathVariable("title") String title) {
         VideoGame videoGame = catalogService.findGameByTitle(title);
 

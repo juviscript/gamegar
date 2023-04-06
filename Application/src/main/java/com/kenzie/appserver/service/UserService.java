@@ -27,6 +27,11 @@ public class UserService {
 
     public User findUserById (String id) {
 
+        User cachedUser = cache.get(id);
+        if (cachedUser != null) {
+            return cachedUser;
+        }
+
         User userFromService = userRepository
                 .findById(id)
                 .map(users -> new User(users.getUserId(),
@@ -35,6 +40,10 @@ public class UserService {
                         users.getUsername(),
                         users.getBirthday()))
                 .orElse(null);
+
+        if (userFromService != null) {
+            cache.add(userFromService.getUserId(), userFromService);
+        }
 
         return userFromService;
     }
@@ -61,6 +70,10 @@ public class UserService {
         userRecord.setEmail(user.getEmail());
         userRecord.setBirthday(user.getBirthday());
         userRepository.save(userRecord);
+
+        if (userRecord != null) {
+            cache.add(userRecord.getUserId(), user);
+        }
         return user;
     }
 
@@ -98,6 +111,7 @@ public class UserService {
     }
 
     public void deleteUserById(String userID){
+        userRepository.deleteById(userID);
         User user = null;
         if (userID != null) {
             user  = cache.get(userID);
