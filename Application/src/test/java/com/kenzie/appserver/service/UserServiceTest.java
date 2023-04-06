@@ -199,22 +199,22 @@ public class UserServiceTest {
         records.add(user2);
         when(userRepository.findAll()).thenReturn(records);
 
-        List<User> users = userService.findAllUsers();
+        List<User> usersList = userService.findAllUsers();
 
-        Assertions.assertNotNull(users, "The user list is returned");
-        Assertions.assertEquals(2, users.size(), "There are 2 users");
+        Assertions.assertNotNull(usersList, "The user list is returned");
+        Assertions.assertEquals(2, usersList.size(), "There are 2 users.");
 
-        for(User userList : users) {
-            if(userList.getUserId() == user1.getUserId()) {
-                Assertions.assertEquals(user1.getName(), userList.getName(), "The users name match");
-                Assertions.assertEquals(user1.getEmail(), userList.getEmail(), "The user emails match");
-                Assertions.assertEquals(user1.getUsername(), userList.getUsername(), "The usernames match");
-                Assertions.assertEquals(user1.getBirthday(), userList.getBirthday(), "The users birthdays match");
-            } else if (userList.getUserId() == user2.getUserId()) {
-                Assertions.assertEquals(user2.getName(), userList.getName(), "The users name match");
-                Assertions.assertEquals(user2.getUsername(), userList.getUsername(), "The usernames match");
-                Assertions.assertEquals(user2.getEmail(), userList.getEmail(), "The user emails match");
-                Assertions.assertEquals(user2.getBirthday(), userList.getBirthday(), "The users birthdays match");
+        for(User user : usersList) {
+            if(user.getUserId().equals(user1.getUserId())) {
+                Assertions.assertEquals(user1.getName(), user.getName(), "The usersList name match");
+                Assertions.assertEquals(user1.getEmail(), user.getEmail(), "The user emails match");
+                Assertions.assertEquals(user1.getUsername(), user.getUsername(), "The usernames match");
+                Assertions.assertEquals(user1.getBirthday(), user.getBirthday(), "The usersList birthdays match");
+            } else if (user.getUserId().equals(user2.getUserId())) {
+                Assertions.assertEquals(user2.getName(), user.getName(), "The usersList name match");
+                Assertions.assertEquals(user2.getUsername(), user.getUsername(), "The usernames match");
+                Assertions.assertEquals(user2.getEmail(), user.getEmail(), "The user emails match");
+                Assertions.assertEquals(user2.getBirthday(), user.getBirthday(), "The usersList birthdays match");
             } else {
                 Assertions.assertTrue(false, "User returned was not in the records!");
             }
