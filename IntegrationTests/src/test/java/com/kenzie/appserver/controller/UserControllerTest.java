@@ -59,7 +59,7 @@ public class UserControllerTest {
         User persistedUser = userService.addNewUser(user);
 
         // WHEN
-        mvc.perform(get("/user/{userId}", persistedUser.getUserId())
+        mvc.perform(get("/users/{userId}", persistedUser.getUserId())
                         .accept(MediaType.APPLICATION_JSON))
                 // THEN
                 .andExpect(jsonPath("userId")
@@ -165,25 +165,28 @@ public class UserControllerTest {
                         .value(is(birthday)))
                 .andExpect(status().isOk());
     }
+
     //Does not pass
-//    @Test
-//    public void deleteUser_DeleteSuccessful() throws Exception {
-//        // GIVEN
-//        String userId = UUID.randomUUID().toString();
-//        String name = mockNeat.strings().valStr();
-//        String email = mockNeat.strings().valStr();
-//        String username = mockNeat.strings().valStr();
-//        String birthday = LocalDate.now().toString();
-//
-//        User user = new User(userId,name,email,username,birthday);
-//        User persistedUser = userService.addNewUser(user);
-//
-//        // WHEN
-//        mvc.perform(delete("/user/{userId}", persistedUser.getUserId())
-//                        .accept(MediaType.APPLICATION_JSON))
-//                // THEN
-//                .andExpect(status().isNoContent());
-//        assertThat(userService.findUserById(userId)).isNull();
-//    }
+
+    @Test
+    public void deleteUser_DeleteSuccessful() throws Exception {
+        // GIVEN
+        String userId = UUID.randomUUID().toString();
+        String name = mockNeat.strings().valStr();
+        String email = mockNeat.strings().valStr();
+        String username = mockNeat.strings().valStr();
+        String birthday = LocalDate.now().toString();
+
+        User user = new User(userId,name,email,username,birthday);
+        User persistedUser = userService.addNewUser(user);
+
+       // WHEN
+        mvc.perform(delete("/users/{userId}", persistedUser.getUserId())
+                        .accept(MediaType.APPLICATION_JSON))
+
+                // THEN
+                .andExpect(status().isNoContent());
+        assertThat(userService.findUserById(userId)).isNull();
+    }
 }
 
