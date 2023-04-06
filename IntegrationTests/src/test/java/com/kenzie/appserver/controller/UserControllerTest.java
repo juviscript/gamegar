@@ -45,35 +45,37 @@ public class UserControllerTest {
     private final ObjectMapper mapper = new ObjectMapper();
 
     //Does not pass
-//    @Test
-//    public void getUser_UserExists() throws Exception {
-//        // GIVEN
-//        String userId = UUID.randomUUID().toString();
-//        String name = mockNeat.strings().valStr();
-//        String email = mockNeat.strings().valStr();
-//        String username = mockNeat.strings().valStr();
-//        String birthday = LocalDate.now().toString();
-//
-//        User user = new User(userId,name,email,username,birthday);
-//        User persistedUser = userService.addNewUser(user);
-//
-//        // WHEN
-//        mvc.perform(get("/user/{userId}", persistedUser.getUserId())
-//                        .accept(MediaType.APPLICATION_JSON))
-//                // THEN
-//                .andExpect(jsonPath("userId")
-//                        .value(is(userId)))
-//                .andExpect(jsonPath("name")
-//                        .value(is(name)))
-//                .andExpect(jsonPath("email")
-//                        .value(is(email)))
-//                .andExpect(jsonPath("username")
-//                        .value(is(username)))
-//                .andExpect(jsonPath("birthday")
-//                        .value(is(birthday)))
-//                .andExpect(status().isOk());
-//    }
-    //Pass
+
+    @Test
+    public void getUser_UserExists() throws Exception {
+        // GIVEN
+        String userId = UUID.randomUUID().toString();
+        String name = mockNeat.strings().valStr();
+        String email = mockNeat.strings().valStr();
+        String username = mockNeat.strings().valStr();
+        String birthday = LocalDate.now().toString();
+
+        User user = new User(userId,name,email,username,birthday);
+        User persistedUser = userService.addNewUser(user);
+
+        // WHEN
+        mvc.perform(get("/user/{userId}", persistedUser.getUserId())
+                        .accept(MediaType.APPLICATION_JSON))
+                // THEN
+                .andExpect(jsonPath("userId")
+                        .value(is(userId)))
+                .andExpect(jsonPath("name")
+                        .value(is(name)))
+                .andExpect(jsonPath("email")
+                        .value(is(email)))
+                .andExpect(jsonPath("username")
+                        .value(is(username)))
+                .andExpect(jsonPath("birthday")
+                        .value(is(birthday)))
+                .andExpect(status().isOk());
+    }
+
+    // Pass
     @Test
     public void getUser_UserDoesNotExist() throws Exception {
         // GIVEN

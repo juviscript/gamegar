@@ -65,8 +65,8 @@ public class UserService {
         UserRecord userRecord = new UserRecord();
 
         userRecord.setUserId(user.getUserId());
-        userRecord.setUsername(user.getUsername());
         userRecord.setName(user.getName());
+        userRecord.setUsername(user.getUsername());
         userRecord.setEmail(user.getEmail());
         userRecord.setBirthday(user.getBirthday());
         userRepository.save(userRecord);
@@ -83,9 +83,9 @@ public class UserService {
         Iterable<UserRecord> userIterator = userRepository.findAll();
         for(UserRecord record : userIterator) {
             users.add(new User (record.getUserId(),
-                    record.getUsername(),
                     record.getName(),
                     record.getEmail(),
+                    record.getUsername(),
                     record.getBirthday()));
         }
         return users;
