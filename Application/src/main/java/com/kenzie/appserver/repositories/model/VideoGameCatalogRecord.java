@@ -6,6 +6,7 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBRangeKey;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
 
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -17,9 +18,10 @@ public class VideoGameCatalogRecord {
     public String title;
     public String developer;
     public String genre;
+
     public Integer year;
-    public LinkedList<String> platforms;
-    public LinkedList<String> tags;
+    public List<String> platforms;
+    public List<String> tags;
     public String description;
     public String country;
 
@@ -46,12 +48,12 @@ public class VideoGameCatalogRecord {
     public Integer getYear() { return year; }
 
     @DynamoDBAttribute(attributeName = "platforms")
-    public LinkedList<String> getPlatforms() {
+    public List<String> getPlatforms() {
         return platforms;
     }
 
     @DynamoDBAttribute(attributeName = "tags")
-    public LinkedList<String> getTags() {
+    public List<String> getTags() {
         return tags;
     }
 
@@ -79,11 +81,11 @@ public class VideoGameCatalogRecord {
 
     public void setId(String id) { this.id = id;}
 
-    public void setPlatforms(LinkedList<String> platforms) {
+    public void setPlatforms(List<String> platforms) {
         this.platforms = platforms;
     }
 
-    public void setTags(LinkedList<String> tags) {
+    public void setTags(List<String> tags) {
         this.tags = tags;
     }
 

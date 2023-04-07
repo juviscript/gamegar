@@ -1,16 +1,10 @@
 package com.kenzie.appserver.controller;
 
-import com.kenzie.appserver.controller.model.CatalogCreateRequest;
-import com.kenzie.appserver.controller.model.CatalogResponse;
-
-import com.amazonaws.Response;
 import com.kenzie.appserver.controller.model.VideoGameCreateRequest;
 import com.kenzie.appserver.controller.model.VideoGameResponse;
 import com.kenzie.appserver.controller.model.VideoGameUpdateRequest;
-import com.kenzie.appserver.repositories.VideoGameCatalogRepository;
 import com.kenzie.appserver.service.VideoGameCatalogService;
 import com.kenzie.appserver.service.model.VideoGame;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,23 +28,26 @@ public class CatalogController {
         this.catalogService = catalogService;
     }
 
-    @GetMapping("/{gameId}")
-    public ResponseEntity<VideoGameResponse> get(@PathVariable("name") String id) {
-        VideoGame game = catalogService.findGameById(id);
-        if(game == null){
-            return ResponseEntity.notFound().build();
-        }
-        VideoGameResponse catalogResponse = new VideoGameResponse();
-        catalogResponse.setId(game.getId());
-        catalogResponse.setTitle(game.getGameTitle());
-        catalogResponse.setDeveloper(game.getDeveloper());
-        catalogResponse.setGenre(game.getGenre());
-        catalogResponse.setYear(game.getYear());
-        catalogResponse.setPlatforms(game.getPlatforms());
-        catalogResponse.setTags(game.getTags());
-        catalogResponse.setCountry(game.getCountry());
-        return ResponseEntity.ok(catalogResponse);
-    }
+//    @GetMapping("/{gameId}")
+//    public ResponseEntity<VideoGameResponse> searchGameById (@PathVariable("gameId") String gameId) {
+//        VideoGame game = catalogService.findGameById(gameId);
+//        if(game == null){
+//            return ResponseEntity.notFound().build();
+//        }
+//
+//        VideoGameResponse videoGameResponse = createVideoGameResponse(game);
+//        return ResponseEntity.ok(videoGameResponse);
+//        VideoGameResponse catalogResponse = new VideoGameResponse();
+//        catalogResponse.setId(game.getId());
+//        catalogResponse.setTitle(game.getGameTitle());
+//        catalogResponse.setDeveloper(game.getDeveloper());
+//        catalogResponse.setGenre(game.getGenre());
+//        catalogResponse.setYear(game.getYear());
+//        catalogResponse.setPlatforms(game.getPlatforms());
+//        catalogResponse.setTags(game.getTags());
+//        catalogResponse.setCountry(game.getCountry());
+//        return ResponseEntity.ok(catalogResponse);
+//    }
 
     private VideoGameResponse createVideoGameResponse(VideoGame videoGame) {
         VideoGameResponse videoGameResponse = new VideoGameResponse();
@@ -61,12 +58,12 @@ public class CatalogController {
         videoGameResponse.setYear(videoGame.getYear());
         videoGameResponse.setPlatforms(videoGame.getPlatforms());
         videoGameResponse.setTags(videoGame.getTags());
-        videoGameResponse.setDescription(videoGame.getDescription());        //  TODO: Response: Should we keep description and country as something that is required to create a new instance
+        videoGameResponse.setDescription(videoGame.getDescription());
         videoGameResponse.setCountry(videoGame.getCountry());
-        return videoGameResponse;                                            //         of a game?
+        return videoGameResponse;
     }
 
-    @GetMapping("{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<VideoGameResponse> searchById(@PathVariable("id") String id) {
         VideoGame videoGame = catalogService.findGameById(id);
 
@@ -79,20 +76,20 @@ public class CatalogController {
 }
 
 
-    @GetMapping("{title}")           //     http://localhost:8000/games/title will pull this up.
-    public ResponseEntity<VideoGameResponse> searchByTitle(@PathVariable("title") String title) {
-        VideoGame videoGame = catalogService.findGameByTitle(title);
+//    @GetMapping("/{title}")           //     http://localhost:8000/games/title will pull this up.
+//    public ResponseEntity<VideoGameResponse> searchByTitle(@PathVariable("title") String title) {
+//        VideoGame videoGame = catalogService.findGameByTitle(title);
+//
+//        if (videoGame == null) {
+//            return ResponseEntity.notFound().build();                                   // If there are no titles, return a 204 error.
+//        }
+//
+//        VideoGameResponse videoGameResponse = createVideoGameResponse(videoGame);       // If there is a match, convert the title into a VideoGameResponse and return it.
+//        return ResponseEntity.ok(videoGameResponse);
+//    }
 
-        if (videoGame == null) {
-            return ResponseEntity.notFound().build();                                   // If there are no titles, return a 204 error.
-        }
 
-        VideoGameResponse videoGameResponse = createVideoGameResponse(videoGame);       // If there is a match, convert the title into a VideoGameResponse and return it.
-        return ResponseEntity.ok(videoGameResponse);
-    }
-
-
-    @GetMapping("all")              //      http://localhost:8000/games/all will pull this up.
+    @GetMapping("/all")              //      http://localhost:8000/games/all will pull this up.
     public ResponseEntity<List<VideoGameResponse>> getAllGames() {
         List<VideoGame> allGames = catalogService.findAllGames();
 
@@ -124,8 +121,7 @@ public class CatalogController {
 
         VideoGameResponse gameResponse = createVideoGameResponse(videoGame);
 
-        return ResponseEntity.created(URI.create("/games/" + gameResponse.getId())).body(gameResponse);         // Created a new endpoint for specific game instance.
-
+        return ResponseEntity.created(URI.create("/games/" + gameResponse.getId())).body(gameResponse);             // Created a new endpoint location for specific game instance for I
     }
 
     @PutMapping
@@ -145,5 +141,11 @@ public class CatalogController {
         VideoGameResponse gameResponse = createVideoGameResponse(videoGame);
 
         return ResponseEntity.ok(gameResponse);
+    }
+    @DeleteMapping("/{gameId}")
+    public ResponseEntity deleteGameById(@PathVariable("gameId") String gameId) {
+        // Your code here
+        catalogService.deleteGameById(gameId);
+        return ResponseEntity.status(204).build();
     }
 }

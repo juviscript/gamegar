@@ -15,7 +15,9 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Optional;
 
 import static java.util.UUID.randomUUID;
@@ -53,7 +55,7 @@ public class UserServiceTest {
         Mockito.when(userRepository.findById(anyString())).thenReturn(Optional.of(record));
 
         when(cacheStoreUser.get(record.getUserId())).thenReturn(new User(userId, "Pablo", "pablo@gmail.com",
-                "pablito6789", LocalDate.of(1990,2,5)));
+                "pablito6789", "birthday"));
 
         userService.deleteUserById(userId);
 
@@ -86,7 +88,7 @@ public class UserServiceTest {
         record.setName("Rosa");
         record.setUsername("rositafresita12");
         record.setEmail("rosaloca@gmail.com");
-        record.setBirthday(LocalDate.of(2003,5,10));
+        record.setBirthday("birthday");
 
         when(userRepository.findById(userId)).thenReturn(Optional.of(record));
         // WHEN
@@ -107,7 +109,7 @@ public class UserServiceTest {
         String userId = randomUUID().toString();
 
         User user = new User(userId, "name","email","username",
-                LocalDate.of(1980,8,25));
+                "birthday");
 
         ArgumentCaptor<UserRecord> userRecordCaptor = ArgumentCaptor.forClass(UserRecord.class);
 
@@ -135,7 +137,7 @@ public class UserServiceTest {
         String userId = randomUUID().toString();
 
         User user = new User(userId, "name","email","username",
-                LocalDate.of(1980,8,25));
+                "birthday");
 
         UserRecord userRecord = new UserRecord();
         userRecord.setUserId(user.getUserId());
@@ -164,5 +166,57 @@ public class UserServiceTest {
         assertEquals(capturedUserRecord.getBirthday(), userRecord.getBirthday());
 
     }
+    
+    @Test
+    public void findUserByName_returnsNull() {
+        UserRecord nullIdUser = new UserRecord();
+        nullIdUser.setName(null);
 
+        when(userRepository.findById(nullIdUser.getName())).thenReturn(Optional.empty());
+        User response = userService.findUserByName(nullIdUser.getName());
+
+        Assertions.assertNull(response);
+    }
+    @Test
+    public void findAllUsers() {
+        UserRecord user1 = new UserRecord();
+        user1.setUserId(randomUUID().toString());
+        user1.setName("Rosa");
+        user1.setUsername("rositafresita12");
+        user1.setEmail("rosaloca@gmail.com");
+        user1.setBirthday("birthday");
+
+        UserRecord user2 = new UserRecord();
+        user2.setUserId(randomUUID().toString());
+        user2.setName("Franky");
+        user2.setUsername("SuperFranky37");
+        user2.setEmail("BF-37@gmail.com");
+        user2.setBirthday("birthday");
+
+        List<UserRecord> records = new ArrayList<>();
+        records.add(user1);
+        records.add(user2);
+        when(userRepository.findAll()).thenReturn(records);
+
+        List<User> usersList = userService.findAllUsers();
+
+        Assertions.assertNotNull(usersList, "The user list is returned");
+        Assertions.assertEquals(2, usersList.size(), "There are 2 users.");
+
+        for(User user : usersList) {
+            if(user.getUserId().equals(user1.getUserId())) {
+                Assertions.assertEquals(user1.getName(), user.getName(), "The usersList name match");
+                Assertions.assertEquals(user1.getEmail(), user.getEmail(), "The user emails match");
+                Assertions.assertEquals(user1.getUsername(), user.getUsername(), "The usernames match");
+                Assertions.assertEquals(user1.getBirthday(), user.getBirthday(), "The usersList birthdays match");
+            } else if (user.getUserId().equals(user2.getUserId())) {
+                Assertions.assertEquals(user2.getName(), user.getName(), "The usersList name match");
+                Assertions.assertEquals(user2.getUsername(), user.getUsername(), "The usernames match");
+                Assertions.assertEquals(user2.getEmail(), user.getEmail(), "The user emails match");
+                Assertions.assertEquals(user2.getBirthday(), user.getBirthday(), "The usersList birthdays match");
+            } else {
+                Assertions.assertTrue(false, "User returned was not in the records!");
+            }
+        }
+    }
 }

@@ -1,23 +1,25 @@
 package com.kenzie.appserver.service.model;
 
 import java.util.LinkedList;
+import java.util.List;
 
 public class VideoGame {
 
 
     public String id;
+
     public String title;
     public String developer;
     public String genre;
     public Integer year;
-    public LinkedList<String> platforms;
-    public LinkedList<String> tags;
+    public List<String> platforms;
+    public List<String> tags;
     public String description;
     public String country;
 
 
     public VideoGame(String id, String title, String developer, String genre, Integer year,
-                     LinkedList<String> platforms, LinkedList<String> tags, String description, String country) {
+                     List<String> platforms, List<String> tags, String description, String country) {
         this.id = id;
         this.title = title;
         this.developer = developer;
@@ -49,11 +51,11 @@ public class VideoGame {
         return year;
     }
 
-    public LinkedList<String> getPlatforms() {
+    public List<String> getPlatforms() {
         return platforms;
     }
 
-    public LinkedList<String> getTags() {
+    public List<String> getTags() {
         return tags;
     }
 

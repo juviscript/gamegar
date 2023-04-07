@@ -33,7 +33,12 @@ public class VideoGameCatalogService {
         this.cache = cache;
     }
 
-    public VideoGame findGameById (String id) {
+    public VideoGame findGameById(String id) {
+
+        VideoGame cachedVideoGame = cache.get(id);
+        if (cachedVideoGame != null) {
+            return cachedVideoGame;
+        }
 
         VideoGame gameFromService = videoGameCatalogRepository
                 .findById(id)
@@ -48,10 +53,14 @@ public class VideoGameCatalogService {
                         game.getCountry()))
                 .orElse(null);
 
+        if (gameFromService != null) {
+            cache.add(gameFromService.getId(), gameFromService);
+        }
+
         return gameFromService;
     }
 
-    public VideoGame findGameByTitle (String title) {
+    public VideoGame findGameByTitle(String title) {
 
         VideoGame gameFromService = videoGameCatalogRepository
                 .findById(title)
@@ -73,7 +82,7 @@ public class VideoGameCatalogService {
 
     }
 
-    public VideoGame addNewGame(VideoGame game){
+    public VideoGame addNewGame(VideoGame game) {
         VideoGameCatalogRecord videoGameCatalogRecord = new VideoGameCatalogRecord();
 
         //Do we want the users to create an id for the video game?****
@@ -86,6 +95,11 @@ public class VideoGameCatalogService {
         videoGameCatalogRecord.setDescription(game.getDescription());
         videoGameCatalogRecord.setYear(game.getYear()); //added year
         videoGameCatalogRepository.save(videoGameCatalogRecord);
+
+        if (videoGameCatalogRecord != null) {
+            cache.add(videoGameCatalogRecord.getGameId(), game);
+        }
+
         return game;
     }
 
@@ -93,7 +107,7 @@ public class VideoGameCatalogService {
         List<VideoGame> games = new ArrayList<>();
 
         Iterable<VideoGameCatalogRecord> gameIterator = videoGameCatalogRepository.findAll();
-        for(VideoGameCatalogRecord record : gameIterator) {
+        for (VideoGameCatalogRecord record : gameIterator) {
             games.add(new VideoGame(record.getGameId(),
                     record.getGameTitle(),
                     record.getDeveloper(),
@@ -122,22 +136,25 @@ public class VideoGameCatalogService {
         }
         VideoGame gameFromCache = null;
         gameFromCache = cache.get(game.getId());
-        if(gameFromCache != null){
+        if (gameFromCache != null) {
             cache.evict(gameFromCache.getId());
         }
     }
 
-        public void deleteGameById(String gameId){
+    public void deleteGameById(String gameId) {
+//        VideoGame game = null;
+
+        if (gameId != null) {
+//            game = cache.get(gameId);
             videoGameCatalogRepository.deleteById(gameId);
-            VideoGame game = null;
-            if (gameId != null) {
-                game = cache.get(gameId);
-            } else {
-                throw new IllegalArgumentException("Video Game ID not valid.");
-            }
-            if (game != null) {
-                cache.evict(game.getId());
-            }
+            cache.evict(gameId);
+        } else {
+            throw new IllegalArgumentException("Video Game ID not valid.");
         }
 
+//        if (game != null) {
+//
+//        }
+    }
 }
+
