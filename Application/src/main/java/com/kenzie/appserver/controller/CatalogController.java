@@ -52,6 +52,7 @@ public class CatalogController {
                 catalogCreateRequest.getGenre(),
                 catalogCreateRequest.getYear(),
                 catalogCreateRequest.getDescription(),
+                catalogCreateRequest.getCountry(),
                 catalogCreateRequest.getPlatforms(),
                 catalogCreateRequest.getTags());
 
@@ -72,6 +73,7 @@ public class CatalogController {
                 catalogUpdateRequest.getGenre(),
                 catalogUpdateRequest.getYear(),
                 catalogUpdateRequest.getDescription(),
+                catalogUpdateRequest.getCountry(),
                 catalogUpdateRequest.getPlatforms(),
                 catalogUpdateRequest.getTags());
 
@@ -112,6 +114,7 @@ public class CatalogController {
             catalogResponse.setGenre(game.getGenre());
             catalogResponse.setYear(game.getYear());
             catalogResponse.setDescription(game.getDescription());
+            catalogResponse.setCountry(game.getCountry());
             catalogResponse.setPlatforms(game.getPlatforms());
             catalogResponse.setTags(game.getTags());
 
@@ -120,9 +123,9 @@ public class CatalogController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity deleteGameById(@PathVariable("id") String game) {
+    public ResponseEntity deleteGameById(@PathVariable("id") String id) {
 
-        catalogService.deleteGame(game);
+        catalogService.deleteGame(id);
         return ResponseEntity.status(204).build();
 
     }

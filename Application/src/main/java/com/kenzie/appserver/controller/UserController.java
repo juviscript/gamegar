@@ -93,7 +93,7 @@ public class UserController {
     }
 
     @DeleteMapping("/{userId}")
-    public ResponseEntity deleteConcertByTitle(@PathVariable("userId") String userId) {
+    public ResponseEntity deleteUserById(@PathVariable("userId") String userId) {
         userService.deleteUserById(userId);                                     
         return ResponseEntity.status(204).build();
     }

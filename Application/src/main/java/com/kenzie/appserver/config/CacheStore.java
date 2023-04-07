@@ -4,7 +4,7 @@ import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
 import com.kenzie.appserver.service.model.Game;
 import java.util.concurrent.TimeUnit;
-//For videogame
+//For game
 
 
 public class CacheStore {

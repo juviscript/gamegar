@@ -25,6 +25,9 @@ public class CatalogResponse {
     @JsonProperty("description")
     private String description;
 
+    @JsonProperty("country")
+    private String country;
+
     @JsonProperty("platforms")
     private List<String> platforms;
 
@@ -58,6 +61,9 @@ public class CatalogResponse {
     public String getDescription() {
         return description;
     }
+    public String getCountry() {
+        return country;
+    }
 
     public List<String> getPlatforms() {
         return platforms;
@@ -90,6 +96,7 @@ public class CatalogResponse {
     public void setYear(Integer year) {
         this.year = year;
     }
+    public void setCountry(String country) { this.country = country;}
 
     public void setDescription(String description) {
         this.description = description;
