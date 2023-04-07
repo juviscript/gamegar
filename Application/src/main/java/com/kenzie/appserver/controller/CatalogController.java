@@ -48,6 +48,17 @@ public class CatalogController {
 //        catalogResponse.setCountry(game.getCountry());
 //        return ResponseEntity.ok(catalogResponse);
 //    }
+    @GetMapping("/{gameId}")
+    public ResponseEntity<VideoGameResponse> searchById(@PathVariable("gameId") String id) {
+    VideoGame videoGame = catalogService.findGameById(id);
+
+    if (videoGame == null) {
+        return ResponseEntity.notFound().build();
+    }
+
+    VideoGameResponse videoGameResponse = createVideoGameResponse(videoGame);
+    return ResponseEntity.ok(videoGameResponse);
+}
 
     private VideoGameResponse createVideoGameResponse(VideoGame videoGame) {
         VideoGameResponse videoGameResponse = new VideoGameResponse();
@@ -63,30 +74,30 @@ public class CatalogController {
         return videoGameResponse;
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<VideoGameResponse> searchById(@PathVariable("gameId") String id) {
-        VideoGame videoGame = catalogService.findGameById(id);
+//    @GetMapping("/{id}")
+//    public ResponseEntity<VideoGameResponse> searchById(@PathVariable("gameId") String id) {
+//        VideoGame videoGame = catalogService.findGameById(id);
+//
+//        if (videoGame == null) {
+//            return ResponseEntity.notFound().build();
+//        }
+//
+//        VideoGameResponse videoGameResponse = createVideoGameResponse(videoGame);
+//        return ResponseEntity.ok(videoGameResponse);
+//}
 
-        if (videoGame == null) {
-            return ResponseEntity.notFound().build();
-        }
 
-        VideoGameResponse videoGameResponse = createVideoGameResponse(videoGame);
-        return ResponseEntity.ok(videoGameResponse);
-}
-
-
-    @GetMapping("/{title}")           //     http://localhost:8000/games/title will pull this up.
-    public ResponseEntity<VideoGameResponse> searchByTitle(@PathVariable("title") String title) {
-        VideoGame videoGame = catalogService.findGameByTitle(title);
-
-        if (videoGame == null) {
-            return ResponseEntity.notFound().build();                                   // If there are no titles, return a 204 error.
-        }
-
-        VideoGameResponse videoGameResponse = createVideoGameResponse(videoGame);       // If there is a match, convert the title into a VideoGameResponse and return it.
-        return ResponseEntity.ok(videoGameResponse);
-    }
+//    @GetMapping("/{title}")           //     http://localhost:8000/games/title will pull this up.
+//    public ResponseEntity<VideoGameResponse> searchByTitle(@PathVariable("title") String title) {
+//        VideoGame videoGame = catalogService.findGameByTitle(title);
+//
+//        if (videoGame == null) {
+//            return ResponseEntity.notFound().build();                                   // If there are no titles, return a 204 error.
+//        }
+//
+//        VideoGameResponse videoGameResponse = createVideoGameResponse(videoGame);       // If there is a match, convert the title into a VideoGameResponse and return it.
+//        return ResponseEntity.ok(videoGameResponse);
+//    }
 
 
     @GetMapping("all")              //      http://localhost:8000/games/all will pull this up.
