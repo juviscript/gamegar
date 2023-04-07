@@ -2,12 +2,13 @@ package com.kenzie.appserver.config;
 
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
-import com.kenzie.appserver.service.model.VideoGame;
-
+import com.kenzie.appserver.service.model.Game;
 import java.util.concurrent.TimeUnit;
-//For videogame
+//For game
+
+
 public class CacheStore {
-    public Cache<String, VideoGame> cache;
+    public Cache<String, Game> cache;
 
     public CacheStore(int expiry, TimeUnit timeUnit) {
         this.cache = CacheBuilder.newBuilder()
@@ -15,7 +16,8 @@ public class CacheStore {
                 .concurrencyLevel(Runtime.getRuntime().availableProcessors())
                 .build();
     }
-        public VideoGame get(String key) {
+
+    public Game get(String key) {
         return cache.getIfPresent(key);
     }
 
@@ -25,7 +27,7 @@ public class CacheStore {
         }
     }
 
-    public void add(String key, VideoGame value) {
+    public void add(String key, Game value) {
         if (key != null) {
             cache.put(key, value);
         }
