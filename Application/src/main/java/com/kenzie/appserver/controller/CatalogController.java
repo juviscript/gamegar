@@ -64,7 +64,7 @@ public class CatalogController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<VideoGameResponse> searchById(@PathVariable("id") String id) {
+    public ResponseEntity<VideoGameResponse> searchById(@PathVariable("gameId") String id) {
         VideoGame videoGame = catalogService.findGameById(id);
 
         if (videoGame == null) {
