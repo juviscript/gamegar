@@ -31,21 +31,22 @@ aws dynamodb put-item \
   "birthday": {"S": "02/07/2001"}
 }'
 # Populating VideoGame table
+
 aws dynamodb put-item \
 --endpoint-url http://localhost:8000 \
 --table-name 'GameCatalog' \
---item '{
-  "id": {"S": "D216314B"},
-  "title": {"S": "Age of Mythology: The Titans"},
-  "developer": {"S": "Ensemble Studios"},
-  "genre": {"S": "Real-time strategy"},
-  "year": {"N": 2003},
-  "description": {"S": "Age of Mythology: The Titans is an expansion pack to the real-time strategy video game of Age of Mythology. The Titans adds a fourth culture to the game, the Atlanteans, and three new major gods, plus new units, buildings and god powers. It also includes many new features, such as auto-queueing (allows indefinite training of units as long as you have sufficient resources), and the ability to summon a Titan, a gargantuan, godlike being that forms the game''s focal point."},
-  "country": {"S": "U.S.A."},
-  "platforms": {"SS": "PC"},
-  "tags": {"SS": "Single-player, Multiplayer"},
-
+--item ' {
+"id": {"S": "D216314B"},
+"title": {"S": "Age of Mythology: The Titans"},
+"developer": {"S": "Ensemble Studios"},
+"genre": {"S": "Real-time strategy"},
+"year": {"N": "2003"},
+"description": {"S": "Age of Mythology: The Titans is an expansion pack to the real-time strategy video game of Age of Mythology. The Titans adds a fourth culture to the game, the Atlantean'\''s, and three new major gods, plus new units, buildings and god powers. It also includes many new features, such as auto-queueing (allows indefinite training of units as long as you have sufficient resources), and the ability to summon a Titan, a gargantuan, godlike being that forms the game'\''s focal point."},
+"country": {"S": "U.S.A."},
+"platforms": {"L": [ {"S": "PC"} ]},
+"tags": {"L": [ {"S": "Single-Player"} , {"S": "Multiplayer"} ]}
 }'
+
 aws dynamodb put-item \
 --endpoint-url http://localhost:8000 \
 --table-name 'GameCatalog' \
@@ -59,8 +60,8 @@ aws dynamodb put-item \
   "country": {"S": "France"},
   "platforms": {"SS": "Play Station, Xbox, Wii U, Nintendo, Stadia"},
   "tags": {"SS": "Single-player, Multiplayer"},
-
 }'
+
 aws dynamodb put-item \
 --endpoint-url http://localhost:8000 \
 --table-name 'GameCatalog' \
@@ -72,7 +73,7 @@ aws dynamodb put-item \
   "year": {"N": 2011},
   "description": {"S": "The game is presented from the third-person perspective with a primary focus on Batman''s combat and stealth abilities, detective skills, and gadgets that can be used in both combat and exploration. Batman can freely move around the Arkham City prison, interacting with characters and undertaking missions, and unlocking new areas by progressing through the main story or obtaining new equipment. The player is able to complete side missions away from the main story to unlock additional content and collectible items. Batman''s ally Catwoman is another playable character, featuring her own story campaign that runs parallel to the game''s main plot."},
   "country": {"S": "U.S.A."},
-  "platforms": {"SS": "Play Station, Xbox, PC, Wii U"},
+  "platforms": {"SS": "Play Station", "Xbox", "PC", Wii U"},
   "tags": {"SS": "Single-player"},
 
 }'

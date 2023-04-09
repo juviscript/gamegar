@@ -60,15 +60,6 @@ export default class VideoGameClient extends BaseClass {
         }
     }
 
-    async getGameByDeveloper(developer, errorCallback) {
-        try {
-            const response = await this.client.get(`/games/${developer}`);
-            return response.data.game;
-        } catch (error) {
-            this.handleError("getGameByDeveloper", error, errorCallback)
-        }
-    }
-
     async createGame(title, developer, genre, year, platforms, tags, description, country, errorCallback) {
         try {
             const response = await this.client.post(`games`, {

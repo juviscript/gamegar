@@ -42,36 +42,36 @@ export default class UserClient extends BaseClass {
      * @param errorCallback (Optional) A function to execute if the call fails.
      * @returns The game
      */
-    async getUserById(id, errorCallback) {
+    async getUserById(userId, errorCallback) {
         try {
-            const response = await this.client.get(`/users/${id}`);
+            const response = await this.client.get(`/users/${userId}`);
             return response.data.game;
         } catch (error) {
             this.handleError("getUserById", error, errorCallback)
         }
     }
 
-    async getUserByUsername(username, errorCallback) {
-        try {
-            const response = await this.client.get(`/games/${username}`);
-            return response.data.game;
-        } catch (error) {
-            this.handleError("getUserByUsername", error, errorCallback)
-        }
-    }
+    // async getUserByUsername(username, errorCallback) {
+    //     try {
+    //         const response = await this.client.get(`/games/${username}`);
+    //         return response.data.game;                                             If we can fix this endpoint, we can keep this.
+    //     } catch (error) {                                                          Commenting it out because it is not useable at this time.
+    //         this.handleError("getUserByUsername", error, errorCallback)
+    //     }
+    // }
 
-    async getUserByEmail(email, errorCallback) {
-        try {
-            const response = await this.client.get(`/games/${email}`);
-            return response.data.game;
-        } catch (error) {
-            this.handleError("getUserByEmail", error, errorCallback)
-        }
-    }
+    // async getUserByEmail(email, errorCallback) {
+    //     try {
+    //         const response = await this.client.get(`/games/${email}`);             If we can fix this endpoint, we can keep this.
+    //         return response.data.game;                                             Commenting it out because it is not useable at this time.
+    //     } catch (error) {
+    //         this.handleError("getUserByEmail", error, errorCallback)
+    //     }
+    // }
 
     async createUser (name, username, email, birthday, errorCallback) {
         try {
-            const response = await this.client.post(`games`, {
+            const response = await this.client.post(`users`, {
                 name: name,
                 username: username,
                 email: email,

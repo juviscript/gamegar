@@ -1,6 +1,6 @@
 import BaseClass from '../util/baseClass';
 import DataStore from '../util/DataStore';
-import ConcertClient from "../api/videoGameClient";
+import VideoGameClient from "../api/videoGameClient";
 
 /**
  * Logic needed for the create playlist page of the website.
@@ -43,75 +43,48 @@ class GameAdmin extends BaseClass {
     // Render Methods --------------------------------------------------------------------------------------------------
 
     renderGames() {
-        let gameHtml = "";                              // Variable named gameHtml that equals an empty string
+        let gameHtml = "";
         const games = this.dataStore.get("games");
 
-        if (games) {
+        if (games.length <= 0) {
             for (const game of games) {
+
                 gameHtml += `
                     <div class="card">
                         <h2> ${game.title} </h2>
-                        <div>Date: ${concert.date}</div>
-                        <div>Base Price: ${this.formatCurrency(concert.ticketBasePrice)}</div>
-                        <p>
-                            <h3>Ticket Reservations</h3>
+                        <div id="info-1">
                             <ul>
-                `;
-                if (concert.reservations && concert.reservations.length > 0) {
-                    for (const reservation of concert.reservations) {
-                        concertHtml += `
-                                <li>
-                                    <div>Ticket ID: ${reservation.ticketId}</div>
-                                    <div>Date Reserved: ${reservation.dateOfReservation}</div>
-                                    <div>Reservation Closed: ${reservation.reservationClosed}</div>
-                                    <div>Date Reservation Closed: ${reservation.dateReservationClosed}</div>
-                                    <div>Ticket Purchased: ${reservation.purchasedTicket}</div>
-                                </li>
-                        `;
-                    }
-                } else {
-                    concertHtml += `
-                                <li>No Ticket Reservations.</li>
-                    `;
-                }
-                concertHtml += `
+                                <li>Developer: ${game.developer}</li>
+                                <li>Country of Origin: ${game.country}</li>
+                                <li>Year: ${game.year}</li>
                             </ul>
-                        </p>
-                        <p>
-                            <h3>Ticket Purchases</h3>
-                            <ul>
+                        </div>
+
+                        <div id="info-2">
+                            <li>Genre: ${game.genre}</li>
+                            <li>Platforms: ${game.platforms}</li>
+                            <li>Tags: ${game.tags}</li>
+                        </div>
+
+                        <div id="description">
+                            <p>
+                                ${game.description}
+                            </p>
+                        </div>
                 `;
-                if (concert.purchases && concert.purchases.length > 0) {
-                    for (const purchase of concert.purchases) {
-                        concertHtml += `
-                                <li>
-                                    <div>Ticket ID: ${purchase.ticketId}</div>
-                                    <div>Date Purchased: ${purchase.dateOfPurchase}</div>
-                                    <div>Price Paid: ${purchase.pricePaid}</div>
-                                </li>
-                        `;
-                    }
-                } else {
-                    concertHtml += `
-                                <li>No Ticket Purchases.</li>
-                    `;
-                }
-                concertHtml += `
-                            </ul>
-                        </p>
-                    </div>`;
             }
         } else {
-            concertHtml = `<div>There are no concerts...</div>`;
+                gameHtml = `<div> There are no games... :( </div>`;
+            }
         }
 
-        document.getElementById("concert-list").innerHTML = concertHtml;
+        document.getElementById("games-list").innerHTML = gameHtml;
     }
 
     // Event Handlers --------------------------------------------------------------------------------------------------
 
     onRefresh() {
-        this.fetchConcerts();
+        this.fetchGames();
     }
 
     /**

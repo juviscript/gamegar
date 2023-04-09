@@ -1,6 +1,7 @@
 import BaseClass from "../util/baseClass";
 import DataStore from "../util/DataStore";
-import ExampleClient from "../api/videoGameClient";
+import VideoGameClient from "../api/videoGameClient";
+import UserClient from "../api/userClient";
 
 /**
  * Logic needed for the view playlist page of the website.
@@ -11,6 +12,14 @@ class GameSearchPage extends BaseClass {
         super();
         this.bindClassMethods(['onStateChange', 'onCreate', 'renderExample'], this);
         this.dataStore = new DataStore();
+
+        // Possible loading states of the page.
+
+        this.LOADING = 0;
+        this.POP_UP_SEARCH = 1
+        this.GET_ALL_GAMES = 2
+        this.NO_GAMES = 3;
+        this.GET_ALL_USERS = 4;
     }
 
     /**
@@ -19,146 +28,189 @@ class GameSearchPage extends BaseClass {
     async mount() {
         document.getElementById('get-by-id-form').addEventListener('submit', this.onGet);
         document.getElementById('create-form').addEventListener('submit', this.onCreate);
-        this.client = new ExampleClient();
+        this.dataStore.addChangeListener(this.onStateChange)
 
-        this.dataStore.addChangeListener(this.renderExample)
+        // Starts the index.html on the loading page.
+        this.dataStore.set("state", this.LOADING)
+
+        this.client = new VideoGameClient();
+        const games = await this.client.getAllGames();
+
+        if (games && games.length > 0) {
+            this.dataStore.set('games', games);
+            this.dataStore.set('state', this.POP_UP_SEARCH);
+        } else if (games.length === 0) {
+            this.dataStore.set("state", tjhis.NO_GAMES);
+            this.errorHandler("There are no games listed in our database currently! Why don't you try adding one! " +
+                "Click on that \"Admin\" link above!");
+        } else {
+            this.errorHandler("Error retrieving games. Try again later!");
+
+        }
     }
+
+    onStateChange() {
+        const state = this.dataStore.get("state");
+
+        const loadingSection = document.getElementById("loading")
+        const popUpSearch = document.getElementById("pop-up-search")
+        const getAllGames = document.getElementById("games-list")
+        const noGamesSection = document.getElementById("empty-games")
+        const getAllUsers = document.getElementById("user-list")
+
+        if (state === this.LOADING) {
+            loadingSection.classList.add("active")
+            popUpSearch.classList.remove("active")
+            getAllGames.classList.remove("active")
+            noGamesSection.classList.remove("active")
+            getAllGames.classList.remove("active")
+            getAllUsers.classList.remove("active")
+        } else if (state === this.POP_UP_SEARCH) {
+            loadingSection.classList.remove("active")
+            popUpSearch.classList.add("active")
+            getAllGames.classList.remove("active")
+            noGamesSection.classList.remove("active")
+            getAllUsers.classList.remove("active")
+            getAllGames.classList.remove("active")
+            this.renderPopUpSearch();
+        } else if (state === this.GET_ALL_GAMES) {
+            loadingSection.classList.remove("active")
+            popUpSearch.classList.remove("active")
+            getAllGames.classList.add("active")
+            getAllUsers.classList.remove("active")
+            noGamesSection.classList.remove("active")
+            this.renderFulLGameList();
+        } else if (state === this.NO_GAMES) {
+            loadingSection.classList.remove("active")
+            popUpSearch.classList.remove("active")
+            getAllGames.classList.remove("active")
+            noGamesSection.classList.add("active")
+            getAllUsers.classList.remove("active")
+        } else if (state === this.GET_ALL_USERS) {
+            loadingSection.classList.remove("active")
+            popUpSearch.classList.remove("active")
+            getAllGames.classList.remove("active")
+            noGamesSection.classList.remove("active")
+            getAllUsers.classList.add("active")
+            this.renderUserList();
+        }
+    }
+
+
 
     // Render Methods --------------------------------------------------------------------------------------------------
 
-    async renderExample() {
-        let resultArea = document.getElementById("result-info");
 
-        const example = this.dataStore.get("example");
 
-        if (example) {
-            resultArea.innerHTML = `
-                <div>ID: ${example.id}</div>
-                <div>Name: ${example.name}</div>
-            `
-        } else {
-            resultArea.innerHTML = "No Item";
-        }
+    async renderFulLGameList() {
+        let gameHtml = "";                              // Variable named gameHtml that starts as an empty string of HTML information.
+        const games = this.dataStore.get("games");
+
+            for (const game of games) {
+                gameHtml += ` 
+            
+                <div class = "card">
+                    <h2> ${game.title} </h2>
+                    <div id = "info-1">
+                        <ul>
+                            <li>Developer: ${game.developer}</li>
+                            <li>Country of Origin: ${game.country}</li>
+                            <li>Year: ${game.year}</li>
+                        </ul>
+                    </div>
+    
+                    <div id = "info-2">
+                        <li>Genre: ${game.genre}</li>
+                        <li>Platforms: ${game.platforms}</li>
+                        <li>Tags: ${game.tags}</li>
+                    </div>
+    
+                    <div id="description">
+                        <p>
+                            ${game.description}
+                        </p>
+                    </div>
+                </div>
+      
+                `;
+            }
+
+            document.getElementById("games-list").innerHTML = gameHtml;
+
     }
+
+
+}
+
+    async renderPopUpSearch() {
+        let searchParameters = document.getElementById("game-search");
+
+        const games = this.dataStore.get("games");
+
+        let options = "";
+
+        for (const game of games) {
+            options += '<option value = '
+
+        }
+
+    }
+
+
+
+    // async renderUserList() {
+    //     this.client = new UserClient();                             // Not sure about this. Going to test it out later.
+    //
+    // }
+
+
+
+    // async onCreate(event) {
+    //     // Prevent the page from refreshing on form submit
+    //     event.preventDefault();
+    //     this.dataStore.set("example", null);
+    //
+    //     let name = document.getElementById("create-name-field").value;
+    //
+    //     const createdExample = await this.client.createExample(name, this.errorHandler);         This is probably going to be on the Admin page.
+    //     this.dataStore.set("example", createdExample);                                           No creation will be done on here, only loading.
+    //
+    //     if (createdExample) {
+    //         this.showMessage(`Created ${createdExample.name}!`)
+    //     } else {
+    //         this.errorHandler("Error creating!  Try again...");
+    //     }
+    // }
+
 
     // Event Handlers --------------------------------------------------------------------------------------------------
 
-    async onGet(event) {
-        // Prevent the page from refreshing on form submit
-        event.preventDefault();
-
-        let id = document.getElementById("id-field").value;
-        this.dataStore.set("example", null);
-
-        let result = await this.client.getExample(id, this.errorHandler);
-        this.dataStore.set("example", result);
-        if (result) {
-            this.showMessage(`Got ${result.name}!`)
-        } else {
-            this.errorHandler("Error doing GET!  Try again...");
-        }
-    }
-
-    async getAllGames() {
-        const games = await this.client.getAllGames(this.errorHandler)
-
-        //
-        // if (games && games.length > 0) {
-        //     for (const games of games) {
-        //         games.reservations = await this.fetchReservations(concert.id);           Commenting out as I'm unsure if this is required.
-        //         games.purchases = await this.fetchPurchases(concert.id);
-        //     }
-        // }
-
-        this.dataStore.set("games", games);
-    }
-
-    // Render Methods --------------------------------------------------------------------------------------------------
-
-    renderGames() {
-        let gameHTML = "";
-        const concerts = this.dataStore.get("concerts");
-
-        if (concerts) {
-            for (const concert of concerts) {
-                gameHTML += `
-                    <div class="card">
-                        <h2>${game.title}</h2>
-                        <div>Date: ${concert.date}</div>
-                        <div>Base Price: ${this.formatCurrency(concert.ticketBasePrice)}</div>
-                        <p>
-                            <h3>Ticket Reservations</h3>
-                            <ul>
-                `;
-                if (concert.reservations && concert.reservations.length > 0) {
-                    for (const reservation of concert.reservations) {
-                        gameHTML += `
-                                <li>
-                                    <div>Ticket ID: ${reservation.ticketId}</div>
-                                    <div>Date Reserved: ${reservation.dateOfReservation}</div>
-                                    <div>Reservation Closed: ${reservation.reservationClosed}</div>
-                                    <div>Date Reservation Closed: ${reservation.dateReservationClosed}</div>
-                                    <div>Ticket Purchased: ${reservation.purchasedTicket}</div>
-                                </li>
-                        `;
-                    }
-                } else {
-                    gameHTML += `
-                                <li>No Ticket Reservations.</li>
-                    `;
-                }
-                gameHTML += `
-                            </ul>
-                        </p>
-                        <p>
-                            <h3>Ticket Purchases</h3>
-                            <ul>
-                `;
-                if (concert.purchases && concert.purchases.length > 0) {
-                    for (const purchase of concert.purchases) {
-                        gameHTML += `
-                                <li>
-                                    <div>Ticket ID: ${purchase.ticketId}</div>
-                                    <div>Date Purchased: ${purchase.dateOfPurchase}</div>
-                                    <div>Price Paid: ${purchase.pricePaid}</div>
-                                </li>
-                        `;
-                    }
-                } else {
-                    gameHTML += `
-                                <li>No Ticket Purchases.</li>
-                    `;
-                }
-                gameHTML += `
-                            </ul>
-                        </p>
-                    </div>`;
-            }
-        } else {
-            gameHTML = `<div>There are no concerts...</div>`;
-        }
-
-        document.getElementById("concert-list").innerHTML = gameHTML;
-    }
-
-
-    async onCreate(event) {
-        // Prevent the page from refreshing on form submit
-        event.preventDefault();
-        this.dataStore.set("example", null);
-
-        let name = document.getElementById("create-name-field").value;
-
-        const createdExample = await this.client.createExample(name, this.errorHandler);
-        this.dataStore.set("example", createdExample);
-
-        if (createdExample) {
-            this.showMessage(`Created ${createdExample.name}!`)
-        } else {
-            this.errorHandler("Error creating!  Try again...");
-        }
-    }
+    // async onSelectedSearchParameter {
+    //
+    // }
+    //
+    // async getAllGames() {
+    //     const games = await this.client.getAllGames(this.errorHandler)
+    //
+    //     //
+    //     // if (games && games.length > 0) {
+    //     //     for (const games of games) {
+    //     //         games.reservations = await this.fetchReservations(concert.id);           Commenting out as I'm unsure if this is required.
+    //     //         games.purchases = await this.fetchPurchases(concert.id);
+    //     //     }
+    //     // }
+    //
+    //     this.dataStore.set("games", games);
+    // }
+    //
+    // async getAllUsers() {
+    //
+    // }
+    //
+    //
 }
+}
+
 
 /**
  * Main method to run when the page contents have loaded.
@@ -169,3 +221,4 @@ const main = async () => {
 };
 
 window.addEventListener('DOMContentLoaded', main);
+
