@@ -4,6 +4,8 @@ import com.kenzie.appserver.config.CacheStore;
 import com.kenzie.appserver.repositories.CatalogRepository;
 import com.kenzie.appserver.repositories.model.CatalogRecord;
 import com.kenzie.appserver.service.model.Game;
+import com.kenzie.appserver.service.model.User;
+import net.andreinc.mockneat.MockNeat;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -26,6 +28,7 @@ public class VideoGameCatalogServiceTest {
     private CatalogRepository catalogRepository;
     private CacheStore cacheStore;
     private CatalogService catalogService;
+    private final MockNeat mockNeat = MockNeat.threadLocal();
 
     @BeforeEach
     void setup() {
@@ -186,6 +189,19 @@ public class VideoGameCatalogServiceTest {
         assertEquals(capturedGameRecord.getPlatforms(), videoGameCatalogRecord.getPlatforms());
         assertEquals(capturedGameRecord.getTags(), videoGameCatalogRecord.getTags());
 
+    }
+
+    @Test
+    public void updateGame_descriptionUpdated() {
+        String id = randomUUID().toString();
+        String description = mockNeat.strings().val();
+
+        Game videoGame = new Game(id, "gametitle", "developer", "genre", 2000,
+                description, "country", new LinkedList<>(), new LinkedList<>());
+
+        when(cacheStore.get(videoGame.getDescription())).thenReturn(videoGame);
+
+       catalogService.updateGame(videoGame);
     }
 
 //     @Test
