@@ -10,7 +10,7 @@ class GameSearchPage extends BaseClass {
 
     constructor() {
         super();
-        this.bindClassMethods(['onStateChange', 'renderFulLGameList', 'onGetAllGames', 'renderPopUpSearch', 'renderUserList'], this);
+        this.bindClassMethods(['onStateChange', 'renderFulLGameList', 'renderPopUpSearch', 'renderUserList'], this);
         this.dataStore = new DataStore();
         // this.dataStore.addChangeListener(this.renderFulLGameList())
         // this.onGetAllGames();
@@ -35,6 +35,7 @@ class GameSearchPage extends BaseClass {
         this.dataStore.addChangeListener(this.onStateChange);
 
         this.client = new VideoGameClient();
+        this.userClient = new UserClient();
 
         const games = await this.client.getAllGames();
         this.dataStore.set("state", this.GET_ALL_GAMES);
@@ -53,17 +54,6 @@ class GameSearchPage extends BaseClass {
 
         }
     }
-
-    // async fetchGames() {
-    //     const games = await this.client.getAllGames(this.errorHandler)
-    //
-    //     if (games && games.length > 0) {
-    //         for (const game of games) {
-    //             await this.renderFulLGameList();
-    //         }
-    //     }
-    //
-    // }
 
     async onStateChange() {
         const state = this.dataStore.get("state");
@@ -116,34 +106,39 @@ class GameSearchPage extends BaseClass {
         let gameHtml = "";                              // Variable named gameHtml that starts as an empty string of HTML information.
         const games = this.dataStore.get("games");
 
-            for (const catalogRecord of games) {
-                gameHtml += ` 
+        if (games) {
+        for (let i = 0; i < games.length; i++) {
+
+
+            // for (const catalogRecord of games) {
+            gameHtml += ` 
             
                 <div class = "card">
-                    <h2> ${catalogRecord.title} </h2>
+                    <h2> ${games[i].title} </h2>
                     <div id = "info-1">
                         <ul>
-                            <li>Developer: ${catalogRecord.developer}</li>
-                            <li>Country of Origin: ${catalogRecord.country}</li>
-                            <li>Year: ${catalogRecord.year}</li>
+                            <li>Developer: ${games[i].developer}</li>
+                            <li>Country of Origin: ${games[i].country}</li>
+                            <li>Year: ${games[i].year}</li>
                         </ul>
                     </div>
     
                     <div id = "info-2">
-                        <li>Genre: ${catalogRecord.genre}</li>
-                        <li>Platforms: ${catalogRecord.platforms}</li>
-                        <li>Tags: ${catalogRecord.tags}</li>
+                        <li>Genre: ${games[i].genre}</li>
+                        <li>Platforms: ${games[i].platforms}</li>
+                        <li>Tags: ${games[i].tags}</li>
                     </div>
     
                     <div id="description">
                         <p>
-                            ${catalogRecord.description}
+                            ${games[i].description}
                         </p>
                     </div>
                 </div>
       
                 `;
-            }
+        }
+        }
 
             document.getElementById("games-list").innerHTML = gameHtml;
     }
@@ -157,48 +152,46 @@ class GameSearchPage extends BaseClass {
 
 
     async renderUserList() {
-        this.dataStore.set("state", this.GET_ALL_USERS);
-        // this.client = new UserClient();
-        //
-        //         // Not sure about this. Going to test it out later.
-        // const users = this.client.getAllUsers();
-        // if (users && users.length > 0) {
-        //
-        //     console.log(users);
-        //     this.dataStore.set('users', users);
-        //
-        //     let userHtml = "";
-        //     const usersList = this.dataStore.get("users");
-        //
-        //     for (const userRecord of usersList) {
-        //         userHtml += `
-        //
-        //         <div class = "card">
-        //             <h2> ${userRecord.username} </h2>
-        //             <div id = "user-info">
-        //                 <ul>
-        //                     <li>Name: ${userRecord.name}</li>
-        //                     <li>Email: ${userRecord.email}</li>
-        //                     <li>Birthday: ${userRecord.birthday}</li>
-        //                 </ul>
-        //         </div>
-        //         `;
-        //     }
-        //
-        // } else if (users.length === 0) {
-        //
-        //     this.dataStore.set("state", this.NO_GAMES);
-        //     this.errorHandler("There are no games listed in our database currently! Why don't you try adding one! " +
-        //         "Click on that \"Admin\" link above!");
-        //
-        // } else {
-        //     this.errorHandler("Error retrieving games. Try again later!");              // Edit this later for users.
-        //
-        // }
-        //
-        //
-        //
-        // document.getElementById("user-list").innerHTML = userHtml;
+
+        const users = this.userClient.getAllUsers();
+        const userList = this.dataStore.get("users");
+
+        let userHtml = "";
+
+        if (users && users.length > 0) {
+            console.log(users);
+            this.dataStore.set('users', users);
+
+
+            // const usersList = this.dataStore.get("users");
+
+            for (let i = 0; i < users.length; i++) {
+                userHtml += `
+
+                <div class = "card">
+                    <h2> ${users[i].username} </h2>
+                    <div id = "user-info">
+                        <ul>
+                            <li>Name: ${users[i].name}</li>
+                            <li>Email: ${users[i].email}</li>
+                            <li>Birthday: ${users[i].birthday}</li>
+                        </ul>
+                </div>
+                `;
+            }
+
+        } else if (users.length === 0) {
+
+            this.dataStore.set("state", this.NO_GAMES);
+            this.errorHandler("There are no users listed in our database currently! We don't have friends! Sad :(");
+
+        } else {
+
+            this.errorHandler("Error retrieving games. Try again later!");              // Edit this later for users.
+
+        }
+
+        document.getElementById("user-list").innerHTML = userHtml;
     }
 
 
@@ -223,9 +216,6 @@ class GameSearchPage extends BaseClass {
 
     // Event Handlers --------------------------------------------------------------------------------------------------
 
-    async onGetAllGames() {
-
-    }
 
     // async onSelectedSearchParameter {
     //
