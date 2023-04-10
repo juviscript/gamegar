@@ -1,6 +1,6 @@
 import BaseClass from '../util/baseClass';
 import DataStore from '../util/DataStore';
-import ConcertClient from "../api/videoGameClient";
+import VideoGameClient from "../api/videoGameClient";
 
 /**
  * Logic needed for the create playlist page of the website.
@@ -8,7 +8,7 @@ import ConcertClient from "../api/videoGameClient";
 class GameAdmin extends BaseClass {
     constructor() {
         super();
-        this.bindClassMethods(['onSubmit', 'onRefresh', 'renderConcerts'], this);
+        this.bindClassMethods(['onSubmit', 'onRefresh', 'renderGames'], this);
         this.dataStore = new DataStore();
     }
 
@@ -21,7 +21,7 @@ class GameAdmin extends BaseClass {
 
         this.client = new VideoGameClient();
         this.dataStore.addChangeListener(this.renderGames)
-        this.fetchConcerts();
+        this.fetchGames();
     }
 
     async fetchGames() {
@@ -46,97 +46,71 @@ class GameAdmin extends BaseClass {
         let gameHtml = "";                              // Variable named gameHtml that equals an empty string
         const games = this.dataStore.get("games");
 
-        if (games) {
+        if (games.length <= 0) {
             for (const game of games) {
+
                 gameHtml += `
                     <div class="card">
                         <h2> ${game.title} </h2>
-                        <div>Date: ${concert.date}</div>
-                        <div>Base Price: ${this.formatCurrency(concert.ticketBasePrice)}</div>
-                        <p>
-                            <h3>Ticket Reservations</h3>
+                        <div id="info-1">
                             <ul>
-                `;
-                if (concert.reservations && concert.reservations.length > 0) {
-                    for (const reservation of concert.reservations) {
-                        concertHtml += `
-                                <li>
-                                    <div>Ticket ID: ${reservation.ticketId}</div>
-                                    <div>Date Reserved: ${reservation.dateOfReservation}</div>
-                                    <div>Reservation Closed: ${reservation.reservationClosed}</div>
-                                    <div>Date Reservation Closed: ${reservation.dateReservationClosed}</div>
-                                    <div>Ticket Purchased: ${reservation.purchasedTicket}</div>
-                                </li>
-                        `;
-                    }
-                } else {
-                    concertHtml += `
-                                <li>No Ticket Reservations.</li>
-                    `;
-                }
-                concertHtml += `
+                                <li>Developer: ${game.developer}</li>
+                                <li>Country of Origin: ${game.country}</li>
+                                <li>Year: ${game.year}</li>
                             </ul>
-                        </p>
-                        <p>
-                            <h3>Ticket Purchases</h3>
-                            <ul>
+                        </div>
+                        <div id="info-2">
+                            <li>Genre: ${game.genre}</li>
+                            <li>Platforms: ${game.platforms}</li>
+                            <li>Tags: ${game.tags}</li>
+                        </div>
+                        <div id="description">
+                            <p>
+                                ${game.description}
+                            </p>
+                        </div>
                 `;
-                if (concert.purchases && concert.purchases.length > 0) {
-                    for (const purchase of concert.purchases) {
-                        concertHtml += `
-                                <li>
-                                    <div>Ticket ID: ${purchase.ticketId}</div>
-                                    <div>Date Purchased: ${purchase.dateOfPurchase}</div>
-                                    <div>Price Paid: ${purchase.pricePaid}</div>
-                                </li>
-                        `;
-                    }
-                } else {
-                    concertHtml += `
-                                <li>No Ticket Purchases.</li>
-                    `;
-                }
-                concertHtml += `
-                            </ul>
-                        </p>
-                    </div>`;
             }
         } else {
-            concertHtml = `<div>There are no concerts...</div>`;
+            gameHtml = `<div> There are no games... :( </div>`;
         }
 
-        document.getElementById("concert-list").innerHTML = concertHtml;
+
+        document.getElementById("game-list").innerHTML = gameHtml;
     }
+
+
 
     // Event Handlers --------------------------------------------------------------------------------------------------
 
     onRefresh() {
-        this.fetchConcerts();
+        this.fetchGames();
     }
 
-    /**
-     * Method to run when the create playlist submit button is pressed. Call the MusicPlaylistService to create the
-     * playlist.
-     */
-    async onSubmit(event) {
+    async onSubmit(game) {
         // Prevent the form from refreshing the page
-        event.preventDefault();
+        game.preventDefault();
 
         // Set the loading flag
-        let createButton = document.getElementById('create-concert');
+        let createButton = document.getElementById('create-game');
         createButton.innerText = 'Loading...';
         createButton.disabled = true;
 
         // Get the values from the form inputs
-        const concertName = document.getElementById('concert-name').value;
-        const date = document.getElementById('date').value;
-        const baseTicketPrice = document.getElementById('ticket-price').value;
+        const title = document.getElementById('title').value;
+        const developer = document.getElementById('developer').value;
+        const genre = document.getElementById('genre').value;
+        const year = document.getElementById('year').value;
+        const description = document.getElementById('description').value;
+        const country = document.getElementById('country').value;
+        const platforms = document.getElementById('platforms').value;
+        const tags = document.getElementById('tags').value;
 
         // Create the concert
-        const concert = await this.client.createConcert(concertName, date, baseTicketPrice);
+        const games = await this.client.createGame(title,developer,genre,year,description,country,platforms,tags);
 
         // Reset the form
-        document.getElementById("create-playlist-form").reset();
+        document.getElementById("create-game-list").reset();
 
         // Re-enable the form
         createButton.innerText = 'Create';
@@ -149,8 +123,8 @@ class GameAdmin extends BaseClass {
  * Main method to run when the page contents have loaded.
  */
 const main = async () => {
-    const concertAdmin = new ConcertAdmin();
-    concertAdmin.mount();
+    const gameAdmin = new GameAdmin();
+    gameAdmin.mount();
 };
 
-window.addEventListener('DOMContentLoaded', main);
+//window.addEventListener('DOMContentLoaded', main);
