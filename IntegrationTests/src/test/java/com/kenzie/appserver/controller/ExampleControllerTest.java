@@ -33,23 +33,6 @@
 //    private final MockNeat mockNeat = MockNeat.threadLocal();
 //
 //    private final ObjectMapper mapper = new ObjectMapper();
-
-//    @Test
-//    public void getById_Exists() throws Exception {
-//        String id = UUID.randomUUID().toString();
-//        String name = mockNeat.strings().valStr();
-//
-//        Example example = new Example(id, name);
-//        Example persistedExample = exampleService.addNewExample(example);
-//        mvc.perform(get("/example/{id}", persistedExample.getId())
-//                        .accept(MediaType.APPLICATION_JSON))
-//                .andExpect(jsonPath("id")
-//                        .value(is(id)))
-//                .andExpect(jsonPath("name")
-//                        .value(is(name)))
-//                .andExpect(status().isOk());
-//    }
-
 //    @Test
 //    public void createExample_CreateSuccessful() throws Exception {
 //        String name = mockNeat.strings().valStr();

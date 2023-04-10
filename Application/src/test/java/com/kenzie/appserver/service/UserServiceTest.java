@@ -8,6 +8,8 @@ import com.kenzie.appserver.repositories.model.UserRecord;
 import com.kenzie.appserver.repositories.model.CatalogRecord;
 import com.kenzie.appserver.service.model.User;
 import com.kenzie.appserver.service.model.Game;
+import com.sun.media.sound.InvalidDataException;
+import net.andreinc.mockneat.MockNeat;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -15,10 +17,7 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 import static java.util.UUID.randomUUID;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -31,6 +30,8 @@ public class UserServiceTest {
     private UserRepository userRepository;
     private CacheStoreUser cacheStoreUser;
     private UserService userService;
+
+    private final MockNeat mockNeat = MockNeat.threadLocal();
 
     @BeforeEach
     void setup() {
@@ -104,6 +105,42 @@ public class UserServiceTest {
     }
 
     @Test
+    void findByUserByName() {
+        // GIVEN
+        String name = mockNeat.strings().val();
+        String userId = randomUUID().toString();
+
+        UserRecord record = new UserRecord();
+        record.setUserId(userId);
+        record.setName(name);
+        record.setUsername("rositafresita12");
+        record.setEmail("rosaloca@gmail.com");
+        record.setBirthday("birthday");
+
+        when(userRepository.findById(name)).thenReturn(Optional.of(record));
+        // WHEN
+        User user = userService.findUserByName(name);
+
+        // THEN
+        Assertions.assertNotNull(user, "The user is returned");
+
+    }
+
+    @Test
+    void userService_findByName_nameIsNull() {
+        // GIVEN
+        UserRecord nullName = new UserRecord();
+        nullName.setName(null);
+
+        // WHEN
+        when(userRepository.findById(nullName.getUserId())).thenReturn(Optional.empty());
+        User response = userService.findUserById(nullName.getName());
+
+        //THEN
+        Assertions.assertNull(response);
+    }
+
+    @Test
     void addNewUser() {
         // GIVEN
         String userId = randomUUID().toString();
@@ -132,8 +169,20 @@ public class UserServiceTest {
     }
 
     @Test
-    public void updateUser_validUser_userUpdated() {
+    void addNewUser_emailIsNull() {
+        // GIVEN
+        UserRecord nullEmail = new UserRecord();
+        nullEmail.setEmail(null);
 
+        when(userRepository.findById(nullEmail.getEmail())).thenReturn(Optional.empty());
+        User response = userService.findUserById(nullEmail.getEmail());
+
+        //THEN
+        Assertions.assertNull(response);
+    }
+
+    @Test
+    public void updateUser_validUser_userUpdated() {
         String userId = randomUUID().toString();
 
         User user = new User(userId, "name","email","username",
@@ -165,6 +214,19 @@ public class UserServiceTest {
         assertEquals(capturedUserRecord.getUsername(), userRecord.getUsername());
         assertEquals(capturedUserRecord.getBirthday(), userRecord.getBirthday());
 
+    }
+
+    @Test
+    public void updateUser_nameUpdated() {
+        String userId = randomUUID().toString();
+        String name = mockNeat.strings().val();
+
+        User user = new User(userId, name, "email", "username",
+                "birthday");
+
+        when(cacheStoreUser.get(user.getName())).thenReturn(user);
+
+        userService.updateUser(user);
     }
     
     @Test

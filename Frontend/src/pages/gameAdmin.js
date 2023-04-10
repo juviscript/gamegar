@@ -8,7 +8,7 @@ import VideoGameClient from "../api/videoGameClient";
 class GameAdmin extends BaseClass {
     constructor() {
         super();
-        this.bindClassMethods(['onSubmit', 'onRefresh', 'renderConcerts'], this);
+        this.bindClassMethods(['onSubmit', 'onRefresh', 'renderGames'], this);
         this.dataStore = new DataStore();
     }
 
@@ -21,7 +21,7 @@ class GameAdmin extends BaseClass {
 
         this.client = new VideoGameClient();
         this.dataStore.addChangeListener(this.renderGames)
-        this.fetchConcerts();
+        this.fetchGames();
     }
 
     async fetchGames() {
@@ -78,7 +78,7 @@ class GameAdmin extends BaseClass {
         }
 
 
-        document.getElementById("games-list").innerHTML = gameHtml;
+        document.getElementById("game-list").innerHTML = gameHtml;
     }
 
 
@@ -88,8 +88,6 @@ class GameAdmin extends BaseClass {
     onRefresh() {
         this.fetchGames();
     }
-
-
 
     /**
      * Method to run when the create playlist submit button is pressed. Call the MusicPlaylistService to create the
@@ -120,14 +118,46 @@ class GameAdmin extends BaseClass {
     //     createButton.disabled = false;
     //     this.onRefresh();
     // }
+
+    async onSubmit(game) {
+        // Prevent the form from refreshing the page
+        game.preventDefault();
+
+        // Set the loading flag
+        let createButton = document.getElementById('create-game');
+        createButton.innerText = 'Loading...';
+        createButton.disabled = true;
+
+        // Get the values from the form inputs
+        const title = document.getElementById('title').value;
+        const developer = document.getElementById('developer').value;
+        const genre = document.getElementById('genre').value;
+        const year = document.getElementById('year').value;
+        const description = document.getElementById('description').value;
+        const country = document.getElementById('country').value;
+        const platforms = document.getElementById('platforms').value;
+        const tags = document.getElementById('tags').value;
+
+        // Create the concert
+        const games = await this.client.createGame(title,developer,genre,year,description,country,platforms,tags);
+
+        // Reset the form
+        document.getElementById("create-game-list").reset();
+
+        // Re-enable the form
+        createButton.innerText = 'Create';
+        createButton.disabled = false;
+        this.onRefresh();
+    }
+
 }
 
 /**
  * Main method to run when the page contents have loaded.
  */
 const main = async () => {
-    const concertAdmin = new ConcertAdmin();
-    concertAdmin.mount();
+    const gameAdmin = new GameAdmin();
+    gameAdmin.mount();
 };
 
-window.addEventListener('DOMContentLoaded', main);
+//window.addEventListener('DOMContentLoaded', main);

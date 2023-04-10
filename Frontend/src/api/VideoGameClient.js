@@ -5,7 +5,7 @@ export default class VideoGameClient extends BaseClass {
 
     constructor(props = {}){
         super();
-        const methodsToBind = ['clientLoaded', 'getAllGames', 'getGameById', 'createGame', 'getGameByTitle', 'getGameByGenre'];
+        const methodsToBind = ['clientLoaded', 'getGames', 'getGame', 'createGame', 'getGameByTitle'];
         this.bindClassMethods(methodsToBind, this);
         this.props = props;
         this.clientLoaded(axios);
@@ -27,12 +27,12 @@ export default class VideoGameClient extends BaseClass {
      * @param errorCallback (Optional) A function to execute if the call fails.
      * @returns an array of games
      */
-    async getAllGames(errorCallback) {
+    async getGames(errorCallback) {
         try {
             const response = await this.client.get(`/games`);
             return response.data;
         } catch(error) {
-            this.handleError("getAllGames", error, errorCallback);
+            this.handleError("getGames", error, errorCallback);
         }
     }
 
@@ -42,21 +42,12 @@ export default class VideoGameClient extends BaseClass {
      * @param errorCallback (Optional) A function to execute if the call fails.
      * @returns The game
      */
-    async getGameById(id, errorCallback) {
+    async getGame(id, errorCallback) {
         try {
             const response = await this.client.get(`/games/${id}`);
             return response.data.game;
         } catch (error) {
-            this.handleError("getGameById", error, errorCallback)
-        }
-    }
-
-    async getGameByGenre(genre, errorCallback) {
-        try {
-            const response = await this.client.get(`/games/${genre}`);
-            return response.data.game;
-        } catch (error) {
-            this.handleError("getGameByGenre", error, errorCallback)
+            this.handleError("getGame", error, errorCallback)
         }
     }
 
