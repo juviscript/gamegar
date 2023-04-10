@@ -10,37 +10,40 @@ class GameSearchPage extends BaseClass {
 
     constructor() {
         super();
-        this.bindClassMethods(['onStateChange', 'onCreate', 'renderExample'], this);
+        this.bindClassMethods(['onStateChange', 'renderFulLGameList', 'onGetAllGames', 'renderPopUpSearch'], this);
         this.dataStore = new DataStore();
+        // this.dataStore.addChangeListener(this.renderFulLGameList())
+        // this.onGetAllGames();
+        // this.client = new VideoGameClient();
 
         // Possible loading states of the page.
-
-        this.LOADING = 0;
-        this.POP_UP_SEARCH = 1
-        this.GET_ALL_GAMES = 2
-        this.NO_GAMES = 3;
-        this.GET_ALL_USERS = 4;
+        this.GET_ALL_GAMES = 0;
+        this.POP_UP_SEARCH = 1;
+        this.NO_GAMES = 2;
+        this.GET_ALL_USERS = 3;
     }
 
+
     /**
-     * Once the page has loaded, set up the event handlers and fetch the concert list.
+     * Once the page has loaded, set up the event handlers and fetch the game list.
      */
     async mount() {
-        document.getElementById('get-by-id-form').addEventListener('submit', this.onGet);
-        document.getElementById('create-form').addEventListener('submit', this.onCreate);
-        this.dataStore.addChangeListener(this.onStateChange)
-
-        // Starts the index.html on the loading page.
-        this.dataStore.set("state", this.LOADING)
+        // document.getElementById('choose-search-form').addEventListener('submit', this.onGet);
+        // document.getElementById('all-games-button').addEventListener('click', this.onGetAllGames);
+        document.getElementById('search-button').addEventListener('click', this.renderPopUpSearch);
+        this.dataStore.addChangeListener(this.onStateChange);
 
         this.client = new VideoGameClient();
         const games = await this.client.getAllGames();
+        this.dataStore.set("state", this.GET_ALL_GAMES);
+
 
         if (games && games.length > 0) {
+            console.log(games);
             this.dataStore.set('games', games);
-            this.dataStore.set('state', this.POP_UP_SEARCH);
+            this.dataStore.set('state', this.GET_ALL_GAMES);
         } else if (games.length === 0) {
-            this.dataStore.set("state", tjhis.NO_GAMES);
+            this.dataStore.set("state", this.NO_GAMES);
             this.errorHandler("There are no games listed in our database currently! Why don't you try adding one! " +
                 "Click on that \"Admin\" link above!");
         } else {
@@ -49,24 +52,26 @@ class GameSearchPage extends BaseClass {
         }
     }
 
-    onStateChange() {
+    // async fetchGames() {
+    //     const games = await this.client.getAllGames(this.errorHandler)
+    //
+    //     if (games && games.length > 0) {
+    //         for (const game of games) {
+    //             await this.renderFulLGameList();
+    //         }
+    //     }
+    //
+    // }
+
+    async onStateChange() {
         const state = this.dataStore.get("state");
 
-        const loadingSection = document.getElementById("loading")
         const popUpSearch = document.getElementById("pop-up-search")
         const getAllGames = document.getElementById("games-list")
         const noGamesSection = document.getElementById("empty-games")
         const getAllUsers = document.getElementById("user-list")
 
-        if (state === this.LOADING) {
-            loadingSection.classList.add("active")
-            popUpSearch.classList.remove("active")
-            getAllGames.classList.remove("active")
-            noGamesSection.classList.remove("active")
-            getAllGames.classList.remove("active")
-            getAllUsers.classList.remove("active")
-        } else if (state === this.POP_UP_SEARCH) {
-            loadingSection.classList.remove("active")
+        if (state === this.POP_UP_SEARCH) {
             popUpSearch.classList.add("active")
             getAllGames.classList.remove("active")
             noGamesSection.classList.remove("active")
@@ -74,25 +79,22 @@ class GameSearchPage extends BaseClass {
             getAllGames.classList.remove("active")
             this.renderPopUpSearch();
         } else if (state === this.GET_ALL_GAMES) {
-            loadingSection.classList.remove("active")
             popUpSearch.classList.remove("active")
             getAllGames.classList.add("active")
             getAllUsers.classList.remove("active")
             noGamesSection.classList.remove("active")
-            this.renderFulLGameList();
+            await this.renderFulLGameList();
         } else if (state === this.NO_GAMES) {
-            loadingSection.classList.remove("active")
             popUpSearch.classList.remove("active")
             getAllGames.classList.remove("active")
             noGamesSection.classList.add("active")
             getAllUsers.classList.remove("active")
         } else if (state === this.GET_ALL_USERS) {
-            loadingSection.classList.remove("active")
             popUpSearch.classList.remove("active")
             getAllGames.classList.remove("active")
             noGamesSection.classList.remove("active")
             getAllUsers.classList.add("active")
-            this.renderUserList();
+            // this.renderUserList();
         }
     }
 
@@ -106,28 +108,28 @@ class GameSearchPage extends BaseClass {
         let gameHtml = "";                              // Variable named gameHtml that starts as an empty string of HTML information.
         const games = this.dataStore.get("games");
 
-            for (const game of games) {
+            for (const catalogRecord of games) {
                 gameHtml += ` 
             
                 <div class = "card">
-                    <h2> ${game.title} </h2>
+                    <h2> ${catalogRecord.title} </h2>
                     <div id = "info-1">
                         <ul>
-                            <li>Developer: ${game.developer}</li>
-                            <li>Country of Origin: ${game.country}</li>
-                            <li>Year: ${game.year}</li>
+                            <li>Developer: ${catalogRecord.developer}</li>
+                            <li>Country of Origin: ${catalogRecord.country}</li>
+                            <li>Year: ${catalogRecord.year}</li>
                         </ul>
                     </div>
     
                     <div id = "info-2">
-                        <li>Genre: ${game.genre}</li>
-                        <li>Platforms: ${game.platforms}</li>
-                        <li>Tags: ${game.tags}</li>
+                        <li>Genre: ${catalogRecord.genre}</li>
+                        <li>Platforms: ${catalogRecord.platforms}</li>
+                        <li>Tags: ${catalogRecord.tags}</li>
                     </div>
     
                     <div id="description">
                         <p>
-                            ${game.description}
+                            ${catalogRecord.description}
                         </p>
                     </div>
                 </div>
@@ -136,24 +138,12 @@ class GameSearchPage extends BaseClass {
             }
 
             document.getElementById("games-list").innerHTML = gameHtml;
-
     }
 
 
-}
 
     async renderPopUpSearch() {
-        let searchParameters = document.getElementById("game-search");
-
-        const games = this.dataStore.get("games");
-
-        let options = "";
-
-        for (const game of games) {
-            options += '<option value = '
-
-        }
-
+        document.getElementById("game-search").innerHTML;
     }
 
 
@@ -185,12 +175,26 @@ class GameSearchPage extends BaseClass {
 
     // Event Handlers --------------------------------------------------------------------------------------------------
 
+    async onGetAllGames() {
+
+    }
+
     // async onSelectedSearchParameter {
     //
     // }
+
+    // // async onPopUpSearch(event) {
     //
-    // async getAllGames() {
-    //     const games = await this.client.getAllGames(this.errorHandler)
+    //     // event.preventDefault();
+    //     //
+    //     // let parameter = document.getElementById("pop-up-search").value;
+    //     //
+    //     // const games = this.dataStore.get("games");
+    //     // let selectedParam = null;
+    //     //
+    //     // for (const game of games) {
+    //     //     if (game.id === )
+    //     // }
     //
     //     //
     //     // if (games && games.length > 0) {
@@ -206,18 +210,18 @@ class GameSearchPage extends BaseClass {
     // async getAllUsers() {
     //
     // }
-    //
-    //
+
+
 }
-}
+
 
 
 /**
  * Main method to run when the page contents have loaded.
  */
 const main = async () => {
-    const examplePage = new GameSearchPage();
-    examplePage.mount();
+    const gameSearchPage = new GameSearchPage();
+    gameSearchPage.mount();
 };
 
 window.addEventListener('DOMContentLoaded', main);

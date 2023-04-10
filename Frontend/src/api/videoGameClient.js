@@ -5,7 +5,7 @@ export default class VideoGameClient extends BaseClass {
 
     constructor(props = {}){
         super();
-        const methodsToBind = ['clientLoaded', 'getAllGames', 'getGameById', 'createGame', 'getGameByTitle', 'getGameByGenre', 'getGameByDeveloper'];
+        const methodsToBind = ['clientLoaded', 'getAllGames', 'getGameById', 'createGame', 'getGameByTitle', 'getGameByGenre'];
         this.bindClassMethods(methodsToBind, this);
         this.props = props;
         this.clientLoaded(axios);

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <script type="text/javascript" src="videoGameClient.js"></script>
+    <script type="text/javascript" src="gameSearchPage.js"></script>
     <link rel="stylesheet" type="text/css" href="css/indexStyle.css">
     <title>Gamegar: #1 Video Game Social Catalog</title>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
@@ -16,7 +16,7 @@
     <!-- Logo .gif file -->
 
     <div class = "child">
-        <img src = "finalgamegarlogo.gif" id = "gamegar">               
+        <img src = "finalgamegarlogo.gif" id = "gamegar">
     </div>
 
     <!-- Intro -->
@@ -38,37 +38,34 @@
    </div>
 
     <div class = "links">
-        <button id = "all-games"> View All Games </button>
+        <button type = "submit" id = "all-games-button"> View All Games </button>
+        <button id = "search-button"> Search Games </button>
+        <button id = "search-users-button"> Search Users </button>
+        <button id = "about-button"> About the Devs </button>
     </div>
 
-    <div class = "loading">
-        Loading
+    <div id = "games-list" class = "state">
     </div>
 
-   <div id = "games-list">
-   </div>
+    <div id = "user-list" class = "state">
+    </div>
 
-    <div id = "user-list"></div>
-
-    <div id = "pop-up-search">
+    <div id = "pop-up-search" class = "state">
         Search here! Woo!
-        What do you wanna search by?
 
-        <select id = "game-search">
-            <option value = "empty"></option>
-            <option value = "id"> ID </option>
-            <option value = "title"> Title </option>
-            <option value = "developer"> Developer </option>
-            <option value = "genre"> Genre </option>
-        </select>
+        <h2> Search by: </h2>
+        <br>
+        <form class = "card-content" id = "choose-search-form">
+
+            ID: <input type = "text" placeholder= "Enter ID Here" id = "game-search-id">
+                <button type = "Submit"> Submit </button>
+
+        </form>
     </div>
 
-    <div id = "done">
-        Done.
-    </div>
 
-    <div id = "empty-games">
-
+    <div id = "empty-games" class = "state">
+        There are no games! Noo :(
     </div>
 
 

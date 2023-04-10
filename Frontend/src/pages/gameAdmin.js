@@ -74,12 +74,14 @@ class GameAdmin extends BaseClass {
                 `;
             }
         } else {
-                gameHtml = `<div> There are no games... :( </div>`;
-            }
+            gameHtml = `<div> There are no games... :( </div>`;
         }
+
 
         document.getElementById("games-list").innerHTML = gameHtml;
     }
+
+
 
     // Event Handlers --------------------------------------------------------------------------------------------------
 
@@ -87,35 +89,37 @@ class GameAdmin extends BaseClass {
         this.fetchGames();
     }
 
+
+
     /**
      * Method to run when the create playlist submit button is pressed. Call the MusicPlaylistService to create the
      * playlist.
-     */
-    async onSubmit(event) {
-        // Prevent the form from refreshing the page
-        event.preventDefault();
-
-        // Set the loading flag
-        let createButton = document.getElementById('create-concert');
-        createButton.innerText = 'Loading...';
-        createButton.disabled = true;
-
-        // Get the values from the form inputs
-        const concertName = document.getElementById('concert-name').value;
-        const date = document.getElementById('date').value;
-        const baseTicketPrice = document.getElementById('ticket-price').value;
-
-        // Create the concert
-        const concert = await this.client.createConcert(concertName, date, baseTicketPrice);
-
-        // Reset the form
-        document.getElementById("create-playlist-form").reset();
-
-        // Re-enable the form
-        createButton.innerText = 'Create';
-        createButton.disabled = false;
-        this.onRefresh();
-    }
+    //  */
+    // async onSubmit(event) {
+    //     // Prevent the form from refreshing the page
+    //     event.preventDefault();
+    //
+    //     // Set the loading flag
+    //     let createButton = document.getElementById('create-concert');
+    //     createButton.innerText = 'Loading...';
+    //     createButton.disabled = true;
+    //
+    //     // Get the values from the form inputs
+    //     const concertName = document.getElementById('concert-name').value;
+    //     const date = document.getElementById('date').value;
+    //     const baseTicketPrice = document.getElementById('ticket-price').value;
+    //
+    //     // Create the concert
+    //     const concert = await this.client.createConcert(concertName, date, baseTicketPrice);
+    //
+    //     // Reset the form
+    //     document.getElementById("create-playlist-form").reset();
+    //
+    //     // Re-enable the form
+    //     createButton.innerText = 'Create';
+    //     createButton.disabled = false;
+    //     this.onRefresh();
+    // }
 }
 
 /**
