@@ -10,7 +10,7 @@ class GameSearchPage extends BaseClass {
 
     constructor() {
         super();
-        this.bindClassMethods(['onStateChange', 'renderFulLGameList', 'onGetAllGames', 'renderPopUpSearch'], this);
+        this.bindClassMethods(['onStateChange', 'renderFulLGameList', 'onGetAllGames', 'renderPopUpSearch', 'renderUserList'], this);
         this.dataStore = new DataStore();
         // this.dataStore.addChangeListener(this.renderFulLGameList())
         // this.onGetAllGames();
@@ -29,11 +29,13 @@ class GameSearchPage extends BaseClass {
      */
     async mount() {
         // document.getElementById('choose-search-form').addEventListener('submit', this.onGet);
-        // document.getElementById('all-games-button').addEventListener('click', this.onGetAllGames);
+        document.getElementById('all-games-button').addEventListener('click', this.renderFulLGameList);
         document.getElementById('search-button').addEventListener('click', this.renderPopUpSearch);
+        document.getElementById('search-users-button').addEventListener('click', this.renderUserList);
         this.dataStore.addChangeListener(this.onStateChange);
 
         this.client = new VideoGameClient();
+
         const games = await this.client.getAllGames();
         this.dataStore.set("state", this.GET_ALL_GAMES);
 
@@ -94,7 +96,7 @@ class GameSearchPage extends BaseClass {
             getAllGames.classList.remove("active")
             noGamesSection.classList.remove("active")
             getAllUsers.classList.add("active")
-            // this.renderUserList();
+            this.renderUserList();
         }
     }
 
@@ -105,6 +107,12 @@ class GameSearchPage extends BaseClass {
 
 
     async renderFulLGameList() {
+        const state = this.dataStore.get("state");
+
+        if (state != this.GET_ALL_GAMES) {
+            this.dataStore.set("state", this.GET_ALL_GAMES);
+        }
+
         let gameHtml = "";                              // Variable named gameHtml that starts as an empty string of HTML information.
         const games = this.dataStore.get("games");
 
@@ -143,15 +151,45 @@ class GameSearchPage extends BaseClass {
 
 
     async renderPopUpSearch() {
-        document.getElementById("game-search").innerHTML;
+        this.dataStore.set("state", this.POP_UP_SEARCH);
     }
 
 
 
-    // async renderUserList() {
-    //     this.client = new UserClient();                             // Not sure about this. Going to test it out later.
-    //
-    // }
+    async renderUserList() {
+        this.dataStore.set("state", this.GET_ALL_USERS);
+
+        const state = this.dataStore.get("state");
+
+        if (state === this.GET_ALL_USERS) {
+            this.client = new UserClient();
+        } else {
+            this.client = new VideoGameClient();
+        }
+
+                // Not sure about this. Going to test it out later.
+
+
+        let userHtml = "";
+        const users = this.dataStore.get("users");
+
+        for (const userRecord of users) {
+            userHtml += ` 
+            
+                <div class = "card">
+                    <h2> ${userRecord.username} </h2>
+                    <div id = "user-info">
+                        <ul>
+                            <li>Name: ${userRecord.name}</li>
+                            <li>Email: ${userRecord.email}</li>
+                            <li>Birthday: ${userRecord.birthday}</li>
+                        </ul>
+                </div>
+                `;
+        }
+
+        document.getElementById("user-list").innerHTML = userHtml;
+    }
 
 
 
