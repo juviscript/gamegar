@@ -5,7 +5,7 @@ export default class UserClient extends BaseClass {
 
     constructor(props = {}){
         super();
-        const methodsToBind = ['clientLoaded', 'getAllUsers', 'getUserById', 'createUser', 'getUserByUsername', 'getUserByEmail', 'getGameByDeveloper'];
+        const methodsToBind = ['clientLoaded', 'getAllUsers', 'getUserById', 'createUser'];
         this.bindClassMethods(methodsToBind, this);
         this.props = props;
         this.clientLoaded(axios);

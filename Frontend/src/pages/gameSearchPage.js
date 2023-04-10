@@ -158,37 +158,47 @@ class GameSearchPage extends BaseClass {
 
     async renderUserList() {
         this.dataStore.set("state", this.GET_ALL_USERS);
-
-        const state = this.dataStore.get("state");
-
-        if (state === this.GET_ALL_USERS) {
-            this.client = new UserClient();
-        } else {
-            this.client = new VideoGameClient();
-        }
-
-                // Not sure about this. Going to test it out later.
-
-
-        let userHtml = "";
-        const users = this.dataStore.get("users");
-
-        for (const userRecord of users) {
-            userHtml += ` 
-            
-                <div class = "card">
-                    <h2> ${userRecord.username} </h2>
-                    <div id = "user-info">
-                        <ul>
-                            <li>Name: ${userRecord.name}</li>
-                            <li>Email: ${userRecord.email}</li>
-                            <li>Birthday: ${userRecord.birthday}</li>
-                        </ul>
-                </div>
-                `;
-        }
-
-        document.getElementById("user-list").innerHTML = userHtml;
+        // this.client = new UserClient();
+        //
+        //         // Not sure about this. Going to test it out later.
+        // const users = this.client.getAllUsers();
+        // if (users && users.length > 0) {
+        //
+        //     console.log(users);
+        //     this.dataStore.set('users', users);
+        //
+        //     let userHtml = "";
+        //     const usersList = this.dataStore.get("users");
+        //
+        //     for (const userRecord of usersList) {
+        //         userHtml += `
+        //
+        //         <div class = "card">
+        //             <h2> ${userRecord.username} </h2>
+        //             <div id = "user-info">
+        //                 <ul>
+        //                     <li>Name: ${userRecord.name}</li>
+        //                     <li>Email: ${userRecord.email}</li>
+        //                     <li>Birthday: ${userRecord.birthday}</li>
+        //                 </ul>
+        //         </div>
+        //         `;
+        //     }
+        //
+        // } else if (users.length === 0) {
+        //
+        //     this.dataStore.set("state", this.NO_GAMES);
+        //     this.errorHandler("There are no games listed in our database currently! Why don't you try adding one! " +
+        //         "Click on that \"Admin\" link above!");
+        //
+        // } else {
+        //     this.errorHandler("Error retrieving games. Try again later!");              // Edit this later for users.
+        //
+        // }
+        //
+        //
+        //
+        // document.getElementById("user-list").innerHTML = userHtml;
     }
 
 
