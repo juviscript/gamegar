@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.validation.constraints.NotEmpty;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.UUID;
 
 public class VideoGameCreateRequest {
@@ -21,9 +22,9 @@ public class VideoGameCreateRequest {
     @JsonProperty("year")
     public Integer year;
     @JsonProperty("platforms")
-    public LinkedList<String> platforms;
+    public List<String> platforms;
     @JsonProperty("tags")
-    public LinkedList<String> tags;
+    public List<String> tags;
     @JsonProperty("description")
     public String description;
     @JsonProperty("country")
@@ -50,11 +51,11 @@ public class VideoGameCreateRequest {
 
     public Integer getYear() { return year; }
 
-    public LinkedList<String> getPlatforms() {
+    public List<String> getPlatforms() {
         return platforms;
     }
 
-    public LinkedList<String> getTags() {
+    public List<String> getTags() {
         return tags;
     }
 
@@ -80,11 +81,11 @@ public class VideoGameCreateRequest {
 
     public void setYear(Integer year) { this.year = year; }
 
-    public void setPlatforms(LinkedList<String> platforms) {
+    public void setPlatforms(List<String> platforms) {
         this.platforms = platforms;
     }
 
-    public void setTags(LinkedList<String> tags) {
+    public void setTags(List<String> tags) {
         this.tags = tags;
     }
 

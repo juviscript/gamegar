@@ -19,9 +19,9 @@ public class UserCreateRequest {
     @NotEmpty
     @JsonProperty("username")
     private String username;
-    @JsonFormat(shape =  JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    @NotEmpty
     @JsonProperty("birthday")
-    private LocalDate birthday;
+    private String birthday;
 
     /* ---------------- Getters ---------------- */
 
@@ -41,7 +41,7 @@ public class UserCreateRequest {
         return username;
     }
 
-    public LocalDate getBirthday() {
+    public String getBirthday() {
         return birthday;
     }
 
@@ -63,7 +63,7 @@ public class UserCreateRequest {
         this.username = username;
     }
 
-    public void setBirthday(LocalDate birthday) {
+    public void setBirthday(String birthday) {
         this.birthday = birthday;
    }
 }

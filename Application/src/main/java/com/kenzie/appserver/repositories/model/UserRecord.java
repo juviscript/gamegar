@@ -13,7 +13,7 @@ public class UserRecord {
     private String email;
     private String username;
 
-    private LocalDate birthday;
+    private String birthday;
 
     @DynamoDBHashKey(attributeName = "userId")
     public String getUserId() {
@@ -35,8 +35,9 @@ public class UserRecord {
         return email;
     }
 
-    @DynamoDBTyped(DynamoDBMapperFieldModel.DynamoDBAttributeType.S)        // Converts the type from LocalDate to store as
-    public LocalDate getBirthday() {                                        // a string in the table (LocalDate -> String) in
+    //@DynamoDBTyped(DynamoDBMapperFieldModel.DynamoDBAttributeType.S)        // Converts the type from LocalDate to store as
+    @DynamoDBAttribute(attributeName = "birthday")
+    public String getBirthday() {                                        // a string in the table (LocalDate -> String) in
         return birthday;                                                    // Will be in ISO_8601 format: Year-Month-Day
     }
 
@@ -54,7 +55,7 @@ public class UserRecord {
         this.username = username;
     }
 
-    public void setBirthday(LocalDate birthday) {
+    public void setBirthday(String birthday) {
         this.birthday = birthday;
     }
 

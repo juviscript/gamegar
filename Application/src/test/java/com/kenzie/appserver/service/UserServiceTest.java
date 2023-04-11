@@ -55,7 +55,7 @@ public class UserServiceTest {
         Mockito.when(userRepository.findById(anyString())).thenReturn(Optional.of(record));
 
         when(cacheStoreUser.get(record.getUserId())).thenReturn(new User(userId, "Pablo", "pablo@gmail.com",
-                "pablito6789", LocalDate.of(1990,2,5)));
+                "pablito6789", "birthday"));
 
         userService.deleteUserById(userId);
 
@@ -88,7 +88,7 @@ public class UserServiceTest {
         record.setName("Rosa");
         record.setUsername("rositafresita12");
         record.setEmail("rosaloca@gmail.com");
-        record.setBirthday(LocalDate.of(2003,5,10));
+        record.setBirthday("birthday");
 
         when(userRepository.findById(userId)).thenReturn(Optional.of(record));
         // WHEN
@@ -110,7 +110,7 @@ public class UserServiceTest {
         String userId = randomUUID().toString();
 
         User user = new User(userId, "name","email","username",
-                LocalDate.of(1980,8,25));
+                "birthday");
 
         ArgumentCaptor<UserRecord> userRecordCaptor = ArgumentCaptor.forClass(UserRecord.class);
 
@@ -138,7 +138,7 @@ public class UserServiceTest {
         String userId = randomUUID().toString();
 
         User user = new User(userId, "name","email","username",
-                LocalDate.of(1980,8,25));
+                "birthday");
 
         UserRecord userRecord = new UserRecord();
         userRecord.setUserId(user.getUserId());
@@ -185,14 +185,14 @@ public class UserServiceTest {
         user1.setName("Rosa");
         user1.setUsername("rositafresita12");
         user1.setEmail("rosaloca@gmail.com");
-        user1.setBirthday(LocalDate.of(2003,5,10));
+        user1.setBirthday("birthday");
 
         UserRecord user2 = new UserRecord();
         user2.setUserId(randomUUID().toString());
         user2.setName("Franky");
         user2.setUsername("SuperFranky37");
         user2.setEmail("BF-37@gmail.com");
-        user2.setBirthday(LocalDate.of(1987,3,9));
+        user2.setBirthday("birthday");
 
         List<UserRecord> records = new ArrayList<>();
         records.add(user1);

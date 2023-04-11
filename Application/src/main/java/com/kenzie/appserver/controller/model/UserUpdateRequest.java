@@ -22,7 +22,7 @@ public class UserUpdateRequest {
 
     @NotEmpty
     @JsonProperty("birthday")
-    private LocalDate birthday;
+    private String birthday;
 
     /* ---------------- Getters ---------------- */
 
@@ -42,7 +42,7 @@ public class UserUpdateRequest {
         return username;
     }
 
-    public LocalDate getBirthday() {
+    public String getBirthday() {
         return birthday;
     }
 
@@ -64,7 +64,7 @@ public class UserUpdateRequest {
         this.username = username;
     }
 
-    public void setBirthday(LocalDate birthday) {
+    public void setBirthday(String birthday) {
         this.birthday = birthday;
     }
 

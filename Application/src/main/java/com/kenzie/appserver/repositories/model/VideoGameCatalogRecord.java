@@ -6,6 +6,7 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBRangeKey;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
 
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -18,8 +19,8 @@ public class VideoGameCatalogRecord {
     public String developer;
     public String genre;
     public Integer year;
-    public LinkedList<String> platforms;
-    public LinkedList<String> tags;
+    public List<String> platforms;
+    public List<String> tags;
     public String description;
     public String country;
 
@@ -43,13 +44,20 @@ public class VideoGameCatalogRecord {
         }
 
     @DynamoDBAttribute(attributeName = "platforms")
-    public LinkedList<String> getPlatforms() {
+    public List<String> getPlatforms() {
         return platforms;
     }
     @DynamoDBAttribute(attributeName = "tags")
+<<<<<<< HEAD
     public LinkedList<String> getTags () {
             return tags;
         }
+=======
+    public List<String> getTags() {
+        return tags;
+    }
+
+>>>>>>> 4e24074 (Changed birthday to String and LinkedList to List)
     @DynamoDBAttribute(attributeName = "description")
     public String getGameDescription () {
         return description;
@@ -75,12 +83,20 @@ public class VideoGameCatalogRecord {
 
     public void setId(String id) { this.id = id;}
 
+<<<<<<< HEAD
     public void setPlatforms (LinkedList < String > platforms) {
         this.platforms = platforms;
     }
 
 
     public void setTags (LinkedList < String > tags) {
+=======
+    public void setPlatforms(List<String> platforms) {
+        this.platforms = platforms;
+    }
+
+    public void setTags(List<String> tags) {
+>>>>>>> 4e24074 (Changed birthday to String and LinkedList to List)
         this.tags = tags;
     }
 
