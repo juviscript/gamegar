@@ -6,7 +6,7 @@ import com.kenzie.appserver.controller.CatalogController;
 import com.kenzie.appserver.repositories.UserRepository;
 import com.kenzie.appserver.repositories.model.UserRecord;
 import com.kenzie.appserver.service.model.User;
-import com.kenzie.appserver.service.model.VideoGame;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.kenzie.appserver.service.VideoGameCatalogService;
