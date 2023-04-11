@@ -1,5 +1,6 @@
 package com.kenzie.appserver.controller;
 
+<<<<<<< HEAD
 
 import com.kenzie.appserver.controller.model.*;
 import com.amazonaws.Response;
@@ -14,6 +15,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+=======
+import com.kenzie.appserver.controller.model.VideoGameCreateRequest;
+import com.kenzie.appserver.controller.model.VideoGameResponse;
+import com.kenzie.appserver.controller.model.VideoGameUpdateRequest;
+import com.kenzie.appserver.service.VideoGameCatalogService;
+import com.kenzie.appserver.service.model.VideoGame;
+>>>>>>> 50c3585 (deleted unused files)
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.net.URI;
