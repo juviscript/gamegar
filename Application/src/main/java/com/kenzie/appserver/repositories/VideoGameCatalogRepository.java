@@ -10,8 +10,13 @@ import org.springframework.stereotype.Repository;
 
 
 @EnableScan
+<<<<<<< HEAD
 
 public interface VideoGameCatalogRepository extends CrudRepository<VideoGameCatalogRecord, String> {
 
 
+=======
+@Repository
+public interface VideoGameCatalogRepository extends CrudRepository<VideoGameCatalogRecord, String>{
+>>>>>>> dcc2baa (Added @Repository annotation to Catalog Repository)
 }
