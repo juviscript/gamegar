@@ -3,11 +3,14 @@ package com.kenzie.appserver.repositories.model;
 import com.amazonaws.services.dynamodbv2.datamodeling.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @DynamoDBTable(tableName = "Users")
 public class UserRecord {
-
+    public ArrayList<List> favoriteGame;
+    public ArrayList<List> ownGames;
     private String userId;
     private String name;
     private String email;
@@ -40,6 +43,12 @@ public class UserRecord {
     public String getBirthday() {                                        // a string in the table (LocalDate -> String) in
         return birthday;                                                    // Will be in ISO_8601 format: Year-Month-Day
     }
+    public ArrayList<List> getFavoriteGame() {
+        return favoriteGame;
+    }
+    public ArrayList<List> getOwnGames() {
+        return ownGames;
+    }
 
     public void setUserId(String userId) { this.userId = userId; }
 
@@ -58,7 +67,13 @@ public class UserRecord {
     public void setBirthday(String birthday) {
         this.birthday = birthday;
     }
+    public void setFavoriteGame(ArrayList<List> favoriteGame) {
+        this.favoriteGame = favoriteGame;
+    }
 
+    public void setOwnGames(ArrayList<List> ownGames) {
+        this.ownGames = ownGames;
+    }
   @Override
     public boolean equals(Object o) {
         if (this == o) return true;

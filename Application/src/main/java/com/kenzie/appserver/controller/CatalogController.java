@@ -4,6 +4,7 @@ package com.kenzie.appserver.controller;
 <<<<<<< HEAD
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 import com.kenzie.appserver.controller.model.*;
 import com.amazonaws.Response;
@@ -32,24 +33,30 @@ import com.kenzie.appserver.service.model.VideoGame;
 =======
 <<<<<<< HEAD
 >>>>>>> c1bcad1 (nojdijsjeoij)
+=======
+
+>>>>>>> 21f11de (Nicole might have made it somewhere)
 import com.kenzie.appserver.controller.model.CatalogCreateRequest;
 import com.kenzie.appserver.controller.model.CatalogResponse;
-<<<<<<< HEAD
+
 import com.kenzie.appserver.controller.model.CatalogUpdateRequest;
 import com.kenzie.appserver.repositories.CatalogRepository;
 import com.kenzie.appserver.service.CatalogService;
 import com.kenzie.appserver.service.model.Game;
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 230d7be (Completely recreated all classes that have to do with the Video Game Catalog. Kept original classes but COMMENTED THEM OUT SO THEY DON'T AFFECT CODE: VideoGameCreateRequest -> CatalogCreateRequest, VideoGameResponse -> CatalogResponse, VideoGameUpdateRequest -> CatalogUpdateRequest, CatalogControllerOriginal -> CatalogController, VideoGameCatalogRepository -> CatalogRepository, VideoGame -> Game , VideoGameCatalogService -> CatalogService. Commented out ALL tests to run app. Successfully able to Post, Get, Put, and Delete.)
 =======
 =======
 =======
+=======
+
+>>>>>>> 21f11de (Nicole might have made it somewhere)
 import com.kenzie.appserver.controller.model.*;
->>>>>>> 34de5ae (nicole stuff)
+
 import com.amazonaws.Response;
 import com.kenzie.appserver.repositories.VideoGameCatalogRepository;
-import com.kenzie.appserver.service.VideoGameCatalogService;
-import com.kenzie.appserver.service.model.VideoGame;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -58,8 +65,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+<<<<<<< HEAD
 >>>>>>> 07b1034 (nicoles work)
 >>>>>>> 734c590 (niocledkjkodso)
+=======
+
+>>>>>>> 21f11de (Nicole might have made it somewhere)
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.net.URI;
@@ -73,19 +84,27 @@ import static java.util.UUID.randomUUID;
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> 734c590 (niocledkjkodso)
+=======
+
+>>>>>>> 21f11de (Nicole might have made it somewhere)
 // FIXME - I spoke with Melissa about this, but we may change the partition key from the 'title' to 'ID'. If we do that, the names of these methods are going to change.
 // FIXME - Change them from 'searchByTitle' to 'searchByID' etc...
 //Could we maybe keep the searchByTitle and add the searchById?
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 >>>>>>> 230d7be (Completely recreated all classes that have to do with the Video Game Catalog. Kept original classes but COMMENTED THEM OUT SO THEY DON'T AFFECT CODE: VideoGameCreateRequest -> CatalogCreateRequest, VideoGameResponse -> CatalogResponse, VideoGameUpdateRequest -> CatalogUpdateRequest, CatalogControllerOriginal -> CatalogController, VideoGameCatalogRepository -> CatalogRepository, VideoGame -> Game , VideoGameCatalogService -> CatalogService. Commented out ALL tests to run app. Successfully able to Post, Get, Put, and Delete.)
 =======
 >>>>>>> 07b1034 (nicoles work)
 >>>>>>> 734c590 (niocledkjkodso)
+=======
+
+>>>>>>> 21f11de (Nicole might have made it somewhere)
 @RestController
 @RequestMapping("/games")
 public class CatalogController {
@@ -158,9 +177,13 @@ public class CatalogController {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     @GetMapping("/{title}")           //     http://localhost:8000/games/title will pull this up.
 =======
 =======
+=======
+    }
+>>>>>>> 21f11de (Nicole might have made it somewhere)
 
     private VideoGameResponse createVideoGameResponse(VideoGame videoGame) {
         VideoGameResponse videoGameResponse = new VideoGameResponse();
@@ -302,10 +325,14 @@ public class CatalogController {
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.noContent().build());     // If there are no genre, return a 204 error.
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> 34de5ae (nicole stuff)
 >>>>>>> c1bcad1 (nojdijsjeoij)
+=======
+
+>>>>>>> 21f11de (Nicole might have made it somewhere)
     }
 
     @PostMapping
@@ -430,4 +457,5 @@ public class CatalogController {
     }
 
 >>>>>>> 734c590 (niocledkjkodso)
+}
 }

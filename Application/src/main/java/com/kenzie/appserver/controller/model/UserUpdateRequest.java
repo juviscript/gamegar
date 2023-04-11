@@ -4,8 +4,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.validation.constraints.NotEmpty;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserUpdateRequest {
+    public ArrayList<List> getFavoriteGame;
+
+    public ArrayList<List> getownGames;
     @NotEmpty
     @JsonProperty("userId")
     private String userId;
@@ -25,6 +30,12 @@ public class UserUpdateRequest {
     private String birthday;
 
     /* ---------------- Getters ---------------- */
+    public ArrayList<List> getGetFavoriteGame() {
+        return getFavoriteGame;
+    }
+    public ArrayList<List> getGetownGames() {
+        return getownGames;
+    }
 
     public String getUserId() {
         return userId;
@@ -67,6 +78,10 @@ public class UserUpdateRequest {
     public void setBirthday(String birthday) {
         this.birthday = birthday;
     }
-
-
+    public void setGetFavoriteGame(ArrayList<List> getFavoriteGame) {
+        this.getFavoriteGame = getFavoriteGame;
+    }
+    public void setGetownGames(ArrayList<List> getownGames) {
+        this.getownGames = getownGames;
+    }
 }

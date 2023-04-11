@@ -1,22 +1,16 @@
 package com.kenzie.appserver.service;
 
-import com.kenzie.appserver.config.CacheStore;
 import com.kenzie.appserver.config.CacheStoreUser;
 import com.kenzie.appserver.repositories.UserRepository;
-import com.kenzie.appserver.repositories.CatalogRepository;
 import com.kenzie.appserver.repositories.model.UserRecord;
-import com.kenzie.appserver.repositories.model.CatalogRecord;
 import com.kenzie.appserver.service.model.User;
-import com.kenzie.appserver.service.model.Game;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 
@@ -55,7 +49,7 @@ public class UserServiceTest {
         Mockito.when(userRepository.findById(anyString())).thenReturn(Optional.of(record));
 
         when(cacheStoreUser.get(record.getUserId())).thenReturn(new User(userId, "Pablo", "pablo@gmail.com",
-                "pablito6789", "birthday"));
+                "pablito6789", "birthday", favoriteGame, ownGames));
 
         userService.deleteUserById(userId);
 
@@ -110,7 +104,7 @@ public class UserServiceTest {
         String userId = randomUUID().toString();
 
         User user = new User(userId, "name","email","username",
-                "birthday");
+                "birthday", favoriteGame, ownGames);
 
         ArgumentCaptor<UserRecord> userRecordCaptor = ArgumentCaptor.forClass(UserRecord.class);
 
@@ -138,7 +132,7 @@ public class UserServiceTest {
         String userId = randomUUID().toString();
 
         User user = new User(userId, "name","email","username",
-                "birthday");
+                "birthday", favoriteGame, ownGames);
 
         UserRecord userRecord = new UserRecord();
         userRecord.setUserId(user.getUserId());

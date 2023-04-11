@@ -271,26 +271,25 @@ public class VideoGameCatalogRecord {
         return id;
     }
 
-<<<<<<< HEAD
+
     @DynamoDBAttribute(attributeName = "title")
 
 
-=======
-    @DynamoDBHashKey(attributeName = "title")
->>>>>>> 34de5ae (nicole stuff)
+
+
+
     public String getGameTitle() {
         return title;
     }
 
-<<<<<<< HEAD
 
-=======
->>>>>>> 34de5ae (nicole stuff)
+
+
     @DynamoDBAttribute(attributeName = "developer")
     public String getDeveloper() {
         return developer;
     }
-<<<<<<< HEAD
+
 
         //@DynamoDBRangeKey(attributeName = "id")
        // public UUID getGameId () {
@@ -303,27 +302,17 @@ public class VideoGameCatalogRecord {
        // }
 
 
-        @DynamoDBAttribute(attributeName = "genre")
-        public String getGenre () {
-            return genre;
-        }
-
-
-    @DynamoDBAttribute(attributeName = "year")
-    public Integer getYear() { return year; }
-
-=======
     @DynamoDBAttribute(attributeName = "genre")
     public String getGenre () {
             return genre;
         }
 
->>>>>>> 34de5ae (nicole stuff)
+
     @DynamoDBAttribute(attributeName = "platforms")
     public LinkedList<String> getPlatforms() {
         return platforms;
     }
-<<<<<<< HEAD
+
 
         @DynamoDBAttribute(attributeName = "tags")
         public LinkedList<String> getTags () {
@@ -335,17 +324,6 @@ public class VideoGameCatalogRecord {
             return description;
         }
 
-
-=======
-    @DynamoDBAttribute(attributeName = "tags")
-    public LinkedList<String> getTags () {
-            return tags;
-        }
-    @DynamoDBAttribute(attributeName = "description")
-    public String getGameDescription () {
-        return description;
-    }
->>>>>>> 34de5ae (nicole stuff)
     @DynamoDBAttribute(attributeName = "country")
     public String getCountry() { return country; }
     @DynamoDBAttribute(attributeName = "year")
@@ -356,7 +334,6 @@ public class VideoGameCatalogRecord {
     public void setTitle(String title) {
         this.title = title;
     }
-<<<<<<< HEAD
 
 
         public void setDeveloper (String developer){
@@ -378,34 +355,24 @@ public class VideoGameCatalogRecord {
             public void setPlatforms (LinkedList < String > platforms) {
                 this.platforms = platforms;
             }
-=======
-    public void setDeveloper (String developer){
-        this.developer = developer;
-    }
 
-    public void setGenre (String genre){
-        this.genre = genre;
-    }
-    public void setCountry(String country) { this.country = country; }
+
 
     public void setId(String id) { this.id = id;}
 
-    public void setPlatforms (LinkedList < String > platforms) {
-        this.platforms = platforms;
-    }
->>>>>>> 34de5ae (nicole stuff)
+
+
 
 
     public void setTags (LinkedList < String > tags) {
         this.tags = tags;
     }
 
-<<<<<<< HEAD
-=======
+
     public void setDescription (String description){
         this.description = description;
     }
->>>>>>> 34de5ae (nicole stuff)
+
 
     public void setYear(Integer year) { this.year = year; }
 
@@ -423,6 +390,7 @@ public class VideoGameCatalogRecord {
     }
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 
 <<<<<<< HEAD
@@ -431,3 +399,5 @@ public class VideoGameCatalogRecord {
 =======
 >>>>>>> 34de5ae (nicole stuff)
 >>>>>>> c1bcad1 (nojdijsjeoij)
+=======
+>>>>>>> 21f11de (Nicole might have made it somewhere)

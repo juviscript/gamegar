@@ -35,7 +35,7 @@ public class CacheManagerUserTest {
         String username = "username";
         String birthday = LocalDate.now().toString();
 
-        User user = new User(userId,userName,userEmail,username,birthday);
+        User user = new User(userId,userName,userEmail,username,birthday, favoriteGame, ownGames);
         userService.addNewUser(user);
         userService.findUserById(userId);
 
@@ -53,7 +53,7 @@ public class CacheManagerUserTest {
         String username = mockNeat.strings().valStr();
         String birthday = LocalDate.now().toString();
 
-        User user = new User(userId,userName,userEmail,username,birthday);
+        User user = new User(userId,userName,userEmail,username,birthday, favoriteGame, ownGames);
         userService.addNewUser(user);
         userService.findUserById(userId);
 

@@ -14,8 +14,6 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.time.LocalDate;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -26,7 +24,6 @@ import static org.hamcrest.Matchers.is;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @IntegrationTest
 public class UserControllerTest {
@@ -52,7 +49,7 @@ public class UserControllerTest {
         String username = mockNeat.strings().valStr();
         String birthday = LocalDate.now().toString();
 
-        User user = new User(userId,name,email,username,birthday);
+        User user = new User(userId,name,email,username,birthday, favoriteGame, ownGames);
         User persistedUser = userService.addNewUser(user);
 
         // WHEN
@@ -129,7 +126,7 @@ public class UserControllerTest {
         String username = mockNeat.strings().valStr();
         String birthday = LocalDate.now().toString();
 
-        User user = new User(userId,name,email,username,birthday);
+        User user = new User(userId,name,email,username,birthday, favoriteGame, ownGames);
         User persistedUser = userService.addNewUser(user);
 
         String newEmail = mockNeat.strings().valStr();
@@ -174,7 +171,7 @@ public class UserControllerTest {
         String username = mockNeat.strings().valStr();
         String birthday = LocalDate.now().toString();
 
-        User user = new User(userId,name,email,username,birthday);
+        User user = new User(userId,name,email,username,birthday, favoriteGame, ownGames);
         User persistedUser = userService.addNewUser(user);
 
        // WHEN

@@ -268,20 +268,32 @@ public class VideoGameCatalogService {
 //package com.kenzie.appserver.service;
 >>>>>>> 230d7be (Completely recreated all classes that have to do with the Video Game Catalog. Kept original classes but COMMENTED THEM OUT SO THEY DON'T AFFECT CODE: VideoGameCreateRequest -> CatalogCreateRequest, VideoGameResponse -> CatalogResponse, VideoGameUpdateRequest -> CatalogUpdateRequest, CatalogControllerOriginal -> CatalogController, VideoGameCatalogRepository -> CatalogRepository, VideoGame -> Game , VideoGameCatalogService -> CatalogService. Commented out ALL tests to run app. Successfully able to Post, Get, Put, and Delete.)
 //
-//import com.kenzie.appserver.config.CacheStore;
-//import com.kenzie.appserver.repositories.VideoGameCatalogRepository;
 //
+//
+//import com.kenzie.appserver.config.CacheStore;
+//
+//
+//import com.kenzie.appserver.config.CacheStore;
+//
+//import com.kenzie.appserver.repositories.VideoGameCatalogRepository;
 //import com.kenzie.appserver.repositories.model.VideoGameCatalogRecord;
 //import com.kenzie.appserver.service.model.VideoGame;
+//import com.kenzie.appserver.service.model.Game;
 //import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.http.ResponseEntity;
 //import org.springframework.stereotype.Service;
 //import org.springframework.web.bind.annotation.PathVariable;
 //import org.springframework.web.bind.annotation.RequestBody;
 //import org.springframework.web.servlet.ThemeResolver;
-//
 //import java.util.ArrayList;
 //import java.util.List;
+//import java.util.stream.Collectors;
+//import com.kenzie.appserver.repositories.model.VideoGameCatalogRecord;
+//import com.kenzie.appserver.repositories.VideoGameCatalogRepository;
+////import com.kenzie.appserver.service.model.GameService;
+//
+//import org.springframework.stereotype.Service;
+//
 //
 //
 ////    FIXME: If we change the partition key from 'title' to 'ID' will need to change methods to match.
@@ -301,8 +313,9 @@ public class VideoGameCatalogService {
 //        this.cache = cache;
 //    }
 //
-//    public VideoGame findGameById(String id) {
+//    public VideoGame findGameById (String id) {
 //
+<<<<<<< HEAD
 //        VideoGame cachedVideoGame = cache.get(id);
 //        if (cachedVideoGame != null) {
 //            return cachedVideoGame;
@@ -315,6 +328,9 @@ public class VideoGameCatalogService {
 =======
 //
 //        VideoGame gameFromService = videoGameCatalogRepository
+=======
+//        return videoGameCatalogRepository
+>>>>>>> 21f11de (Nicole might have made it somewhere)
 //                .findById(id)
 //                .map(game -> new VideoGame(game.getGameId(),
 //                        game.getGameTitle(),
@@ -326,17 +342,11 @@ public class VideoGameCatalogService {
 //                        game.getGameDescription(),
 //                        game.getCountry()))
 //                .orElse(null);
-//
-//        if (gameFromService != null) {
-//            cache.add(gameFromService.getId(), gameFromService);
-//        }
-//
-//        return gameFromService;
 //    }
 //
-//    public VideoGame findGameByTitle(String title) {
+//    public VideoGame findGameByTitle (String title) {
 //
-//        VideoGame gameFromService = videoGameCatalogRepository
+//        return videoGameCatalogRepository
 //                .findById(title)
 //                .map(game -> new VideoGame(game.getGameTitle(),
 //                        game.getGameId(),
@@ -349,14 +359,102 @@ public class VideoGameCatalogService {
 //                        game.getCountry()))
 //                .orElse(null);
 //
-//        return gameFromService;
-//
 //        // We can choose to create a cache so that the items get stored and accessed easier.
 //        // I don't think that was a requirement of the project, but if you guys want to!
 //
 //    }
+//    public VideoGame findGameByDeveloper (String developer) {
 //
-//    public VideoGame addNewGame(VideoGame game) {
+//        return videoGameCatalogRepository
+//                .findById(developer)
+//                .map(game -> new VideoGame(game.getGameTitle(),
+//                        game.getGameId(),
+//                        game.getDeveloper(),
+//                        game.getGenre(),
+//                        game.getYear(),
+//                        game.getPlatforms(),
+//                        game.getTags(),
+//                        game.getGameDescription(),
+//                        game.getCountry()))
+//                .orElse(null);
+//    }
+//    public VideoGame findGameByGenre (String genre) {
+//
+//        return videoGameCatalogRepository
+//                .findById(genre)
+//                .map(game -> new VideoGame(game.getGameTitle(),
+//                        game.getGameId(),
+//                        game.getDeveloper(),
+//                        game.getGenre(),
+//                        game.getYear(),
+//                        game.getPlatforms(),
+//                        game.getTags(),
+//                        game.getGameDescription(),
+//                        game.getCountry()))
+//                .orElse(null);
+//    }
+//    public VideoGame findGameByTag (String tags) {
+//
+//        return videoGameCatalogRepository
+//                .findById(tags)
+//                .map(game -> new VideoGame(game.getGameTitle(),
+//                        game.getGameId(),
+//                        game.getDeveloper(),
+//                        game.getGenre(),
+//                        game.getYear(),
+//                        game.getPlatforms(),
+//                        game.getTags(),
+//                        game.getGameDescription(),
+//                        game.getCountry()))
+//                .orElse(null);
+//    }
+//    public VideoGame findGameByCountry (String country) {
+//
+//        return videoGameCatalogRepository
+//                .findById(country)
+//                .map(game -> new VideoGame(game.getGameTitle(),
+//                        game.getGameId(),
+//                        game.getDeveloper(),
+//                        game.getGenre(),
+//                        game.getYear(),
+//                        game.getPlatforms(),
+//                        game.getTags(),
+//                        game.getGameDescription(),
+//                        game.getCountry()))
+//                .orElse(null);
+//    }
+//    public VideoGame findGamesByYear (String year) {
+//
+//        return videoGameCatalogRepository
+//                .findById(year)
+//                .map(game -> new VideoGame(game.getGameTitle(),
+//                        game.getGameId(),
+//                        game.getDeveloper(),
+//                        game.getGenre(),
+//                        game.getYear(),
+//                        game.getPlatforms(),
+//                        game.getTags(),
+//                        game.getGameDescription(),
+//                        game.getCountry()))
+//                .orElse(null);
+//    }
+//    public VideoGame findGameByPlatforms (String platforms) {
+//
+//        return videoGameCatalogRepository
+//                .findById(platforms)
+//                .map(game -> new VideoGame(game.getGameTitle(),
+//                        game.getGameId(),
+//                        game.getDeveloper(),
+//                        game.getGenre(),
+//                        game.getYear(),
+//                        game.getPlatforms(),
+//                        game.getTags(),
+//                        game.getGameDescription(),
+//                        game.getCountry()))
+//                .orElse(null);
+//    }
+//
+//    public VideoGame addNewGame(VideoGame game){
 //        VideoGameCatalogRecord videoGameCatalogRecord = new VideoGameCatalogRecord();
 //
 //        //Do we want the users to create an id for the video game?****
@@ -369,19 +467,15 @@ public class VideoGameCatalogService {
 //        videoGameCatalogRecord.setDescription(game.getDescription());
 //        videoGameCatalogRecord.setYear(game.getYear()); //added year
 //        videoGameCatalogRepository.save(videoGameCatalogRecord);
-//
-//        if (videoGameCatalogRecord != null) {
-//            cache.add(videoGameCatalogRecord.getGameId(), game);
-//        }
-//
 //        return game;
 //    }
+//
 //
 //    public List<VideoGame> findAllGames() {
 //        List<VideoGame> games = new ArrayList<>();
 //
 //        Iterable<VideoGameCatalogRecord> gameIterator = videoGameCatalogRepository.findAll();
-//        for (VideoGameCatalogRecord record : gameIterator) {
+//        for(VideoGameCatalogRecord record : gameIterator) {
 //            games.add(new VideoGame(record.getGameId(),
 //                    record.getGameTitle(),
 //                    record.getDeveloper(),
@@ -410,27 +504,26 @@ public class VideoGameCatalogService {
 //        }
 //        VideoGame gameFromCache = null;
 //        gameFromCache = cache.get(game.getId());
-//        if (gameFromCache != null) {
+//        if(gameFromCache != null){
 //            cache.evict(gameFromCache.getId());
 //        }
 //    }
 //
-//    public void deleteGameById(String gameId) {
-////        VideoGame game = null;
-//
-//        if (gameId != null) {
-////            game = cache.get(gameId);
+//        public void deleteGameById(String gameId){
 //            videoGameCatalogRepository.deleteById(gameId);
-//            cache.evict(gameId);
-//        } else {
-//            throw new IllegalArgumentException("Video Game ID not valid.");
+//            Game game = null;
+//            if (gameId != null) {
+//                game = cache.get(gameId);
+//            } else {
+//                throw new IllegalArgumentException("Video Game ID not valid.");
+//            }
+//            if (game != null) {
+//                cache.evict(game.getId());
+//            }
 //        }
 //
-////        if (game != null) {
-////
-////        }
-//    }
 //}
+<<<<<<< HEAD
 //
 <<<<<<< HEAD
 >>>>>>> 230d7be (Completely recreated all classes that have to do with the Video Game Catalog. Kept original classes but COMMENTED THEM OUT SO THEY DON'T AFFECT CODE: VideoGameCreateRequest -> CatalogCreateRequest, VideoGameResponse -> CatalogResponse, VideoGameUpdateRequest -> CatalogUpdateRequest, CatalogControllerOriginal -> CatalogController, VideoGameCatalogRepository -> CatalogRepository, VideoGame -> Game , VideoGameCatalogService -> CatalogService. Commented out ALL tests to run app. Successfully able to Post, Get, Put, and Delete.)
@@ -696,3 +789,6 @@ public class VideoGameCatalogService {
 =======
 >>>>>>> 34de5ae (nicole stuff)
 >>>>>>> c1bcad1 (nojdijsjeoij)
+=======
+
+>>>>>>> 21f11de (Nicole might have made it somewhere)
