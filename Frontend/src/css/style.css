@@ -99,53 +99,60 @@
 
 
 .parent {
-    border: 1px solid black;
-    margin: 1rem;
+    border: 1px solid #ccccff;
+    border-radius: 20px;
+    margin: 1rem auto;
     padding: 2rem 2rem;
     text-align: center;
-    height: 60%;
+    height: 40%;
+    background-color: #ccccff;
+    color: white;
+    max-width: 1600px;
+    justify-content: center;
   }
 
 .child {
     display: inline-block;
-    border: 1px solid red;
-    padding: 1rem 1rem;
+    padding: 2rem 2rem;
     vertical-align: middle;
     width: 40%;
-    height: 90%;
-
+    height: 60%;
+    min-width: 600px;
+    
   }
 
   .typewriter {
       float: left;
-      text-align: left;
   }
 
   #gamegar {
       float: right;
+      max-width: 600px;
   }
 
 
  .css-typing p {
-  border-right: .15em solid orange;
-  font-family: "Courier";
-  font-size: 14px;
-  white-space: nowrap;
-  overflow: hidden;
+  border-right: .50em solid purple;
+  font-family: Tahoma;
+  font-weight: bold;
+  font-size: 20px;
+  white-space: nowrap;                                /* Text will not line break. This is crucial to getting each letter to show the typing animation */
+  overflow: hidden;                                   /* Any text that bleeds over the borders will be hidden. */
+  text-align: left;                                   /* Keeps the text oriented to the left. */
 }
-.css-typing p:nth-child(1) {
-  width: 7.3em;
-  -webkit-animation: type 2s steps(40, end);
-  animation: type 2s steps(40, end);
-  -webkit-animation-fill-mode: forwards;
-  animation-fill-mode: forwards;
+.css-typing p:nth-child(1) {                          /* 1st paragarph in the 'css-typing' class in the HTML file. */
+  width: 90%;                                         /* How much of the container this text animation will occupy. */
+  -webkit-animation: type 1s steps(60);          
+   animation: type 1s steps(60);                      
+  -webkit-animation-fill-mode: forwards;              
+  animation-fill-mode: forwards;                      
 }
 
 .css-typing p:nth-child(2) {
-  width: 11.5em;
+  width: 90%;                                         
   opacity: 0;
-  -webkit-animation: type2 2s steps(40, end);
-  animation: type2 2s steps(40, end);
+  -webkit-animation: type2 1s steps(80, end);
+  animation: type2 1s steps(80, end);
   -webkit-animation-delay: 2s;
   animation-delay: 2s;
   -webkit-animation-fill-mode: forwards;
@@ -153,24 +160,31 @@
 }
 
 .css-typing p:nth-child(3) {
-  width: 7.3em;
+  width: 60%;
   opacity: 0;
-  -webkit-animation: type3 5s steps(20, end), blink .5s step-end infinite alternate;
-  animation: type3 5s steps(20, end), blink .5s step-end infinite alternate;
-  -webkit-animation-delay: 4s;
-  animation-delay: 4s;
+  -webkit-animation: type3 1s steps(100, end), blink .5s step-end infinite alternate;
+  animation: type3 1s steps(100, end), blink .5s step-end infinite alternate;
+  -webkit-animation-delay: 4.5s;
+  animation-delay: 4.5s;
   -webkit-animation-fill-mode: forwards;
   animation-fill-mode: forwards;
 }
+
+
+
 
 @keyframes type {
   0% {
     width: 0;
   }
+  1% {
+    opacity: 1;
+  }
   99.9% {
-    border-right: .15em solid orange;
+    border-right: .50em solid purple;
   }
   100% {
+    opacity: 1;
     border: none;
   }
 }
@@ -179,10 +193,10 @@
   0% {
     width: 0;
   }
-  99.9% {
-    border-right: .15em solid orange;
+  70% {
+    border-right: .50em solid purple;
   }
-  100% {
+  71% {
     border: none;
   }
 }
@@ -195,7 +209,7 @@
     opacity: 1;
   }
   99.9% {
-    border-right: .15em solid orange;
+    border-right: .50em solid purple;
   }
   100% {
     opacity: 1;
@@ -211,7 +225,7 @@
     opacity: 1;
   }
   99.9% {
-    border-right: .15em solid orange;
+    border-right: .50em solid purple;
   }
   100% {
     opacity: 1;
@@ -226,22 +240,30 @@
   1% {
     opacity: 1;
   }
+  99.9% {
+    border-right: .50em solid purple;
+  }
   100% {
     opacity: 1;
   }
 }
 
+
 @-webkit-keyframes type3 {
-  0% {
+ 0% {
     width: 0;
   }
   1% {
     opacity: 1;
   }
+  99.9% {
+    border-right: .50em solid purple;
+  }
   100% {
     opacity: 1;
   }
 }
+
 
 @keyframes blink {
   50% {
@@ -252,4 +274,17 @@
   50% {
     border-color: tranparent;
   }
+}
+
+
+
+@media (max-width: 1660px) {
+  #gamegar {
+    align-items: center;
+}
+
+.typewriter {
+  text-align: center;
+
+}
 }
