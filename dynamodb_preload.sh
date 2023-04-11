@@ -548,7 +548,7 @@ aws dynamodb put-item \
   "title": {"S": "Rise of the Tomb Raider"},
   "developer": {"S": "Crystal Dynamics"},
   "genre": {"S": "Action-adventure"},
-  "year": {"N": "2015'},
+  "year": {"N": "2015"},
   "description": {"S": "Its story follows Lara Croft as she ventures into Siberia in search of the legendary city of Kitezh while battling the paramilitary organization Trinity, which intends to uncover the city'\''s promise of immortality."},
   "country": {"S": "Japan"},
 "platforms": {"L": [ {"S": "Play Station"}, {"S": "Xbox"}, {"S": "PC"}, {"S": "Stadia"} ]},
@@ -746,7 +746,7 @@ aws dynamodb put-item \
   "year": {"N": "2000"},
   "description": {"S": "Tony Hawk'\''s Pro Skater 2 puts the player in control of a professional or fictional skater and takes place in a third-person view with a fixed camera. The player must perform tricks and complete level objectives in return for cash rewards, which can be used to unlock other levels, improve the player character'\''s statistics and obtain better equipment."},
   "country": {"S": "U.S.A."},
-  "platforms": {"L": [ {"S": "Play Station"}, {"S": "PC"}, {"S": "Nintendo"} {"S": "Dreamcast"} ]},
+  "platforms": {"L": [ {"S": "Play Station"}, {"S": "PC"}, {"S": "Nintendo"}, {"S": "Dreamcast"} ]},
   "tags": {"L": [ {"S": "Single-Player"} , {"S": "Multiplayer"} ]}
 }'
 
