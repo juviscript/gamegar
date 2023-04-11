@@ -96,85 +96,160 @@
     border: solid black
 
 }
- .container {
-     display: inline-block;
-     font-family: "arial";
-     font-size: 24px;
- }
 
-.typewriter {
 
-    overflow: hidden;
-    white-space: nowrap;
+.parent {
+    border: 1px solid black;
+    margin: 1rem;
+    padding: 2rem 2rem;
+    text-align: center;
+    height: 60%;
+  }
+
+.child {
+    display: inline-block;
+    border: 1px solid red;
+    padding: 1rem 1rem;
+    vertical-align: middle;
+    width: 40%;
+    height: 90%;
+
+  }
+
+  .typewriter {
+      float: left;
+      text-align: left;
+  }
+
+  #gamegar {
+      float: right;
+  }
+
+
+ .css-typing p {
+  border-right: .15em solid orange;
+  font-family: "Courier";
+  font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.css-typing p:nth-child(1) {
+  width: 7.3em;
+  -webkit-animation: type 2s steps(40, end);
+  animation: type 2s steps(40, end);
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+}
+
+.css-typing p:nth-child(2) {
+  width: 11.5em;
+  opacity: 0;
+  -webkit-animation: type2 2s steps(40, end);
+  animation: type2 2s steps(40, end);
+  -webkit-animation-delay: 2s;
+  animation-delay: 2s;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+}
+
+.css-typing p:nth-child(3) {
+  width: 7.3em;
+  opacity: 0;
+  -webkit-animation: type3 5s steps(20, end), blink .5s step-end infinite alternate;
+  animation: type3 5s steps(20, end), blink .5s step-end infinite alternate;
+  -webkit-animation-delay: 4s;
+  animation-delay: 4s;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+}
+
+@keyframes type {
+  0% {
     width: 0;
-    animation: typing;
-    animation-duration: 1.5s;
-    animation-timing-function: steps(30, end);
-    animation-fill-mode: forwards;
+  }
+  99.9% {
+    border-right: .15em solid orange;
+  }
+  100% {
+    border: none;
+  }
 }
 
-@keyframes typing {
-    from { width: 0 }
-    to { width: 100% }
+@-webkit-keyframes type {
+  0% {
+    width: 0;
+  }
+  99.9% {
+    border-right: .15em solid orange;
+  }
+  100% {
+    border: none;
+  }
 }
 
-.img {
-    display: flex;
-    max-height: 100%;
-    max-width: 100%;
+@keyframes type2 {
+  0% {
+    width: 0;
+  }
+  1% {
+    opacity: 1;
+  }
+  99.9% {
+    border-right: .15em solid orange;
+  }
+  100% {
+    opacity: 1;
+    border: none;
+  }
 }
 
-.angry-grid {
-    display: grid;
-
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-
-    gap: 0px;
-    height: 100%;
-
+@-webkit-keyframes type2 {
+  0% {
+    width: 0;
+  }
+  1% {
+    opacity: 1;
+  }
+  99.9% {
+    border-right: .15em solid orange;
+  }
+  100% {
+    opacity: 1;
+    border: none;
+  }
 }
 
-#item-0 {
-
-    background-color: #78ffaa;
-    grid-row-start: 2;
-    grid-column-start: 2;
-
-    grid-row-end: 4;
-    grid-column-end: 4;
-
+@keyframes type3 {
+  0% {
+    width: 0;
+  }
+  1% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
-#item-1 {
-
-    background-color: #c7e8bd;
-    grid-row-start: 2;
-    grid-column-start: 4;
-
-    grid-row-end: 4;
-    grid-column-end: 6;
-
-}
-#item-2 {
-
-    background-color: #b89db9;
-    grid-row-start: 4;
-    grid-column-start: 2;
-
-    grid-row-end: 5;
-    grid-column-end: 6;
-
-}
-#item-3 {
-
-    background-color: #c5f97b;
-    grid-row-start: 6;
-    grid-column-start: 2;
-
-    grid-row-end: 7;
-    grid-column-end: 6;
-
+@-webkit-keyframes type3 {
+  0% {
+    width: 0;
+  }
+  1% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
-
+@keyframes blink {
+  50% {
+    border-color: transparent;
+  }
+}
+@-webkit-keyframes blink {
+  50% {
+    border-color: tranparent;
+  }
+}
