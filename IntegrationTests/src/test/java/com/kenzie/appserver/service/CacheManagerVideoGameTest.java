@@ -42,8 +42,9 @@ public class CacheManagerVideoGameTest {
         List tags = new LinkedList();
         String description = mockNeat.strings().valStr();
         String country = mockNeat.strings().valStr();
+        String image = mockNeat.strings().valStr();
 
-        Game game = new Game(id,title,developer,genre,year,description,country,platforms,tags);
+        Game game = new Game(id,title,developer,genre,year,description,country,platforms,tags,image);
         catalogService.addNewGame(game);
        catalogService.findByGameId(id);
 
@@ -64,8 +65,9 @@ public class CacheManagerVideoGameTest {
         List tags = new LinkedList();
         String description = mockNeat.strings().valStr();
         String country = mockNeat.strings().valStr();
+        String image = mockNeat.strings().valStr();
 
-        Game game = new Game(id,title,developer,genre,year,description,country,platforms,tags);
+        Game game = new Game(id,title,developer,genre,year,description,country,platforms,tags,image);
         catalogService.addNewGame(game);
         catalogService.findByGameId(id);
 
