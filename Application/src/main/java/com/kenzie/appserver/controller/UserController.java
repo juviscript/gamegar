@@ -43,6 +43,33 @@ public class UserController {
         if (user == null) {
             return ResponseEntity.notFound().build();
         }
+<<<<<<< HEAD
+
+        UserResponse userResponse = createUserResponse(user);
+
+        return ResponseEntity.ok(userResponse);
+    }
+    @GetMapping("/name/{name}")
+    public ResponseEntity<UserResponse> searchByName(@PathVariable("name") String name) {
+        User user = userService.findUserByName(name);
+
+        if (user == null) {
+            return ResponseEntity.notFound().build();
+        }
+
+        UserResponse userResponse = createUserResponse(user);
+
+        return ResponseEntity.ok(userResponse);
+    }
+    @GetMapping("/email/{email}")
+    public ResponseEntity<UserResponse> searchByEmail(@PathVariable("email") String email) {
+        User user = userService.findUserByEmail(email);
+
+        if (user == null) {
+            return ResponseEntity.notFound().build();
+        }
+=======
+>>>>>>> 025556f (noidsoijeif)
 
         UserResponse userResponse = createUserResponse(user);
 
@@ -70,28 +97,6 @@ public class UserController {
 
         UserResponse userResponse = createUserResponse(user);
 
-        return ResponseEntity.ok(userResponse);
-    }
-    @GetMapping("/{name}")
-    public ResponseEntity<UserResponse> searchByName(@PathVariable("name") String name) {
-        User user = userService.findUserByName(name);
-
-        if (user == null) {
-            return ResponseEntity.notFound().build();
-        }
-
-        UserResponse userResponse = createUserResponse(user);
-
-        return ResponseEntity.ok(userResponse);
-    }
-    @GetMapping("/{email}")
-    public ResponseEntity<UserResponse> searchByEmail(@PathVariable("email") String email){
-        User user = userService.findUserByEmail(email);
-
-        if (user == null) {
-            return ResponseEntity.notFound().build();
-        }
-        UserResponse userResponse = createUserResponse(user);
         return ResponseEntity.ok(userResponse);
     }
 
@@ -144,12 +149,21 @@ public class UserController {
 
     @DeleteMapping("/{userId}")
 <<<<<<< HEAD
+<<<<<<< HEAD
     public ResponseEntity deleteConcertByTitle(@PathVariable("userId") String userId) {
         userService.deleteUserById(userId);
 =======
     public ResponseEntity deleteUserById(@PathVariable("userId") String userId) {
         userService.deleteUserById(userId);                                     
 >>>>>>> e2cd2fa (Fixed tests and delete method in catalogservice)
+=======
+    public ResponseEntity deleteUserById(@PathVariable("userId") String userId) {
+        userService.deleteUserById(userId);                                     
+=======
+    public ResponseEntity deleteConcertByTitle(@PathVariable("userId") String userId) {
+        userService.deleteUserById(userId);
+>>>>>>> 50543db (nicole stuff that wont work right)
+>>>>>>> 025556f (noidsoijeif)
         return ResponseEntity.status(204).build();
     }
 

@@ -160,12 +160,16 @@ public class UserService {
         }
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 025556f (noidsoijeif)
     public List<VideoGame> getFavoriteGames(String userId) {
         User user = cache.get(userId);
         if (user != null) {
             return user.getFavoriteGames();
         }
         return new ArrayList<>();
+<<<<<<< HEAD
     }
 
     public boolean addFavoriteGame(String userId, VideoGame game) {
@@ -181,15 +185,27 @@ public class UserService {
         if (!favoriteGames.contains(game)) {
             return favoriteGames.add(game);
 >>>>>>> c1bcad1 (nojdijsjeoij)
+=======
+    }
+
+    public boolean addFavoriteGame(String userId, VideoGame game) {
+        User user = cache.get(userId);
+        if (user != null) {
+            return user.addFavoriteGame(game);
+>>>>>>> 025556f (noidsoijeif)
         }
         return false;
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 025556f (noidsoijeif)
     public boolean removeFavoriteGame(String userId, VideoGame game) {
         User user = cache.get(userId);
         if (user != null) {
             return user.removeFavoriteGame(game);
+<<<<<<< HEAD
 =======
     public boolean removeFavoriteGame(VideoGame game) {
         return favoriteGames.remove(game);
@@ -202,17 +218,23 @@ public class UserService {
         if (!ownGames.contains(game)) {
             return ownGames.add(game);
 >>>>>>> c1bcad1 (nojdijsjeoij)
+=======
+>>>>>>> 025556f (noidsoijeif)
         }
         return false;
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 025556f (noidsoijeif)
     public List<VideoGame> getOwnGames(String userId) {
         User user = cache.get(userId);
         if (user != null) {
             return user.getOwnedGames();
         }
         return new ArrayList<>();
+<<<<<<< HEAD
     }
     public boolean addOwnGame(String userId, VideoGame game) {
         User user = cache.get(userId);
@@ -231,3 +253,14 @@ public class UserService {
 
 
 >>>>>>> c1bcad1 (nojdijsjeoij)
+=======
+    }
+    public boolean addOwnGame(String userId, VideoGame game) {
+        User user = cache.get(userId);
+        if (user != null) {
+            return user.addOwnedGame(game);
+        }
+        return false;
+    }
+}
+>>>>>>> 025556f (noidsoijeif)
