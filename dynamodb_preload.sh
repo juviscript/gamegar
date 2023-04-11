@@ -58,7 +58,7 @@ aws dynamodb put-item \
   "year": {"N": "2013"},
   "description": {"S": "Assassin'\''s Creed IV: Black Flag is an action-adventure, stealth game set in an open world environment and played from a third-person perspective. The game features three main cities: Havana, Kingston, and Nassau, which reside under Spanish, British, and pirate influence, respectively."},
   "country": {"S": "France"},
- "platforms": {"L": [ {"S": "Play Station"}, {"S": "Xbox"}, {"S": "Wii U"}, {"S": "Nintendo"}, {"S": "Stadia"} ]},
+ "platforms": {"L": [ {"S": "Playstation 3"}, {"S": "Playstation 4"}, {"S": "Xbox 360"}, {"S": "Xbox One"}, {"S": "Wii U"}, {"S": "Nintendo"}, {"S": "PC"}, {"S": "Stadia"} ]},
 "tags": {"L": [ {"S": "Single-Player"} , {"S": "Multiplayer"} ]},
 "image": {"S" : "https://cdn.cloudflare.steamstatic.com/steam/apps/242050/capsule_616x353.jpg?t=1670596397"}
 }'
@@ -74,7 +74,7 @@ aws dynamodb put-item \
   "year": {"N": "2011"},
   "description": {"S": "The game is presented from the third-person perspective with a primary focus on Batman'\''s combat and stealth abilities, detective skills, and gadgets that can be used in both combat and exploration. Batman can freely move around the Arkham City prison, interacting with characters and undertaking missions, and unlocking new areas by progressing through the main story or obtaining new equipment. The player is able to complete side missions away from the main story to unlock additional content and collectible items. Batman'\''s ally Catwoman is another playable character, featuring her own story campaign that runs parallel to the game'\''s main plot."},
   "country": {"S": "U.S.A."},
-"platforms": {"L": [ {"S": "Play Station"}, {"S": "Xbox"} ]},
+"platforms": {"L": [ {"S": "Playstation 3"}, {"S": "Playstation 4"}, {"S": "Xbox 360"}, {"S": "Xbox One"}, {"S": "Wii U"}, {"S": "PC"} ]},
 "tags": {"L": [ {"S": "Single-Player"}, {"S": "Multiplayer"} ]},
 "image": {"S" : "https://upload.wikimedia.org/wikipedia/en/0/00/Batman_Arkham_City_Game_Cover.jpg"}
 }'
@@ -90,7 +90,7 @@ aws dynamodb put-item \
   "year": {"N": "1999"},
   "description": {"S": "As technology advances, genetic scientists gain the ability to awaken the beast-like powers that lie dormant in human genes. The giant multinational Tylon corporation secretly plots to reap huge profits by exploiting these superhuman abilities."},
   "country": {"S": "Japan"},
-"platforms": {"L": [ {"S": "Play Station"}, {"S": "Arcade"} ]},
+"platforms": {"L": [ {"S": "Playstation"}, {"S": "Playstation Portable"}, {"S": "Arcade"} ]},
 "tags": {"L": [ {"S": "Single-Player"}, {"S": "Multiplayer"} ]},
 "image": {"S" : "https://upload.wikimedia.org/wikipedia/en/4/4b/Bloody_Roar_II.jpg"}
 }'
@@ -106,7 +106,7 @@ aws dynamodb put-item \
   "year": {"N": "2022"},
   "description": {"S": "Like its predecessor, the game takes place in a realistic and modern setting. The campaign follows multi-national special operations unit Task Force 141 and Mexican Special Forces unit Los Vaqueros as they attempt to track down Iranian Quds Force Major and terrorist Hassan Zyani, who is in possession of American-made ballistic missiles. Powered by a new version of the IW engine, Modern Warfare II continues to support cross-platform multiplayer and also features a free-to-play battle royale mode, Warzone 2.0, a follow-up to the original Warzone."},
   "country": {"S": "U.S.A."},
-"platforms": {"L": [ {"S": "Play Station"}, {"S": "Xbox"}, {"S": "PC"} ]},
+"platforms": {"L": [ {"S": "Playstation 3"}, {"S": "Playstation 4"}, {"S": "Xbox 360"}, {"S": "Xbox One"}, {"S": "PC"} ]},
 "tags": {"L": [ {"S": "Single-Player"}, {"S": "Multiplayer"} ]},
 "image": {"S" : "https://www.charlieintel.com/wp-content/uploads/2022/05/modern-warfare-2-multiplayer-beta.jpg"}
 }'
@@ -122,7 +122,7 @@ aws dynamodb put-item \
   "year": {"N": "1997"},
   "description": {"S": "Taking place on a fictional group of islands near Australia, Crash Bandicoot 2 follows the adventures of the anthropomorphic bandicoot named Crash. Crash is abducted by series villain Doctor Neo Cortex, who tricks him into thinking he wants to save the world. Crash is thrust into several parts of N. Sanity Island in order to gather crystals that will allow Cortex to contain the power of an upcoming planetary alignment and keep the planet from being destroyed. Crash'\''s sister Coco and Cortex'\''s former assistant Doctor Nitrus Brio try to warn him about Cortex, with the latter urging Crash to gather gems instead of crystals."},
   "country": {"S": "Japan"},
-"platforms": {"L": [ {"S": "Play Station"} ]},
+"platforms": {"L": [ {"S": "Playstation"}, {"S": "Playstation Portable"} ]},
 "tags": {"L": [ {"S": "Single-Player"} ]},
 "image": {"S" : "https://upload.wikimedia.org/wikipedia/en/e/e6/Crash_Bandicoot_2_Cortex_Strikes_Back_Game_Cover.jpg"}
 }'
@@ -137,7 +137,7 @@ aws dynamodb put-item \
   "genre": {"S": "Shooter"},
   "year": {"N": "2017"},
   "description": {"S": "Similar to its predecessor, Destiny 2 is a first-person shooter game that incorporates role-playing and massively multiplayer online game (MMO) elements. The original Destiny includes on-the-fly matchmaking that allowed players to communicate only with other players with whom they were \"matched\" by the game."},
-"platforms": {"L": [ {"S": "Play Station"}, {"S": "Xbox"}, {"S": "PC"} ]},
+"platforms": {"L": {"S": "Playstation 3"}, {"S": "Playstation 4"}, {"S": "Playstation 5"}, {"S": "Xbox 360"}, {"S": "Xbox One"}, {"S": "PC"} ]},
 "tags": {"L": [ {"S": "Multiplayer"} ]},
 "image": {"S" : "https://cdn1.epicgames.com/offer/428115def4ca4deea9d69c99c5a5a99e/FR_Bungie_Destiny2_S2_1200x1600_1200x1600-c04030c570b63cdced320be0f88a9f89"}
 }'
@@ -153,7 +153,7 @@ aws dynamodb put-item \
   "year": {"N": "2000"},
   "description": {"S": "It is the second installment in the Dino Crisis series. After the events of the previous game, unsafe research into time-distorting Third Energy has resulted in an entire research base, military institution, and fictional metropolis of Edward City to be transported to another time, along with all of its inhabitants."},
   "country": {"S": "Japan"},
-"platforms": {"L": [ {"S": "Play Station"}, {"S": "PC"} ]},
+"platforms": {"L": [ {"S": "Playstation"}, {"S": "Playstation 3"}, {"S": "PC"} ]},
 "tags": {"L": [ {"S": "Single-Player"} ]},
 "image": {"S" : "https://upload.wikimedia.org/wikipedia/en/4/49/Dino_Crisis_2.jpg"}
 }'
@@ -331,7 +331,7 @@ aws dynamodb put-item \
   "country": {"S": "Netherlands"},
 "platforms": {"L": [ {"S": "Play Station"} ]},
 "tags": {"L": [ {"S": "Single-Player"} ]},
-"image": {"S" : "https://image.api.playstation.com/vulcan/ap/rnd/202107/3100/HO8vkO9pfXhwbHi5WHECQJdN.png"}
+"image": {"S" : "https://m.media-amazon.com/images/M/MV5BZDQ2NjJjYjAtNDhmMy00OTk0LTliYjctNDIwYTdlYzZjZTYxXkEyXkFqcGdeQXVyMzY0MTE3NzU@._V1_.jpg"}
 }'
 
 aws dynamodb put-item \
