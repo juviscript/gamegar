@@ -3,6 +3,7 @@ package com.kenzie.appserver.controller;
 <<<<<<< HEAD
 <<<<<<< HEAD
 
+<<<<<<< HEAD
 
 import com.kenzie.appserver.controller.model.*;
 import com.amazonaws.Response;
@@ -28,6 +29,9 @@ import com.kenzie.appserver.service.model.VideoGame;
 =======
 
 >>>>>>> 734c590 (niocledkjkodso)
+=======
+<<<<<<< HEAD
+>>>>>>> c1bcad1 (nojdijsjeoij)
 import com.kenzie.appserver.controller.model.CatalogCreateRequest;
 import com.kenzie.appserver.controller.model.CatalogResponse;
 <<<<<<< HEAD
@@ -39,14 +43,17 @@ import com.kenzie.appserver.service.model.Game;
 >>>>>>> 230d7be (Completely recreated all classes that have to do with the Video Game Catalog. Kept original classes but COMMENTED THEM OUT SO THEY DON'T AFFECT CODE: VideoGameCreateRequest -> CatalogCreateRequest, VideoGameResponse -> CatalogResponse, VideoGameUpdateRequest -> CatalogUpdateRequest, CatalogControllerOriginal -> CatalogController, VideoGameCatalogRepository -> CatalogRepository, VideoGame -> Game , VideoGameCatalogService -> CatalogService. Commented out ALL tests to run app. Successfully able to Post, Get, Put, and Delete.)
 =======
 =======
+=======
+import com.kenzie.appserver.controller.model.*;
+>>>>>>> 34de5ae (nicole stuff)
 import com.amazonaws.Response;
-import com.kenzie.appserver.controller.model.VideoGameCreateRequest;
-import com.kenzie.appserver.controller.model.VideoGameResponse;
-import com.kenzie.appserver.controller.model.VideoGameUpdateRequest;
 import com.kenzie.appserver.repositories.VideoGameCatalogRepository;
 import com.kenzie.appserver.service.VideoGameCatalogService;
 import com.kenzie.appserver.service.model.VideoGame;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -150,7 +157,40 @@ public class CatalogController {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     @GetMapping("/{title}")           //     http://localhost:8000/games/title will pull this up.
+=======
+=======
+
+    private VideoGameResponse createVideoGameResponse(VideoGame videoGame) {
+        VideoGameResponse videoGameResponse = new VideoGameResponse();
+        videoGameResponse.setId(videoGame.getId());
+        videoGameResponse.setTitle(videoGame.getGameTitle());
+        videoGameResponse.setDeveloper((videoGame.getDeveloper()));
+        videoGameResponse.setGenre(videoGame.getGenre());
+        videoGameResponse.setYear(videoGame.getYear());
+        videoGameResponse.setPlatforms(videoGame.getPlatforms());
+        videoGameResponse.setTags(videoGame.getTags());
+        videoGameResponse.setDescription(videoGame.getDescription());        //  TODO: Response: Should we keep description and country as something that is required to create a new instance
+        videoGameResponse.setCountry(videoGame.getCountry());
+        return videoGameResponse;                                            //         of a game?
+    }
+
+    @GetMapping("{id}")
+    public ResponseEntity<VideoGameResponse> searchById(@PathVariable("id") String id) {
+        VideoGame videoGame = catalogService.findGameById(id);
+
+        if (videoGame == null) {
+            return ResponseEntity.noContent().build();
+        }
+
+        VideoGameResponse videoGameResponse = createVideoGameResponse(videoGame);
+        return ResponseEntity.ok(videoGameResponse);
+}
+
+
+    @GetMapping("{title}")           //     http://localhost:8000/games/title will pull this up.
+>>>>>>> c1bcad1 (nojdijsjeoij)
     public ResponseEntity<VideoGameResponse> searchByTitle(@PathVariable("title") String title) {
         VideoGame videoGame = catalogService.findGameByTitle(title);
 
@@ -164,6 +204,7 @@ public class CatalogController {
     @GetMapping("{developer}")  //     http://localhost:8000/games/title will pull this up.
     public ResponseEntity<VideoGameResponse> searchByDeveloper(@PathVariable("developer") String developer){
         VideoGame videoGame = catalogService.findGameByDeveloper(developer);
+<<<<<<< HEAD
 =======
 //    @GetMapping("/{title}")           //     http://localhost:8000/games/title will pull this up.
 //    public ResponseEntity<VideoGameResponse> searchByTitle(@PathVariable("title") String title) {
@@ -177,6 +218,8 @@ public class CatalogController {
 //        return ResponseEntity.ok(videoGameResponse);
 //    }
 >>>>>>> c52cc7b (Commented out findGameByTitle() in CatalogController.java and ran getGame_GameExists test in VideoGameControllerTest.java and successfully passed.)
+=======
+>>>>>>> c1bcad1 (nojdijsjeoij)
 
         if (videoGame == null) {                            // If there are no developers, return a 204 error.
             return ResponseEntity.noContent().build();
@@ -189,6 +232,9 @@ public class CatalogController {
         VideoGame videoGame = catalogService.findGameByGenre(genre);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> c1bcad1 (nojdijsjeoij)
         if (videoGame == null) {                            // If there are no genre, return a 204 error.
             return ResponseEntity.noContent().build();
         }
@@ -238,9 +284,12 @@ public class CatalogController {
     }
 
     @GetMapping("all")      //     http://localhost:8000/games/title will pull this up.
+<<<<<<< HEAD
 =======
     @GetMapping("/all")              //      http://localhost:8000/games/all will pull this up.
 >>>>>>> c52cc7b (Commented out findGameByTitle() in CatalogController.java and ran getGame_GameExists test in VideoGameControllerTest.java and successfully passed.)
+=======
+>>>>>>> c1bcad1 (nojdijsjeoij)
     public ResponseEntity<List<VideoGameResponse>> getAllGames() {
         Collection<VideoGame> allGames = catalogService.findAllGames();
 
@@ -252,7 +301,11 @@ public class CatalogController {
                 .filter(list -> !list.isEmpty())
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.noContent().build());     // If there are no genre, return a 204 error.
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 34de5ae (nicole stuff)
+>>>>>>> c1bcad1 (nojdijsjeoij)
     }
 
     @PostMapping

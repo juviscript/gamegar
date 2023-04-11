@@ -30,15 +30,24 @@ public class UserService {
     public User findUserById (String id) {
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         return userRepository
 =======
+=======
+>>>>>>> c1bcad1 (nojdijsjeoij)
         User cachedUser = cache.get(id);
         if (cachedUser != null) {
             return cachedUser;
         }
 
         User userFromService = userRepository
+<<<<<<< HEAD
 >>>>>>> 8c6347a (Added CacheManagerVideoGame)
+=======
+=======
+        return userRepository
+>>>>>>> 34de5ae (nicole stuff)
+>>>>>>> c1bcad1 (nojdijsjeoij)
                 .findById(id)
                 .map(users -> new User(users.getUserId(),
                         users.getName(),
@@ -47,14 +56,22 @@ public class UserService {
                         users.getBirthday()))
                 .orElse(null);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> c1bcad1 (nojdijsjeoij)
 
         if (userFromService != null) {
             cache.add(userFromService.getUserId(), userFromService);
         }
 
         return userFromService;
+<<<<<<< HEAD
 >>>>>>> 8c6347a (Added CacheManagerVideoGame)
+=======
+=======
+>>>>>>> 34de5ae (nicole stuff)
+>>>>>>> c1bcad1 (nojdijsjeoij)
     }
 
     public User findUserByName (String names) {
@@ -142,6 +159,7 @@ public class UserService {
             cache.evict(user.getUserId());
         }
     }
+<<<<<<< HEAD
     public List<VideoGame> getFavoriteGames(String userId) {
         User user = cache.get(userId);
         if (user != null) {
@@ -154,18 +172,41 @@ public class UserService {
         User user = cache.get(userId);
         if (user != null) {
             return user.addFavoriteGame(game);
+=======
+    public List<VideoGame> getFavoriteGames() {
+        return favoriteGames;
+    }
+
+    public boolean addFavoriteGame(VideoGame game) {
+        if (!favoriteGames.contains(game)) {
+            return favoriteGames.add(game);
+>>>>>>> c1bcad1 (nojdijsjeoij)
         }
         return false;
     }
 
+<<<<<<< HEAD
     public boolean removeFavoriteGame(String userId, VideoGame game) {
         User user = cache.get(userId);
         if (user != null) {
             return user.removeFavoriteGame(game);
+=======
+    public boolean removeFavoriteGame(VideoGame game) {
+        return favoriteGames.remove(game);
+    }
+    public List<VideoGame> getOwnGames() {
+        return ownGames;
+    }
+
+    public boolean addOwnGame(VideoGame game) {
+        if (!ownGames.contains(game)) {
+            return ownGames.add(game);
+>>>>>>> c1bcad1 (nojdijsjeoij)
         }
         return false;
     }
 
+<<<<<<< HEAD
     public List<VideoGame> getOwnGames(String userId) {
         User user = cache.get(userId);
         if (user != null) {
@@ -181,3 +222,12 @@ public class UserService {
         return false;
     }
 }
+=======
+    public boolean removeOwnGame(VideoGame game) {
+        return ownGames.remove(game);
+    }
+}
+
+
+
+>>>>>>> c1bcad1 (nojdijsjeoij)
