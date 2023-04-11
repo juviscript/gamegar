@@ -18,6 +18,7 @@ public class VideoGameCatalogRecord {
     public String title;
     public String developer;
     public String genre;
+
     public Integer year;
     public List<String> platforms;
     public List<String> tags;

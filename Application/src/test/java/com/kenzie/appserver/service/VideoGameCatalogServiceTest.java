@@ -43,6 +43,10 @@ public class VideoGameCatalogServiceTest {
     @Test
     void deleteGame() {
         String gameId = "1";
+        List<String> test = new LinkedList<>();
+        test.add("example");
+        test.add("example2");
+
         VideoGameCatalogRecord record = new VideoGameCatalogRecord();
         record.setId(gameId);
 
@@ -50,7 +54,7 @@ public class VideoGameCatalogServiceTest {
         Mockito.when(videoGameCatalogRepository.findById(anyString())).thenReturn(Optional.of(record));
 
         when(cacheStore.get(record.getGameId())).thenReturn(new VideoGame(gameId, "name", "1",
-                "action", 2007, new LinkedList<>(), new LinkedList<>(), "cute game", "US"));
+                "action", 2007, test, test, "cute game", "US"));
 
         videoGameCatalogService.deleteGameById(gameId);
 

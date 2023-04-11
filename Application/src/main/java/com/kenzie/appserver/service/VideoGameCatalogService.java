@@ -37,7 +37,7 @@ public class VideoGameCatalogService {
         this.cache = cache;
     }
 
-    public VideoGame findGameById (String id) {
+    public VideoGame findGameById(String id) {
 
 <<<<<<< HEAD
         return videoGameCatalogRepository
@@ -71,7 +71,7 @@ public class VideoGameCatalogService {
 >>>>>>> 8c6347a (Added CacheManagerVideoGame)
     }
 
-    public VideoGame findGameByTitle (String title) {
+    public VideoGame findGameByTitle(String title) {
 
         return videoGameCatalogRepository
                 .findById(title)
@@ -181,7 +181,7 @@ public class VideoGameCatalogService {
                 .orElse(null);
     }
 
-    public VideoGame addNewGame(VideoGame game){
+    public VideoGame addNewGame(VideoGame game) {
         VideoGameCatalogRecord videoGameCatalogRecord = new VideoGameCatalogRecord();
 
         //Do we want the users to create an id for the video game?****
@@ -206,7 +206,7 @@ public class VideoGameCatalogService {
         List<VideoGame> games = new ArrayList<>();
 
         Iterable<VideoGameCatalogRecord> gameIterator = videoGameCatalogRepository.findAll();
-        for(VideoGameCatalogRecord record : gameIterator) {
+        for (VideoGameCatalogRecord record : gameIterator) {
             games.add(new VideoGame(record.getGameId(),
                     record.getGameTitle(),
                     record.getDeveloper(),
@@ -235,26 +235,33 @@ public class VideoGameCatalogService {
         }
         VideoGame gameFromCache = null;
         gameFromCache = cache.get(game.getId());
-        if(gameFromCache != null){
+        if (gameFromCache != null) {
             cache.evict(gameFromCache.getId());
         }
     }
 
-        public void deleteGameById(String gameId){
+    public void deleteGameById(String gameId) {
+//        VideoGame game = null;
+
+        if (gameId != null) {
+//            game = cache.get(gameId);
             videoGameCatalogRepository.deleteById(gameId);
-//            VideoGame game = null;
-//            if (gameId != null) {
-//                game = cache.get(gameId);
-//            } else {
-//                throw new IllegalArgumentException("Video Game ID not valid.");
-//            }
-//            if (game != null) {
-                cache.evict(gameId);
-            }
+            cache.evict(gameId);
+        } else {
+            throw new IllegalArgumentException("Video Game ID not valid.");
         }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 }
 
 =======
 >>>>>>> 8c6347a (Added CacheManagerVideoGame)
+=======
+//        if (game != null) {
+//
+//        }
+    }
+}
+
+>>>>>>> 02b73df (Fixed delete method in Catalog Service.)
