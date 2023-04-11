@@ -43,7 +43,8 @@ aws dynamodb put-item \
 "description": {"S": "Age of Mythology: The Titans is an expansion pack to the real-time strategy video game of Age of Mythology. The Titans adds a fourth culture to the game, the Atlantean'\''s, and three new major gods, plus new units, buildings and god powers. It also includes many new features, such as auto-queueing (allows indefinite training of units as long as you have sufficient resources), and the ability to summon a Titan, a gargantuan, godlike being that forms the game'\''s focal point."},
 "country": {"S": "U.S.A."},
 "platforms": {"L": [ {"S": "PC"} ]},
-"tags": {"L": [ {"S": "Single-Player"} , {"S": "Multiplayer"} ]}
+"tags": {"L": [ {"S": "Single-Player"} , {"S": "Multiplayer"} ]},
+"image": {"S" : "https://upload.wikimedia.org/wikipedia/en/2/21/Age_of_Mythology_-_The_Titans_Liner.jpg"}
 }'
 
 aws dynamodb put-item \
@@ -58,7 +59,8 @@ aws dynamodb put-item \
   "description": {"S": "Assassin'\''s Creed IV: Black Flag is an action-adventure, stealth game set in an open world environment and played from a third-person perspective. The game features three main cities: Havana, Kingston, and Nassau, which reside under Spanish, British, and pirate influence, respectively."},
   "country": {"S": "France"},
  "platforms": {"L": [ {"S": "Play Station"}, {"S": "Xbox"}, {"S": "Wii U"}, {"S": "Nintendo"}, {"S": "Stadia"} ]},
-"tags": {"L": [ {"S": "Single-Player"} , {"S": "Multiplayer"} ]}
+"tags": {"L": [ {"S": "Single-Player"} , {"S": "Multiplayer"} ]},
+"image": {"S" : "https://cdn.cloudflare.steamstatic.com/steam/apps/242050/capsule_616x353.jpg?t=1670596397"}
 }'
 
 aws dynamodb put-item \

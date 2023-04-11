@@ -54,7 +54,8 @@ public class CatalogController {
                 catalogCreateRequest.getDescription(),
                 catalogCreateRequest.getCountry(),
                 catalogCreateRequest.getPlatforms(),
-                catalogCreateRequest.getTags());
+                catalogCreateRequest.getTags(),
+                catalogCreateRequest.getImage());
 
         catalogService.addNewGame(game);
 
@@ -75,7 +76,8 @@ public class CatalogController {
                 catalogUpdateRequest.getDescription(),
                 catalogUpdateRequest.getCountry(),
                 catalogUpdateRequest.getPlatforms(),
-                catalogUpdateRequest.getTags());
+                catalogUpdateRequest.getTags(),
+                catalogUpdateRequest.getImage());
 
         catalogService.updateGame(game);
 
@@ -117,6 +119,7 @@ public class CatalogController {
             catalogResponse.setCountry(game.getCountry());
             catalogResponse.setPlatforms(game.getPlatforms());
             catalogResponse.setTags(game.getTags());
+            catalogResponse.setImage(game.getImage());
 
         return catalogResponse;
 

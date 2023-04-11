@@ -34,6 +34,9 @@ public class CatalogUpdateRequest {
     @JsonProperty("tags")
     private List<String> tags;
 
+    @JsonProperty("image")
+    private String image;
+
 
 //    -------------------------------------- Getters ---------------------------------------
 
@@ -62,7 +65,7 @@ public class CatalogUpdateRequest {
         return description;
     }
 
-    public String getCountry() {return country; }
+    public String getCountry() { return country; }
 
     public List<String> getPlatforms() {
         return platforms;
@@ -71,6 +74,8 @@ public class CatalogUpdateRequest {
     public List<String> getTags() {
         return tags;
     }
+
+    public String getImage() { return image; }
 
 
 
@@ -112,5 +117,8 @@ public class CatalogUpdateRequest {
         this.tags = tags;
     }
 
+    public void setImage(String image) {
+        this.image = image;
+    }
 
 }

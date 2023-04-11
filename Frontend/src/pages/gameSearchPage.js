@@ -137,6 +137,7 @@ class GameSearchPage extends BaseClass {
                             ${games[i].description}
                          
                         </p>
+                        <img src = ${games[i].image}>
                     </div>
                 </div>
       

@@ -36,7 +36,8 @@ public class CatalogService {
                     record.getDescription(),
                     record.getCountry(),
                     record.getPlatforms(),
-                    record.getTags()));
+                    record.getTags(),
+                    record.getImage()));
         }
 
         return games;
@@ -63,7 +64,8 @@ public class CatalogService {
                         game.getDescription(),
                         game.getCountry(),
                         game.getPlatforms(),
-                        game.getTags()))
+                        game.getTags(),
+                        game.getImage()))
                 .orElse(null);
 
         // if Game found, cache it
@@ -88,6 +90,7 @@ public class CatalogService {
         catalogRecord.setCountry(game.getCountry());
         catalogRecord.setPlatforms(game.getPlatforms());
         catalogRecord.setTags(game.getTags());
+        catalogRecord.setImage(game.getImage());
         catalogRepository.save(catalogRecord);
 
         return game;
@@ -107,6 +110,7 @@ public class CatalogService {
             catalogRecord.setCountry(game.getCountry());
             catalogRecord.setPlatforms(game.getPlatforms());
             catalogRecord.setTags(game.getTags());
+            catalogRecord.setImage(game.getImage());
             catalogRepository.save(catalogRecord);
 
             cache.evict(game.getId());

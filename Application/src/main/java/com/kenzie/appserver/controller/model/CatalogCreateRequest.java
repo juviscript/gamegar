@@ -31,6 +31,9 @@ public class CatalogCreateRequest {
     @JsonProperty("tags")
     private List<String> tags;
 
+    @JsonProperty("image")
+    private String image;
+
 
 
 //    -------------------------------------- Getters ---------------------------------------
@@ -64,6 +67,9 @@ public class CatalogCreateRequest {
 
     public List<String> getTags() {
         return tags;
+    }
+    public String getImage() {
+        return image;
     }
 
 
@@ -99,5 +105,8 @@ public class CatalogCreateRequest {
 
     public void setTags(List<String> tags) {
         this.tags = tags;
+    }
+    public void setImage(String image) {
+        this.image = image;
     }
 }

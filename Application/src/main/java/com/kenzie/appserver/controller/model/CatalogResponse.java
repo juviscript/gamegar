@@ -34,6 +34,9 @@ public class CatalogResponse {
     @JsonProperty("tags")
     private List<String> tags;
 
+    @JsonProperty("image")
+    private String image;
+
 
 //    -------------------------------------- Getters ---------------------------------------
 
@@ -72,6 +75,9 @@ public class CatalogResponse {
     public List<String> getTags() {
         return tags;
     }
+    public String getImage() {
+        return image;
+    }
 
 
 
@@ -96,7 +102,7 @@ public class CatalogResponse {
     public void setYear(Integer year) {
         this.year = year;
     }
-    public void setCountry(String country) { this.country = country;}
+    public void setCountry(String country) { this.country = country; }
 
     public void setDescription(String description) {
         this.description = description;
@@ -109,4 +115,6 @@ public class CatalogResponse {
     public void setTags(List<String> tags) {
         this.tags = tags;
     }
+
+    public void setImage(String image) { this.image = image;}
 }

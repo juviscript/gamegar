@@ -17,6 +17,7 @@ public class CatalogRecord {
     private String country;
     private List<String> platforms;
     private List<String> tags;
+    private String image;
 
 //    --------------------------- Getters w/ DynamoDB Annotation ---------------------------
 
@@ -58,6 +59,11 @@ public class CatalogRecord {
         return tags;
     }
 
+    @DynamoDBAttribute(attributeName = "image")
+    public String getImage() {
+        return image;
+    }
+
 //    -------------------------------------- Setters ---------------------------------------
 
 
@@ -95,6 +101,9 @@ public class CatalogRecord {
     public void setTags(List<String> tags) {
         this.tags = tags;
     }
+    public void setImage(String image) {
+        this.image = image;
+    }
 
 //    -------------------------------------- Overrides ---------------------------------------
 
@@ -104,12 +113,16 @@ public class CatalogRecord {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         CatalogRecord that = (CatalogRecord) o;
-        return Objects.equals(id, that.id) && Objects.equals(title, that.title) && Objects.equals(developer, that.developer) && Objects.equals(genre, that.genre) && Objects.equals(year, that.year) && Objects.equals(description, that.description) && Objects.equals(country, that.country)&& Objects.equals(platforms, that.platforms) && Objects.equals(tags, that.tags);
+        return Objects.equals(id, that.id) && Objects.equals(title, that.title)
+                && Objects.equals(developer, that.developer) && Objects.equals(genre, that.genre)
+                && Objects.equals(year, that.year) && Objects.equals(description, that.description)
+                && Objects.equals(country, that.country)&& Objects.equals(platforms, that.platforms)
+                && Objects.equals(tags, that.tags) && Objects.equals(image, that.image);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, title, developer, genre, year, description, country, platforms, tags);
+        return Objects.hash(id, title, developer, genre, year, description, country, platforms, tags, image);
     }
 }
 
