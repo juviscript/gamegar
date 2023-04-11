@@ -95,6 +95,7 @@ public class CatalogController {
 }
 
 
+<<<<<<< HEAD
     @GetMapping("/{title}")           //     http://localhost:8000/games/title will pull this up.
     public ResponseEntity<VideoGameResponse> searchByTitle(@PathVariable("title") String title) {
         VideoGame videoGame = catalogService.findGameByTitle(title);
@@ -109,6 +110,19 @@ public class CatalogController {
     @GetMapping("{developer}")  //     http://localhost:8000/games/title will pull this up.
     public ResponseEntity<VideoGameResponse> searchByDeveloper(@PathVariable("developer") String developer){
         VideoGame videoGame = catalogService.findGameByDeveloper(developer);
+=======
+//    @GetMapping("/{title}")           //     http://localhost:8000/games/title will pull this up.
+//    public ResponseEntity<VideoGameResponse> searchByTitle(@PathVariable("title") String title) {
+//        VideoGame videoGame = catalogService.findGameByTitle(title);
+//
+//        if (videoGame == null) {
+//            return ResponseEntity.notFound().build();                                   // If there are no titles, return a 204 error.
+//        }
+//
+//        VideoGameResponse videoGameResponse = createVideoGameResponse(videoGame);       // If there is a match, convert the title into a VideoGameResponse and return it.
+//        return ResponseEntity.ok(videoGameResponse);
+//    }
+>>>>>>> c52cc7b (Commented out findGameByTitle() in CatalogController.java and ran getGame_GameExists test in VideoGameControllerTest.java and successfully passed.)
 
         if (videoGame == null) {                            // If there are no developers, return a 204 error.
             return ResponseEntity.noContent().build();
@@ -120,6 +134,7 @@ public class CatalogController {
     public ResponseEntity<VideoGameResponse> searchByGenre(@PathVariable("genre") String genre){
         VideoGame videoGame = catalogService.findGameByGenre(genre);
 
+<<<<<<< HEAD
         if (videoGame == null) {                            // If there are no genre, return a 204 error.
             return ResponseEntity.noContent().build();
         }
@@ -169,6 +184,9 @@ public class CatalogController {
     }
 
     @GetMapping("all")      //     http://localhost:8000/games/title will pull this up.
+=======
+    @GetMapping("/all")              //      http://localhost:8000/games/all will pull this up.
+>>>>>>> c52cc7b (Commented out findGameByTitle() in CatalogController.java and ran getGame_GameExists test in VideoGameControllerTest.java and successfully passed.)
     public ResponseEntity<List<VideoGameResponse>> getAllGames() {
         Collection<VideoGame> allGames = catalogService.findAllGames();
 
@@ -198,8 +216,7 @@ public class CatalogController {
 
         VideoGameResponse gameResponse = createVideoGameResponse(videoGame);
 
-        return ResponseEntity.created(URI.create("/games/" + gameResponse.getId())).body(gameResponse);         // Created a new endpoint for specific game instance.
-
+        return ResponseEntity.created(URI.create("/games/" + gameResponse.getId())).body(gameResponse);             // Created a new endpoint location for specific game instance for I
     }
 
     @PutMapping
