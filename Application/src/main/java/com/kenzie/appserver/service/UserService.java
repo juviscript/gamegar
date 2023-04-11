@@ -1,7 +1,6 @@
 package com.kenzie.appserver.service;
 
 import com.kenzie.appserver.config.CacheStoreUser;
-import com.kenzie.appserver.controller.CatalogController;
 import com.kenzie.appserver.repositories.UserRepository;
 import com.kenzie.appserver.repositories.model.UserRecord;
 import com.kenzie.appserver.service.model.Game;
@@ -12,7 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
+
 
 @Service
 public class UserService {
@@ -29,34 +28,16 @@ public class UserService {
 
     public User findUserById (String id) {
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
         return userRepository
-=======
-=======
->>>>>>> c1bcad1 (nojdijsjeoij)
-=======
-
->>>>>>> 21f11de (Nicole might have made it somewhere)
         User cachedUser = cache.get(id);
         if (cachedUser != null) {
             return cachedUser;
         }
 
-<<<<<<< HEAD
+
         User userFromService = userRepository
-<<<<<<< HEAD
->>>>>>> 8c6347a (Added CacheManagerVideoGame)
-=======
-=======
+
         return userRepository
->>>>>>> 34de5ae (nicole stuff)
->>>>>>> c1bcad1 (nojdijsjeoij)
-=======
-        User userFromService = userRepository;
-        return userRepository
->>>>>>> 21f11de (Nicole might have made it somewhere)
                 .findById(id)
                 .map(users -> new User(users.getUserId(),
                         users.getName(),
@@ -66,31 +47,12 @@ public class UserService {
                         users.getFavoriteGame(),
                         users.getOwnGames()))
                 .orElse(null);
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> c1bcad1 (nojdijsjeoij)
-=======
-
->>>>>>> 21f11de (Nicole might have made it somewhere)
 
         if (userFromService != null) {
             cache.add(userFromService.getUserId(), userFromService);
         }
 
         return userFromService;
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> 8c6347a (Added CacheManagerVideoGame)
-=======
-=======
->>>>>>> 34de5ae (nicole stuff)
->>>>>>> c1bcad1 (nojdijsjeoij)
-=======
-
->>>>>>> 21f11de (Nicole might have made it somewhere)
     }
 
     public User findUserByName (String names) {
@@ -188,114 +150,6 @@ public class UserService {
             cache.evict(user.getUserId());
         }
     }
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 025556f (noidsoijeif)
-    public List<VideoGame> getFavoriteGames(String userId) {
-        User user = cache.get(userId);
-        if (user != null) {
-            return user.getFavoriteGames();
-        }
-        return new ArrayList<>();
-<<<<<<< HEAD
-    }
-
-    public boolean addFavoriteGame(String userId, VideoGame game) {
-        User user = cache.get(userId);
-        if (user != null) {
-            return user.addFavoriteGame(game);
-=======
-    public List<VideoGame> getFavoriteGames() {
-        return favoriteGames;
-    }
-
-    public boolean addFavoriteGame(VideoGame game) {
-        if (!favoriteGames.contains(game)) {
-            return favoriteGames.add(game);
->>>>>>> c1bcad1 (nojdijsjeoij)
-=======
-    }
-
-    public boolean addFavoriteGame(String userId, VideoGame game) {
-        User user = cache.get(userId);
-        if (user != null) {
-            return user.addFavoriteGame(game);
->>>>>>> 025556f (noidsoijeif)
-        }
-        return false;
-    }
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 025556f (noidsoijeif)
-    public boolean removeFavoriteGame(String userId, VideoGame game) {
-        User user = cache.get(userId);
-        if (user != null) {
-            return user.removeFavoriteGame(game);
-<<<<<<< HEAD
-=======
-    public boolean removeFavoriteGame(VideoGame game) {
-        return favoriteGames.remove(game);
-    }
-    public List<VideoGame> getOwnGames() {
-        return ownGames;
-    }
-
-    public boolean addOwnGame(VideoGame game) {
-        if (!ownGames.contains(game)) {
-            return ownGames.add(game);
->>>>>>> c1bcad1 (nojdijsjeoij)
-=======
->>>>>>> 025556f (noidsoijeif)
-        }
-        return false;
-    }
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 025556f (noidsoijeif)
-    public List<VideoGame> getOwnGames(String userId) {
-        User user = cache.get(userId);
-        if (user != null) {
-            return user.getOwnedGames();
-        }
-        return new ArrayList<>();
-<<<<<<< HEAD
-    }
-    public boolean addOwnGame(String userId, VideoGame game) {
-        User user = cache.get(userId);
-        if (user != null) {
-            return user.addOwnedGame(game);
-        }
-        return false;
-    }
-}
-=======
-    public boolean removeOwnGame(VideoGame game) {
-        return ownGames.remove(game);
-    }
-}
-
-
-
->>>>>>> c1bcad1 (nojdijsjeoij)
-=======
-    }
-    public boolean addOwnGame(String userId, VideoGame game) {
-        User user = cache.get(userId);
-        if (user != null) {
-            return user.addOwnedGame(game);
-        }
-        return false;
-    }
-}
->>>>>>> 025556f (noidsoijeif)
-=======
-
     public void addFavoriteGame(User userId, Game id) {
         User user = findUserById(userId.getUserId());
         if (user == null) {
@@ -374,5 +228,4 @@ public class UserService {
 
 }
 
-}
->>>>>>> 21f11de (Nicole might have made it somewhere)
+

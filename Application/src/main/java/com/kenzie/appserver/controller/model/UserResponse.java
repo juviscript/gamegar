@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class UserResponse {
@@ -18,6 +20,9 @@ public class UserResponse {
     private String username;
     @JsonProperty("birthday")
     private String birthday;
+    public ArrayList<List> favoriteGame;
+
+    public ArrayList<List> ownGames;
 
     /* ---------------- Getters ---------------- */
 
@@ -40,7 +45,13 @@ public class UserResponse {
     public String getBirthday() {
         return birthday;
     }
+    public ArrayList<List> getOwnGames() {
+        return ownGames;
+    }
 
+    public ArrayList<List> getFavoriteGame() {
+        return favoriteGame;
+    }
 
     /* ---------------- Setters ---------------- */
 
@@ -61,5 +72,11 @@ public class UserResponse {
 
     public void setBirthday(String birthday) {
         this.birthday = birthday;
+    }
+    public void setOwnGames(ArrayList<List> ownGames) {
+        this.ownGames = ownGames;
+    }
+    public void setFavoriteGame(ArrayList<List> favoriteGame) {
+        this.favoriteGame = favoriteGame;
     }
 }

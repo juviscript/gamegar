@@ -43,33 +43,6 @@ public class UserController {
         if (user == null) {
             return ResponseEntity.notFound().build();
         }
-<<<<<<< HEAD
-
-        UserResponse userResponse = createUserResponse(user);
-
-        return ResponseEntity.ok(userResponse);
-    }
-    @GetMapping("/name/{name}")
-    public ResponseEntity<UserResponse> searchByName(@PathVariable("name") String name) {
-        User user = userService.findUserByName(name);
-
-        if (user == null) {
-            return ResponseEntity.notFound().build();
-        }
-
-        UserResponse userResponse = createUserResponse(user);
-
-        return ResponseEntity.ok(userResponse);
-    }
-    @GetMapping("/email/{email}")
-    public ResponseEntity<UserResponse> searchByEmail(@PathVariable("email") String email) {
-        User user = userService.findUserByEmail(email);
-
-        if (user == null) {
-            return ResponseEntity.notFound().build();
-        }
-=======
->>>>>>> 025556f (noidsoijeif)
 
         UserResponse userResponse = createUserResponse(user);
 
@@ -95,11 +68,11 @@ public class UserController {
             return ResponseEntity.notFound().build();
         }
 
+
         UserResponse userResponse = createUserResponse(user);
 
         return ResponseEntity.ok(userResponse);
     }
-
     @GetMapping
     public ResponseEntity<List<UserResponse>> getAllUsers() {
         List<User> users = userService.findAllUsers();
@@ -151,31 +124,10 @@ public class UserController {
     }
 
     @DeleteMapping("/{userId}")
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-    public ResponseEntity deleteConcertByTitle(@PathVariable("userId") String userId) {
-        userService.deleteUserById(userId);
-=======
-    public ResponseEntity deleteUserById(@PathVariable("userId") String userId) {
-        userService.deleteUserById(userId);                                     
->>>>>>> e2cd2fa (Fixed tests and delete method in catalogservice)
-=======
-=======
-
->>>>>>> 21f11de (Nicole might have made it somewhere)
     public ResponseEntity deleteUserById(@PathVariable("userId") String userId) {
         userService.deleteUserById(userId);
-<<<<<<< HEAD
->>>>>>> 50543db (nicole stuff that wont work right)
->>>>>>> 025556f (noidsoijeif)
-=======
->>>>>>> 21f11de (Nicole might have made it somewhere)
         return ResponseEntity.status(204).build();
     }
-    //public ResponseEntity deleteConcertByTitle(@PathVariable("userId") String userId) {
-    //        userService.deleteUserById(userId);
-    //        return ResponseEntity.status(204).build();
-    //    }
+
 
 }

@@ -1,111 +1,26 @@
 package com.kenzie.appserver.controller;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-import com.kenzie.appserver.controller.model.*;
-import com.amazonaws.Response;
-import com.kenzie.appserver.repositories.VideoGameCatalogRepository;
-import com.kenzie.appserver.service.VideoGameCatalogService;
-import com.kenzie.appserver.service.model.VideoGame;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import com.kenzie.appserver.controller.model.VideoGameCreateRequest;
-import com.kenzie.appserver.controller.model.VideoGameResponse;
-import com.kenzie.appserver.controller.model.VideoGameUpdateRequest;
-import com.kenzie.appserver.service.VideoGameCatalogService;
-import com.kenzie.appserver.service.model.VideoGame;
-
-=======
-=======
-
->>>>>>> 734c590 (niocledkjkodso)
-=======
-<<<<<<< HEAD
->>>>>>> c1bcad1 (nojdijsjeoij)
-=======
-
->>>>>>> 21f11de (Nicole might have made it somewhere)
-import com.kenzie.appserver.controller.model.CatalogCreateRequest;
 import com.kenzie.appserver.controller.model.CatalogResponse;
-
-import com.kenzie.appserver.controller.model.CatalogUpdateRequest;
-import com.kenzie.appserver.repositories.CatalogRepository;
 import com.kenzie.appserver.service.CatalogService;
 import com.kenzie.appserver.service.model.Game;
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> 230d7be (Completely recreated all classes that have to do with the Video Game Catalog. Kept original classes but COMMENTED THEM OUT SO THEY DON'T AFFECT CODE: VideoGameCreateRequest -> CatalogCreateRequest, VideoGameResponse -> CatalogResponse, VideoGameUpdateRequest -> CatalogUpdateRequest, CatalogControllerOriginal -> CatalogController, VideoGameCatalogRepository -> CatalogRepository, VideoGame -> Game , VideoGameCatalogService -> CatalogService. Commented out ALL tests to run app. Successfully able to Post, Get, Put, and Delete.)
-=======
-=======
-=======
-=======
-
->>>>>>> 21f11de (Nicole might have made it somewhere)
-import com.kenzie.appserver.controller.model.*;
-
-import com.amazonaws.Response;
-import com.kenzie.appserver.repositories.VideoGameCatalogRepository;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-<<<<<<< HEAD
->>>>>>> 07b1034 (nicoles work)
->>>>>>> 734c590 (niocledkjkodso)
-=======
-
->>>>>>> 21f11de (Nicole might have made it somewhere)
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.net.URI;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static java.util.UUID.randomUUID;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> 734c590 (niocledkjkodso)
-=======
-
->>>>>>> 21f11de (Nicole might have made it somewhere)
 // FIXME - I spoke with Melissa about this, but we may change the partition key from the 'title' to 'ID'. If we do that, the names of these methods are going to change.
 // FIXME - Change them from 'searchByTitle' to 'searchByID' etc...
 //Could we maybe keep the searchByTitle and add the searchById?
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 230d7be (Completely recreated all classes that have to do with the Video Game Catalog. Kept original classes but COMMENTED THEM OUT SO THEY DON'T AFFECT CODE: VideoGameCreateRequest -> CatalogCreateRequest, VideoGameResponse -> CatalogResponse, VideoGameUpdateRequest -> CatalogUpdateRequest, CatalogControllerOriginal -> CatalogController, VideoGameCatalogRepository -> CatalogRepository, VideoGame -> Game , VideoGameCatalogService -> CatalogService. Commented out ALL tests to run app. Successfully able to Post, Get, Put, and Delete.)
-=======
->>>>>>> 07b1034 (nicoles work)
->>>>>>> 734c590 (niocledkjkodso)
-=======
 
->>>>>>> 21f11de (Nicole might have made it somewhere)
-@RestController
 @RequestMapping("/games")
 public class CatalogController {
 
@@ -115,7 +30,7 @@ public class CatalogController {
 
         this.catalogService = catalogService;
 
-<<<<<<< HEAD
+
 //    @GetMapping("/{gameId}")
 //    public ResponseEntity<VideoGameResponse> searchGameById (@PathVariable("gameId") String gameId) {
 //        VideoGame game = catalogService.findGameById(gameId);
@@ -136,54 +51,6 @@ public class CatalogController {
 //        catalogResponse.setCountry(game.getCountry());
 //        return ResponseEntity.ok(catalogResponse);
 //    }
-
-
-    private VideoGameResponse createVideoGameResponse(VideoGame videoGame) {
-        VideoGameResponse videoGameResponse = new VideoGameResponse();
-        videoGameResponse.setId(videoGame.getId());
-        videoGameResponse.setTitle(videoGame.getGameTitle());
-        videoGameResponse.setDeveloper((videoGame.getDeveloper()));
-        videoGameResponse.setGenre(videoGame.getGenre());
-        videoGameResponse.setYear(videoGame.getYear());
-        videoGameResponse.setPlatforms(videoGame.getPlatforms());
-        videoGameResponse.setTags(videoGame.getTags());
-        videoGameResponse.setDescription(videoGame.getDescription());
-        videoGameResponse.setCountry(videoGame.getCountry());
-        return videoGameResponse;
-=======
->>>>>>> 230d7be (Completely recreated all classes that have to do with the Video Game Catalog. Kept original classes but COMMENTED THEM OUT SO THEY DON'T AFFECT CODE: VideoGameCreateRequest -> CatalogCreateRequest, VideoGameResponse -> CatalogResponse, VideoGameUpdateRequest -> CatalogUpdateRequest, CatalogControllerOriginal -> CatalogController, VideoGameCatalogRepository -> CatalogRepository, VideoGame -> Game , VideoGameCatalogService -> CatalogService. Commented out ALL tests to run app. Successfully able to Post, Get, Put, and Delete.)
-    }
-
-    @GetMapping("/{id}")
-    public ResponseEntity<CatalogResponse> searchGameById(@PathVariable("id") String id) {
-
-<<<<<<< HEAD
-        if (videoGame == null) {
-            return ResponseEntity.noContent().build();
-=======
-        Game game = catalogService.findByGameId(id);
-
-        // If there are no games, then return a 204.
-        if (game == null) {
-            return ResponseEntity.notFound().build();
->>>>>>> 230d7be (Completely recreated all classes that have to do with the Video Game Catalog. Kept original classes but COMMENTED THEM OUT SO THEY DON'T AFFECT CODE: VideoGameCreateRequest -> CatalogCreateRequest, VideoGameResponse -> CatalogResponse, VideoGameUpdateRequest -> CatalogUpdateRequest, CatalogControllerOriginal -> CatalogController, VideoGameCatalogRepository -> CatalogRepository, VideoGame -> Game , VideoGameCatalogService -> CatalogService. Commented out ALL tests to run app. Successfully able to Post, Get, Put, and Delete.)
-        }
-
-        // Otherwise, convert it into a CatalogResponse and return it.
-        CatalogResponse catalogResponse = createCatalogResponse(game);
-
-        return ResponseEntity.ok(catalogResponse);
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-    @GetMapping("/{title}")           //     http://localhost:8000/games/title will pull this up.
-=======
-=======
-=======
-    }
->>>>>>> 21f11de (Nicole might have made it somewhere)
 
     private VideoGameResponse createVideoGameResponse(VideoGame videoGame) {
         VideoGameResponse videoGameResponse = new VideoGameResponse();
@@ -213,7 +80,6 @@ public class CatalogController {
 
 
     @GetMapping("{title}")           //     http://localhost:8000/games/title will pull this up.
->>>>>>> c1bcad1 (nojdijsjeoij)
     public ResponseEntity<VideoGameResponse> searchByTitle(@PathVariable("title") String title) {
         VideoGame videoGame = catalogService.findGameByTitle(title);
 
@@ -227,23 +93,6 @@ public class CatalogController {
     @GetMapping("{developer}")  //     http://localhost:8000/games/title will pull this up.
     public ResponseEntity<VideoGameResponse> searchByDeveloper(@PathVariable("developer") String developer){
         VideoGame videoGame = catalogService.findGameByDeveloper(developer);
-<<<<<<< HEAD
-=======
-//    @GetMapping("/{title}")           //     http://localhost:8000/games/title will pull this up.
-//    public ResponseEntity<VideoGameResponse> searchByTitle(@PathVariable("title") String title) {
-//        VideoGame videoGame = catalogService.findGameByTitle(title);
-//
-//        if (videoGame == null) {
-//            return ResponseEntity.notFound().build();                                   // If there are no titles, return a 204 error.
-//        }
-//
-//        VideoGameResponse videoGameResponse = createVideoGameResponse(videoGame);       // If there is a match, convert the title into a VideoGameResponse and return it.
-//        return ResponseEntity.ok(videoGameResponse);
-//    }
->>>>>>> c52cc7b (Commented out findGameByTitle() in CatalogController.java and ran getGame_GameExists test in VideoGameControllerTest.java and successfully passed.)
-=======
->>>>>>> c1bcad1 (nojdijsjeoij)
-
         if (videoGame == null) {                            // If there are no developers, return a 204 error.
             return ResponseEntity.noContent().build();
         }
@@ -254,10 +103,6 @@ public class CatalogController {
     public ResponseEntity<VideoGameResponse> searchByGenre(@PathVariable("genre") String genre){
         VideoGame videoGame = catalogService.findGameByGenre(genre);
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> c1bcad1 (nojdijsjeoij)
         if (videoGame == null) {                            // If there are no genre, return a 204 error.
             return ResponseEntity.noContent().build();
         }
@@ -307,12 +152,6 @@ public class CatalogController {
     }
 
     @GetMapping("all")      //     http://localhost:8000/games/title will pull this up.
-<<<<<<< HEAD
-=======
-    @GetMapping("/all")              //      http://localhost:8000/games/all will pull this up.
->>>>>>> c52cc7b (Commented out findGameByTitle() in CatalogController.java and ran getGame_GameExists test in VideoGameControllerTest.java and successfully passed.)
-=======
->>>>>>> c1bcad1 (nojdijsjeoij)
     public ResponseEntity<List<VideoGameResponse>> getAllGames() {
         Collection<VideoGame> allGames = catalogService.findAllGames();
 
@@ -324,15 +163,7 @@ public class CatalogController {
                 .filter(list -> !list.isEmpty())
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.noContent().build());     // If there are no genre, return a 204 error.
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> 34de5ae (nicole stuff)
->>>>>>> c1bcad1 (nojdijsjeoij)
-=======
 
->>>>>>> 21f11de (Nicole might have made it somewhere)
     }
 
     @PostMapping
@@ -394,8 +225,7 @@ public class CatalogController {
             }
 
         return ResponseEntity.ok(response);
->>>>>>> 230d7be (Completely recreated all classes that have to do with the Video Game Catalog. Kept original classes but COMMENTED THEM OUT SO THEY DON'T AFFECT CODE: VideoGameCreateRequest -> CatalogCreateRequest, VideoGameResponse -> CatalogResponse, VideoGameUpdateRequest -> CatalogUpdateRequest, CatalogControllerOriginal -> CatalogController, VideoGameCatalogRepository -> CatalogRepository, VideoGame -> Game , VideoGameCatalogService -> CatalogService. Commented out ALL tests to run app. Successfully able to Post, Get, Put, and Delete.)
-    }
+ }
 
     private CatalogResponse createCatalogResponse(Game game) {
 
@@ -417,8 +247,6 @@ public class CatalogController {
     @DeleteMapping("/{id}")
     public ResponseEntity deleteGameById(@PathVariable("id") String id) {
 
-<<<<<<< HEAD
-<<<<<<< HEAD
         catalogService.updateGame(videoGame);
 
         VideoGameResponse gameResponse = createVideoGameResponse(videoGame);
@@ -438,24 +266,20 @@ public class CatalogController {
     public ResponseEntity deleteGameById(@PathVariable("gameId") String gameId) {
         // Your code here
         catalogService.deleteGameById(gameId);
-=======
+
         catalogService.deleteGame(game);
->>>>>>> 230d7be (Completely recreated all classes that have to do with the Video Game Catalog. Kept original classes but COMMENTED THEM OUT SO THEY DON'T AFFECT CODE: VideoGameCreateRequest -> CatalogCreateRequest, VideoGameResponse -> CatalogResponse, VideoGameUpdateRequest -> CatalogUpdateRequest, CatalogControllerOriginal -> CatalogController, VideoGameCatalogRepository -> CatalogRepository, VideoGame -> Game , VideoGameCatalogService -> CatalogService. Commented out ALL tests to run app. Successfully able to Post, Get, Put, and Delete.)
-=======
+
         catalogService.deleteGame(id);
->>>>>>> e2cd2fa (Fixed tests and delete method in catalogservice)
         return ResponseEntity.status(204).build();
 
     }
 
-<<<<<<< HEAD
-=======
+
     @DeleteMapping("/{title}")
     public ResponseEntity deleteConcertByTitle(@PathVariable("title") String title) {
         catalogService.deleteGameById(title);
         return ResponseEntity.status(204).build();
     }
 
->>>>>>> 734c590 (niocledkjkodso)
 }
 }
