@@ -108,7 +108,7 @@ aws dynamodb put-item \
   "country": {"S": "U.S.A."},
 "platforms": {"L": [ {"S": "Play Station"}, {"S": "Xbox"}, {"S": "PC"} ]},
 "tags": {"L": [ {"S": "Single-Player"}, {"S": "Multiplayer"} ]},
-"image": {"S" : "https://static.wikia.nocookie.net/callofduty/images/2/27/ModernWarfareII_Keyart_MWII.jpg/revision/latest?cb=20220524163844"}
+"image": {"S" : "https://www.charlieintel.com/wp-content/uploads/2022/05/modern-warfare-2-multiplayer-beta.jpg"}
 }'
 
 aws dynamodb put-item \
@@ -235,7 +235,7 @@ aws dynamodb put-item \
   "country": {"S": "U.S.A."},
 "platforms": {"L": [ {"S": "Play Station"}, {"S": "Xbox"}, {"S": "PC"}, {"S": "Nintendo"} ]},
 "tags": {"L": [ {"S": "Multiplayer"} ]},
-"image": {"S" : "https://m.media-amazon.com/images/I/51F8MKPQF8L.jpg"}
+"image": {"S" : "https://assets.nintendo.com/image/upload/c_fill,w_1200/q_auto:best/f_auto/dpr_2.0/ncom/software/switch/70010000010192/e5093b66a36367a1abef47f6c8253f256fdb997c0aef25f53e56cafdfc24e5b9"}
 }'
 
 aws dynamodb put-item \
@@ -315,7 +315,7 @@ aws dynamodb put-item \
   "country": {"S": "U.S.A."},
 "platforms": {"L": [ {"S": "Play Station"}, {"S": "Xbox"}, {"S": "PC"}, {"S": "Nintendo"} ]},
 "tags": {"L": [ {"S": "Single-Player"} ]},
-"image": {"S" : "https://assets-prd.ignimgs.com/2021/12/06/halo1-1638834266884.jpg"}
+"image": {"S" : "https://image.api.playstation.com/vulcan/ap/rnd/202011/0919/cDHU28ds7cCvKAnVQo719gs0.png"}
 }'
 
 aws dynamodb put-item \

@@ -68,7 +68,7 @@ class GameAdmin extends BaseClass {
                             <p>
                                 ${game.description}
                             </p>
-                            <img src = ${game.image}>
+                            <img src = ${game.image} width="400" height="400">
                         </div>
                 `;
             }
