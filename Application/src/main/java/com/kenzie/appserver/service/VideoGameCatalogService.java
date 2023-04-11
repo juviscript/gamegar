@@ -39,7 +39,16 @@ public class VideoGameCatalogService {
 
     public VideoGame findGameById (String id) {
 
+<<<<<<< HEAD
         return videoGameCatalogRepository
+=======
+        VideoGame cachedVideoGame = cache.get(id);
+        if (cachedVideoGame != null) {
+            return cachedVideoGame;
+        }
+
+        VideoGame gameFromService = videoGameCatalogRepository
+>>>>>>> 8c6347a (Added CacheManagerVideoGame)
                 .findById(id)
                 .map(game -> new VideoGame(game.getGameId(),
                         game.getGameTitle(),
@@ -51,6 +60,15 @@ public class VideoGameCatalogService {
                         game.getGameDescription(),
                         game.getCountry()))
                 .orElse(null);
+<<<<<<< HEAD
+=======
+
+        if (gameFromService != null) {
+            cache.add(gameFromService.getId(), gameFromService);
+        }
+
+        return gameFromService;
+>>>>>>> 8c6347a (Added CacheManagerVideoGame)
     }
 
     public VideoGame findGameByTitle (String title) {
@@ -176,6 +194,11 @@ public class VideoGameCatalogService {
         videoGameCatalogRecord.setDescription(game.getDescription());
         videoGameCatalogRecord.setYear(game.getYear()); //added year
         videoGameCatalogRepository.save(videoGameCatalogRecord);
+
+        if (videoGameCatalogRecord != null) {
+            cache.add(videoGameCatalogRecord.getGameId(), game);
+        }
+
         return game;
     }
 
@@ -219,16 +242,19 @@ public class VideoGameCatalogService {
 
         public void deleteGameById(String gameId){
             videoGameCatalogRepository.deleteById(gameId);
-            VideoGame game = null;
-            if (gameId != null) {
-                game = cache.get(gameId);
-            } else {
-                throw new IllegalArgumentException("Video Game ID not valid.");
-            }
-            if (game != null) {
-                cache.evict(game.getId());
+//            VideoGame game = null;
+//            if (gameId != null) {
+//                game = cache.get(gameId);
+//            } else {
+//                throw new IllegalArgumentException("Video Game ID not valid.");
+//            }
+//            if (game != null) {
+                cache.evict(gameId);
             }
         }
 
+<<<<<<< HEAD
 }
 
+=======
+>>>>>>> 8c6347a (Added CacheManagerVideoGame)

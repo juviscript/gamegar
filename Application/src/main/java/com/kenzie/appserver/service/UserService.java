@@ -29,7 +29,16 @@ public class UserService {
 
     public User findUserById (String id) {
 
+<<<<<<< HEAD
         return userRepository
+=======
+        User cachedUser = cache.get(id);
+        if (cachedUser != null) {
+            return cachedUser;
+        }
+
+        User userFromService = userRepository
+>>>>>>> 8c6347a (Added CacheManagerVideoGame)
                 .findById(id)
                 .map(users -> new User(users.getUserId(),
                         users.getName(),
@@ -37,6 +46,15 @@ public class UserService {
                         users.getUsername(),
                         users.getBirthday()))
                 .orElse(null);
+<<<<<<< HEAD
+=======
+
+        if (userFromService != null) {
+            cache.add(userFromService.getUserId(), userFromService);
+        }
+
+        return userFromService;
+>>>>>>> 8c6347a (Added CacheManagerVideoGame)
     }
 
     public User findUserByName (String names) {
@@ -71,6 +89,10 @@ public class UserService {
         userRecord.setEmail(user.getEmail());
         userRecord.setBirthday(user.getBirthday());
         userRepository.save(userRecord);
+
+        if (userRecord != null) {
+            cache.add(userRecord.getUserId(), user);
+        }
         return user;
     }
 
@@ -109,6 +131,7 @@ public class UserService {
     }
 
     public void deleteUserById(String userID){
+        userRepository.deleteById(userID);
         User user = null;
         if (userID != null) {
             user  = cache.get(userID);
