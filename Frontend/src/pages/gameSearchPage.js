@@ -10,11 +10,8 @@ class GameSearchPage extends BaseClass {
 
     constructor() {
         super();
-        this.bindClassMethods(['onStateChange', 'renderFulLGameList', 'renderPopUpSearch', 'renderUserList'], this);
+        this.bindClassMethods(['onStateChange', 'renderFulLGameList', 'renderUserList', 'showUserList', 'showPopUp'], this);
         this.dataStore = new DataStore();
-        // this.dataStore.addChangeListener(this.renderFulLGameList())
-        // this.onGetAllGames();
-        // this.client = new VideoGameClient();
 
         // Possible loading states of the page.
         this.GET_ALL_GAMES = 0;
@@ -28,10 +25,9 @@ class GameSearchPage extends BaseClass {
      * Once the page has loaded, set up the event handlers and fetch the game list.
      */
     async mount() {
-        // document.getElementById('choose-search-form').addEventListener('submit', this.onGet);
         document.getElementById('all-games-button').addEventListener('click', this.renderFulLGameList);
-        document.getElementById('search-button').addEventListener('click', this.renderPopUpSearch);
-        document.getElementById('search-users-button').addEventListener('click', this.renderUserList);
+        document.getElementById('search-button').addEventListener('click', this.showPopUp);
+        document.getElementById('search-users-button').addEventListener('click', this.showUserList);
         this.dataStore.addChangeListener(this.onStateChange);
 
         this.client = new VideoGameClient();
@@ -42,15 +38,20 @@ class GameSearchPage extends BaseClass {
 
 
         if (games && games.length > 0) {
+
             console.log(games);
             this.dataStore.set('games', games);
             this.dataStore.set('state', this.GET_ALL_GAMES);
+
         } else if (games.length === 0) {
+
             this.dataStore.set("state", this.NO_GAMES);
             this.errorHandler("There are no games listed in our database currently! Why don't you try adding one! " +
                 "Click on that \"Admin\" link above!");
+
         } else {
-            this.errorHandler("Error retrieving games. Try again later!");
+
+            this.errorHandler();
 
         }
     }
@@ -69,7 +70,7 @@ class GameSearchPage extends BaseClass {
             noGamesSection.classList.remove("active")
             getAllUsers.classList.remove("active")
             getAllGames.classList.remove("active")
-            this.renderPopUpSearch();
+            await this.renderPopUpSearch();
         } else if (state === this.GET_ALL_GAMES) {
             popUpSearch.classList.remove("active")
             getAllGames.classList.add("active")
@@ -86,7 +87,7 @@ class GameSearchPage extends BaseClass {
             getAllGames.classList.remove("active")
             noGamesSection.classList.remove("active")
             getAllUsers.classList.add("active")
-            this.renderUserList();
+            await this.renderUserList();
         }
     }
 
@@ -96,19 +97,21 @@ class GameSearchPage extends BaseClass {
 
 
 
-    async renderFulLGameList() {
-        const state = this.dataStore.get("state");
+    async renderFulLGameList(event) {
 
-        if (state != this.GET_ALL_GAMES) {
-            this.dataStore.set("state", this.GET_ALL_GAMES);
-        }
+        event.preventDefault();
+
+        // const state = this.dataStore.get("state");
+        //
+        // if (state != this.GET_ALL_GAMES) {
+        //     this.dataStore.set("state", this.GET_ALL_GAMES);
+        // }
 
         let gameHtml = "";                              // Variable named gameHtml that starts as an empty string of HTML information.
         const games = this.dataStore.get("games");
 
-        if (games) {
+        // if (games) {
         for (let i = 0; i < games.length; i++) {
-
 
             // for (const catalogRecord of games) {
             gameHtml += ` 
@@ -128,53 +131,45 @@ class GameSearchPage extends BaseClass {
                         <li>Platforms: ${games[i].platforms}</li>
                         <li>Tags: ${games[i].tags}</li>
                     </div>
-    
+                    
                     <div id="description">
                         <p>
                             ${games[i].description}
+                         
                         </p>
                     </div>
                 </div>
       
                 `;
-        }
+
+            // }
         }
 
             document.getElementById("games-list").innerHTML = gameHtml;
     }
 
 
-
-    async renderPopUpSearch() {
-        this.dataStore.set("state", this.POP_UP_SEARCH);
-    }
-
-
-
     async renderUserList() {
-
-        const users = this.userClient.getAllUsers();
-        const userList = this.dataStore.get("users");
+        console.log("render user list 2");                                              // Currently infinitely looping. Very sad will look into this tomorrow.
+        const users = await this.userClient.getAllUsers();
+        this.dataStore.set("users", users)
 
         let userHtml = "";
 
         if (users && users.length > 0) {
-            console.log(users);
-            this.dataStore.set('users', users);
+            const userList = this.dataStore.get("users");
 
-
-            // const usersList = this.dataStore.get("users");
-
-            for (let i = 0; i < users.length; i++) {
+            for (let i = 0; i < userList.length; i++) {
+                console.log(userList);
                 userHtml += `
 
                 <div class = "card">
-                    <h2> ${users[i].username} </h2>
+                    <h2> ${userList[i].username} </h2>
                     <div id = "user-info">
                         <ul>
-                            <li>Name: ${users[i].name}</li>
-                            <li>Email: ${users[i].email}</li>
-                            <li>Birthday: ${users[i].birthday}</li>
+                            <li>Name: ${userList[i].name}</li>
+                            <li>Email: ${userList[i].email}</li>
+                            <li>Birthday: ${userList[i].birthday}</li>
                         </ul>
                 </div>
                 `;
@@ -187,7 +182,7 @@ class GameSearchPage extends BaseClass {
 
         } else {
 
-            this.errorHandler("Error retrieving games. Try again later!");              // Edit this later for users.
+            this.errorHandler("Error retrieving users. Try again later!");              // Edit this later for users.
 
         }
 
@@ -196,58 +191,25 @@ class GameSearchPage extends BaseClass {
 
 
 
-    // async onCreate(event) {
-    //     // Prevent the page from refreshing on form submit
-    //     event.preventDefault();
-    //     this.dataStore.set("example", null);
-    //
-    //     let name = document.getElementById("create-name-field").value;
-    //
-    //     const createdExample = await this.client.createExample(name, this.errorHandler);         This is probably going to be on the Admin page.
-    //     this.dataStore.set("example", createdExample);                                           No creation will be done on here, only loading.
-    //
-    //     if (createdExample) {
-    //         this.showMessage(`Created ${createdExample.name}!`)
-    //     } else {
-    //         this.errorHandler("Error creating!  Try again...");
-    //     }
-    // }
-
-
     // Event Handlers --------------------------------------------------------------------------------------------------
 
 
-    // async onSelectedSearchParameter {
-    //
-    // }
+    async showUserList(event) {
+        console.log("render user list");
 
-    // // async onPopUpSearch(event) {
-    //
-    //     // event.preventDefault();
-    //     //
-    //     // let parameter = document.getElementById("pop-up-search").value;
-    //     //
-    //     // const games = this.dataStore.get("games");
-    //     // let selectedParam = null;
-    //     //
-    //     // for (const game of games) {
-    //     //     if (game.id === )
-    //     // }
-    //
-    //     //
-    //     // if (games && games.length > 0) {
-    //     //     for (const games of games) {
-    //     //         games.reservations = await this.fetchReservations(concert.id);           Commenting out as I'm unsure if this is required.
-    //     //         games.purchases = await this.fetchPurchases(concert.id);
-    //     //     }
-    //     // }
-    //
-    //     this.dataStore.set("games", games);
-    // }
-    //
-    // async getAllUsers() {
-    //
-    // }
+        event.preventDefault();
+        this.dataStore.set("state", this.GET_ALL_USERS);
+
+    }
+
+    async showPopUp(event) {
+        console.log("render pop up");
+
+        event.preventDefault();
+        this.dataStore.set("state", this.POP_UP_SEARCH);
+    }
+
+
 
 
 }
