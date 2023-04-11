@@ -1,6 +1,7 @@
 package com.kenzie.appserver.controller;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 
 import com.kenzie.appserver.controller.model.*;
@@ -24,13 +25,34 @@ import com.kenzie.appserver.service.VideoGameCatalogService;
 import com.kenzie.appserver.service.model.VideoGame;
 
 =======
+=======
+
+>>>>>>> 734c590 (niocledkjkodso)
 import com.kenzie.appserver.controller.model.CatalogCreateRequest;
 import com.kenzie.appserver.controller.model.CatalogResponse;
+<<<<<<< HEAD
 import com.kenzie.appserver.controller.model.CatalogUpdateRequest;
 import com.kenzie.appserver.repositories.CatalogRepository;
 import com.kenzie.appserver.service.CatalogService;
 import com.kenzie.appserver.service.model.Game;
+<<<<<<< HEAD
 >>>>>>> 230d7be (Completely recreated all classes that have to do with the Video Game Catalog. Kept original classes but COMMENTED THEM OUT SO THEY DON'T AFFECT CODE: VideoGameCreateRequest -> CatalogCreateRequest, VideoGameResponse -> CatalogResponse, VideoGameUpdateRequest -> CatalogUpdateRequest, CatalogControllerOriginal -> CatalogController, VideoGameCatalogRepository -> CatalogRepository, VideoGame -> Game , VideoGameCatalogService -> CatalogService. Commented out ALL tests to run app. Successfully able to Post, Get, Put, and Delete.)
+=======
+=======
+import com.amazonaws.Response;
+import com.kenzie.appserver.controller.model.VideoGameCreateRequest;
+import com.kenzie.appserver.controller.model.VideoGameResponse;
+import com.kenzie.appserver.controller.model.VideoGameUpdateRequest;
+import com.kenzie.appserver.repositories.VideoGameCatalogRepository;
+import com.kenzie.appserver.service.VideoGameCatalogService;
+import com.kenzie.appserver.service.model.VideoGame;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+>>>>>>> 07b1034 (nicoles work)
+>>>>>>> 734c590 (niocledkjkodso)
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.net.URI;
@@ -43,12 +65,20 @@ import java.util.stream.Collectors;
 import static java.util.UUID.randomUUID;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 734c590 (niocledkjkodso)
 // FIXME - I spoke with Melissa about this, but we may change the partition key from the 'title' to 'ID'. If we do that, the names of these methods are going to change.
 // FIXME - Change them from 'searchByTitle' to 'searchByID' etc...
 //Could we maybe keep the searchByTitle and add the searchById?
 
+<<<<<<< HEAD
 =======
 >>>>>>> 230d7be (Completely recreated all classes that have to do with the Video Game Catalog. Kept original classes but COMMENTED THEM OUT SO THEY DON'T AFFECT CODE: VideoGameCreateRequest -> CatalogCreateRequest, VideoGameResponse -> CatalogResponse, VideoGameUpdateRequest -> CatalogUpdateRequest, CatalogControllerOriginal -> CatalogController, VideoGameCatalogRepository -> CatalogRepository, VideoGame -> Game , VideoGameCatalogService -> CatalogService. Commented out ALL tests to run app. Successfully able to Post, Get, Put, and Delete.)
+=======
+>>>>>>> 07b1034 (nicoles work)
+>>>>>>> 734c590 (niocledkjkodso)
 @RestController
 @RequestMapping("/games")
 public class CatalogController {
@@ -338,4 +368,13 @@ public class CatalogController {
 
     }
 
+<<<<<<< HEAD
+=======
+    @DeleteMapping("/{title}")
+    public ResponseEntity deleteConcertByTitle(@PathVariable("title") String title) {
+        catalogService.deleteGameById(title);
+        return ResponseEntity.status(204).build();
+    }
+
+>>>>>>> 734c590 (niocledkjkodso)
 }
