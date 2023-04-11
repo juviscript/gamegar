@@ -3,11 +3,11 @@ package com.kenzie.appserver.service;
 import com.kenzie.appserver.config.CacheStore;
 import com.kenzie.appserver.config.CacheStoreUser;
 import com.kenzie.appserver.repositories.UserRepository;
-import com.kenzie.appserver.repositories.VideoGameCatalogRepository;
+import com.kenzie.appserver.repositories.CatalogRepository;
 import com.kenzie.appserver.repositories.model.UserRecord;
-import com.kenzie.appserver.repositories.model.VideoGameCatalogRecord;
+import com.kenzie.appserver.repositories.model.CatalogRecord;
 import com.kenzie.appserver.service.model.User;
-import com.kenzie.appserver.service.model.VideoGame;
+import com.kenzie.appserver.service.model.Game;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -61,7 +61,7 @@ public class UserServiceTest {
 
         verify(cacheStoreUser).evict(record.getUserId());
 
-        verify(userRepository, times(0)).deleteById(userId);
+        verify(userRepository, times(1)).deleteById(userId);
     }
 
     @Test

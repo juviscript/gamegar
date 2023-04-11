@@ -34,6 +34,7 @@ public class CatalogService {
                     record.getGenre(),
                     record.getYear(),
                     record.getDescription(),
+                    record.getCountry(),
                     record.getPlatforms(),
                     record.getTags()));
         }
@@ -60,6 +61,7 @@ public class CatalogService {
                         game.getGenre(),
                         game.getYear(),
                         game.getDescription(),
+                        game.getCountry(),
                         game.getPlatforms(),
                         game.getTags()))
                 .orElse(null);
@@ -83,6 +85,7 @@ public class CatalogService {
         catalogRecord.setGenre(game.getGenre());
         catalogRecord.setYear(game.getYear());
         catalogRecord.setDescription(game.getDescription());
+        catalogRecord.setCountry(game.getCountry());
         catalogRecord.setPlatforms(game.getPlatforms());
         catalogRecord.setTags(game.getTags());
         catalogRepository.save(catalogRecord);
@@ -101,6 +104,7 @@ public class CatalogService {
             catalogRecord.setGenre(game.getGenre());
             catalogRecord.setYear(game.getYear());
             catalogRecord.setDescription(game.getDescription());
+            catalogRecord.setCountry(game.getCountry());
             catalogRecord.setPlatforms(game.getPlatforms());
             catalogRecord.setTags(game.getTags());
             catalogRepository.save(catalogRecord);

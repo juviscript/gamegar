@@ -11,16 +11,18 @@ public class Game {
     private String genre;
     private Integer year;
     private String description;
+    private String country;
     private List<String> platforms;
     private List<String> tags;
 
-    public Game(String id, String title, String developer, String genre, Integer year, String description, List<String> platforms, List<String> tags) {
+    public Game(String id, String title, String developer, String genre, Integer year, String description, String country, List<String> platforms, List<String> tags) {
         this.id = id;
         this.title = title;
         this.developer = developer;
         this.genre = genre;
         this.year = year;
         this.description = description;
+        this.country = country;
         this.platforms = platforms;
         this.tags = tags;
     }
@@ -47,6 +49,10 @@ public class Game {
 
     public String getDescription() {
         return description;
+    }
+
+    public String getCountry() {
+        return country;
     }
 
     public List<String> getPlatforms() {

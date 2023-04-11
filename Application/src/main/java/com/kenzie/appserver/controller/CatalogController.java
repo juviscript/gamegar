@@ -233,6 +233,7 @@ public class CatalogController {
                 catalogCreateRequest.getGenre(),
                 catalogCreateRequest.getYear(),
                 catalogCreateRequest.getDescription(),
+                catalogCreateRequest.getCountry(),
                 catalogCreateRequest.getPlatforms(),
                 catalogCreateRequest.getTags());
 
@@ -253,6 +254,7 @@ public class CatalogController {
                 catalogUpdateRequest.getGenre(),
                 catalogUpdateRequest.getYear(),
                 catalogUpdateRequest.getDescription(),
+                catalogUpdateRequest.getCountry(),
                 catalogUpdateRequest.getPlatforms(),
                 catalogUpdateRequest.getTags());
 
@@ -294,6 +296,7 @@ public class CatalogController {
             catalogResponse.setGenre(game.getGenre());
             catalogResponse.setYear(game.getYear());
             catalogResponse.setDescription(game.getDescription());
+            catalogResponse.setCountry(game.getCountry());
             catalogResponse.setPlatforms(game.getPlatforms());
             catalogResponse.setTags(game.getTags());
 
@@ -302,8 +305,9 @@ public class CatalogController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity deleteGameById(@PathVariable("id") String game) {
+    public ResponseEntity deleteGameById(@PathVariable("id") String id) {
 
+<<<<<<< HEAD
 <<<<<<< HEAD
         catalogService.updateGame(videoGame);
 
@@ -327,6 +331,9 @@ public class CatalogController {
 =======
         catalogService.deleteGame(game);
 >>>>>>> 230d7be (Completely recreated all classes that have to do with the Video Game Catalog. Kept original classes but COMMENTED THEM OUT SO THEY DON'T AFFECT CODE: VideoGameCreateRequest -> CatalogCreateRequest, VideoGameResponse -> CatalogResponse, VideoGameUpdateRequest -> CatalogUpdateRequest, CatalogControllerOriginal -> CatalogController, VideoGameCatalogRepository -> CatalogRepository, VideoGame -> Game , VideoGameCatalogService -> CatalogService. Commented out ALL tests to run app. Successfully able to Post, Get, Put, and Delete.)
+=======
+        catalogService.deleteGame(id);
+>>>>>>> e2cd2fa (Fixed tests and delete method in catalogservice)
         return ResponseEntity.status(204).build();
 
     }

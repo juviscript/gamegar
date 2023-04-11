@@ -3,7 +3,7 @@ package com.kenzie.appserver.config;
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
 import com.kenzie.appserver.service.model.User;
-import com.kenzie.appserver.service.model.VideoGame;
+import com.kenzie.appserver.service.model.Game;
 
 import java.util.concurrent.TimeUnit;
 

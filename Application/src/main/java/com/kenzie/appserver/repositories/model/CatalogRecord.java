@@ -14,6 +14,7 @@ public class CatalogRecord {
     private String genre;
     private Integer year;
     private String description;
+    private String country;
     private List<String> platforms;
     private List<String> tags;
 
@@ -43,6 +44,10 @@ public class CatalogRecord {
     @DynamoDBAttribute(attributeName = "description")
     public String getDescription() {
         return description;
+    }
+    @DynamoDBAttribute(attributeName = "country")
+    public String getCountry() {
+        return country;
     }
     @DynamoDBAttribute(attributeName = "platforms")
     public List<String> getPlatforms() {
@@ -79,6 +84,9 @@ public class CatalogRecord {
     public void setDescription(String description) {
         this.description = description;
     }
+    public void setCountry(String country) {
+        this.country = country;
+    }
 
     public void setPlatforms(List<String> platforms) {
         this.platforms = platforms;
@@ -96,12 +104,12 @@ public class CatalogRecord {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         CatalogRecord that = (CatalogRecord) o;
-        return Objects.equals(id, that.id) && Objects.equals(title, that.title) && Objects.equals(developer, that.developer) && Objects.equals(genre, that.genre) && Objects.equals(year, that.year) && Objects.equals(description, that.description) && Objects.equals(platforms, that.platforms) && Objects.equals(tags, that.tags);
+        return Objects.equals(id, that.id) && Objects.equals(title, that.title) && Objects.equals(developer, that.developer) && Objects.equals(genre, that.genre) && Objects.equals(year, that.year) && Objects.equals(description, that.description) && Objects.equals(country, that.country)&& Objects.equals(platforms, that.platforms) && Objects.equals(tags, that.tags);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, title, developer, genre, year, description, platforms, tags);
+        return Objects.hash(id, title, developer, genre, year, description, country, platforms, tags);
     }
 }
 

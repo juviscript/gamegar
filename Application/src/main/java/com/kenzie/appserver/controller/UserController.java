@@ -121,8 +121,13 @@ public class UserController {
     }
 
     @DeleteMapping("/{userId}")
+<<<<<<< HEAD
     public ResponseEntity deleteConcertByTitle(@PathVariable("userId") String userId) {
         userService.deleteUserById(userId);
+=======
+    public ResponseEntity deleteUserById(@PathVariable("userId") String userId) {
+        userService.deleteUserById(userId);                                     
+>>>>>>> e2cd2fa (Fixed tests and delete method in catalogservice)
         return ResponseEntity.status(204).build();
     }
 
