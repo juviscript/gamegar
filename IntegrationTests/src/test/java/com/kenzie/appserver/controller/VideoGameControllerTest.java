@@ -49,8 +49,8 @@ public class VideoGameControllerTest {
         Integer year = 2000;
         String description = mockNeat.strings().valStr();
         String country = mockNeat.strings().valStr();
-        List platforms = new LinkedList<>();
-        List tags = new LinkedList();
+        String platforms = mockNeat.strings().valStr();
+        String tags = mockNeat.strings().valStr();
         String image = mockNeat.strings().valStr();
 
 
@@ -106,8 +106,8 @@ public class VideoGameControllerTest {
         Integer year = 2000;
         String description = mockNeat.strings().valStr();
         String country = mockNeat.strings().valStr();
-        List platforms = new LinkedList();
-        List tags = new LinkedList();
+        String platforms = mockNeat.strings().valStr();
+        String tags = mockNeat.strings().valStr();
         String image = mockNeat.strings().valStr();
 
 
@@ -163,8 +163,8 @@ public class VideoGameControllerTest {
         Integer year = 2000;
         String description = mockNeat.strings().valStr();
         String country = mockNeat.strings().valStr();
-        List platforms = new LinkedList<>();
-        List tags = new LinkedList();
+        String platforms = mockNeat.strings().valStr();
+        String tags = mockNeat.strings().valStr();
         String image = mockNeat.strings().valStr();
 
         Game game = new Game(id, title, developer, genre, year, description, country, platforms,
@@ -227,8 +227,8 @@ public class VideoGameControllerTest {
         Integer year = 2000;
         String description = mockNeat.strings().valStr();
         String country = mockNeat.strings().valStr();
-        List platforms = new LinkedList<>();
-        List tags = new LinkedList();
+        String platforms = mockNeat.strings().valStr();
+        String tags = mockNeat.strings().valStr();
         String image = mockNeat.strings().valStr();
 
         Game game = new Game(id, title, developer, genre, year, description,country, platforms,

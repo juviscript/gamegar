@@ -57,7 +57,7 @@ public class VideoGameCatalogServiceTest {
         Mockito.when(catalogRepository.findById(anyString())).thenReturn(Optional.of(record));
 
         when(cacheStore.get(record.getId())).thenReturn(new Game(gameId, "name", "1",
-                "action", 2007, "cute game","US", test, test, "test"));
+                "action", 2007, "cute game","US", "test", "test", "test"));
 
         catalogService.deleteGame(gameId);
 
@@ -92,8 +92,8 @@ public class VideoGameCatalogServiceTest {
         record.setDeveloper("bobby");
         record.setDescription("great game");
         record.setGenre("action");
-        record.setPlatforms(new LinkedList<>());
-        record.setTags(new LinkedList<>());
+        record.setPlatforms("platforms");
+        record.setTags("tags");
         record.setCountry("US");
         record.setImage("image");
 
@@ -121,7 +121,7 @@ public class VideoGameCatalogServiceTest {
         String gameId = randomUUID().toString();
 
         Game videoGame = new Game(gameId, "Kirby", "Nintendo", "Adventure", 2022,
-                "Kirby is super cute", "Japan",new LinkedList<>(), new LinkedList<>(), "image");
+                "Kirby is super cute", "Japan","test", "test", "image");
 
         ArgumentCaptor<CatalogRecord> gameRecordCaptor = ArgumentCaptor.forClass(CatalogRecord.class);
 
@@ -155,7 +155,7 @@ public class VideoGameCatalogServiceTest {
         String gameId = randomUUID().toString();
 
         Game videoGame = new Game(gameId, "gametitle", "developer", "genre", 2000,
-                "description", "country", new LinkedList<>(), new LinkedList<>(), "image");
+                "description", "country", "test", "test", "image");
 
        CatalogRecord videoGameCatalogRecord = new CatalogRecord();
         videoGameCatalogRecord.setId(videoGame.getId());
@@ -202,7 +202,7 @@ public class VideoGameCatalogServiceTest {
         String description = mockNeat.strings().val();
 
         Game videoGame = new Game(id, "gametitle", "developer", "genre", 2000,
-                description, "country", new LinkedList<>(), new LinkedList<>(), "image");
+                description, "country", "test", "test", "image");
 
         when(cacheStore.get(videoGame.getDescription())).thenReturn(videoGame);
 
@@ -229,8 +229,8 @@ public class VideoGameCatalogServiceTest {
         game1.setYear(2017);
         game1.setDescription("Big shooty shooty space adventure game");
         game1.setCountry("USA");
-        game1.setPlatforms(new LinkedList<>());
-        game1.setTags(new LinkedList<>());
+        game1.setPlatforms("platforms");
+        game1.setTags("tags");
         game1.setImage("image");
 
 
@@ -242,8 +242,8 @@ public class VideoGameCatalogServiceTest {
         game2.setYear(2017);
         game2.setDescription("117 year old boy awakens to save princess from the evil clutches of Ganon");
         game2.setCountry("Japan");
-        game2.setPlatforms(new LinkedList<>());
-        game2.setTags(new LinkedList<>());
+        game2.setPlatforms("platforms");
+        game2.setTags("tags");
         game2.setImage("image2");
 
         List<CatalogRecord> records = new ArrayList<>();
