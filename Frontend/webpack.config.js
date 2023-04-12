@@ -9,6 +9,7 @@ module.exports = {
   },
   entry: {
     gameSearchPage: path.resolve(__dirname, 'src', 'pages', 'gameSearchPage.js'),
+    gameAdmin: path.resolve(__dirname, 'src', 'pages', 'gameAdmin.js'),
   },
   output: {
     path: path.resolve(__dirname, 'dist'),

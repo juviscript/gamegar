@@ -22,6 +22,8 @@ class GameAdmin extends BaseClass {
         this.client = new VideoGameClient();
         this.dataStore.addChangeListener(this.renderGames)
         this.fetchGames();
+
+
     }
 
     async fetchGames() {
@@ -32,11 +34,8 @@ class GameAdmin extends BaseClass {
                 games.list = await this.fetchGames(game.id);
             }
         }
-        this.dataStore.set("games", games);
-    }
 
-    async fetchGames(id) {
-        return await this.client.getAllGames(id, this.errorHandler);
+        this.dataStore.set("games", games);
     }
 
 
@@ -46,7 +45,7 @@ class GameAdmin extends BaseClass {
         let gameHtml = "";                              // Variable named gameHtml that equals an empty string
         const games = this.dataStore.get("games");
 
-        if (games.length <= 0) {
+        if (games) {
             for (const game of games) {
 
                 gameHtml += `
@@ -88,14 +87,15 @@ class GameAdmin extends BaseClass {
         this.fetchGames();
     }
 
-    async onSubmit(game) {
+    async onSubmit(event) {
         // Prevent the form from refreshing the page
-        game.preventDefault();
+        event.preventDefault();
 
         // Set the loading flag
         let createButton = document.getElementById('create-game');
         createButton.innerText = 'Loading...';
         createButton.disabled = true;
+
 
         // Get the values from the form inputs
         const title = document.getElementById('title').value;
@@ -104,21 +104,39 @@ class GameAdmin extends BaseClass {
         const year = document.getElementById('year').value;
         const description = document.getElementById('description').value;
         const country = document.getElementById('country').value;
-        const platforms = document.getElementById('platforms').value;
+        let platforms = document.getElementById('platforms').value;
         const tags = document.getElementById('tags').value;
 
+        ;
+
+        // const output = document.querySelector('output');
+        // const form = document.querySelector('form');
+        //
+        // form.addEventListener('input', (e) => {
+        //     const data = new FormData(form);
+        //     const url = new URL(form.action, window.location.href);              https://www.aleksandrhovhannisyan.com/blog/serializing-html-form-data-with-javascript/
+        //     url.search = new URLSearchParams(data).toString();
+        //     // do whatever you want with the URL
+        // });
+
         // Create the concert
-        const games = await this.client.createGame(title,developer,genre,year,description,country,platforms,tags);
+        const games = await this.client.createGame(title, developer, genre, year, description, country, platforms, tags, this.errorHandler);
 
         // Reset the form
-        document.getElementById("create-game-list").reset();
+        document.getElementById("create-game-form").reset();
 
         // Re-enable the form
         createButton.innerText = 'Create';
         createButton.disabled = false;
         this.onRefresh();
+
     }
+
+
+
 }
+
+
 
 /**
  * Main method to run when the page contents have loaded.
