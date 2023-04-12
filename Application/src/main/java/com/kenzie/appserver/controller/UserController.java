@@ -29,6 +29,8 @@ public class UserController {
         userResponse.setEmail(user.getEmail());                     // This class converts a User class into a UserResponse class.
         userResponse.setUsername(user.getUsername());
         userResponse.setBirthday(user.getBirthday());
+        userResponse.setFavoriteGame(user.getFavoriteGames());
+        userResponse.setOwnGame(user.getOwnGames());
         return userResponse;
     }
 
@@ -67,8 +69,9 @@ public class UserController {
                 userCreateRequest.getName(),
                 userCreateRequest.getEmail(),
                 userCreateRequest.getUsername(),
-                userCreateRequest.getBirthday()
-                );
+                userCreateRequest.getBirthday(),
+                userCreateRequest.getFavoriteGame(),
+                userCreateRequest.getOwnGame());
         userService.addNewUser(user);
 
         UserResponse userResponse = createUserResponse(user);
@@ -83,7 +86,9 @@ public class UserController {
                 userUpdateRequest.getName(),
                 userUpdateRequest.getEmail(),
                 userUpdateRequest.getUsername(),
-                userUpdateRequest.getBirthday());
+                userUpdateRequest.getBirthday(),
+                userUpdateRequest.getFavoriteGame(),
+                userUpdateRequest.getOwnGame());
 
         userService.updateUser(user);                                  
 
