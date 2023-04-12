@@ -10,7 +10,7 @@ class GameSearchPage extends BaseClass {
 
     constructor() {
         super();
-        this.bindClassMethods(['onStateChange', 'renderFulLGameList', 'renderUserList', 'showUserList', 'showPopUp'], this);
+        this.bindClassMethods(['onStateChange', 'renderFulLGameList', 'renderUserList', 'showUserList', 'showPopUp', 'showGameList'], this);
         this.dataStore = new DataStore();
 
         // Possible loading states of the page.
@@ -25,35 +25,18 @@ class GameSearchPage extends BaseClass {
      * Once the page has loaded, set up the event handlers and fetch the game list.
      */
     async mount() {
-        document.getElementById('all-games-button').addEventListener('click', this.renderFulLGameList);
+        document.getElementById('all-games-button').addEventListener('click', this.showGameList);
         document.getElementById('search-button').addEventListener('click', this.showPopUp);
         document.getElementById('search-users-button').addEventListener('click', this.showUserList);
         this.dataStore.addChangeListener(this.onStateChange);
 
         this.client = new VideoGameClient();
         this.userClient = new UserClient();
-
+        console.log("mount");
         const games = await this.client.getAllGames();
-        this.dataStore.set("state", this.GET_ALL_GAMES);
+        this.dataStore.set("games", games);
+        this.dataStore.set("state", this.GET_ALL_GAMES); //Set the state to get all games and render them
 
-
-        if (games && games.length > 0) {
-
-            console.log(games);
-            this.dataStore.set('games', games);
-            this.dataStore.set('state', this.GET_ALL_GAMES);
-
-        } else if (games.length === 0) {
-
-            this.dataStore.set("state", this.NO_GAMES);
-            this.errorHandler("There are no games listed in our database currently! Why don't you try adding one! " +
-                "Click on that \"Admin\" link above!");
-
-        } else {
-
-            this.errorHandler();
-
-        }
     }
 
     async onStateChange() {
@@ -76,7 +59,7 @@ class GameSearchPage extends BaseClass {
             getAllGames.classList.add("active")
             getAllUsers.classList.remove("active")
             noGamesSection.classList.remove("active")
-            await this.renderFulLGameList();
+            await this.renderFulLGameList(); //renders gamelist
         } else if (state === this.NO_GAMES) {
             popUpSearch.classList.remove("active")
             getAllGames.classList.remove("active")
@@ -87,7 +70,7 @@ class GameSearchPage extends BaseClass {
             getAllGames.classList.remove("active")
             noGamesSection.classList.remove("active")
             getAllUsers.classList.add("active")
-            await this.renderUserList();
+            await this.renderUserList(); //renders userlist
         }
     }
 
@@ -97,23 +80,12 @@ class GameSearchPage extends BaseClass {
 
 
 
-    async renderFulLGameList(event) {
-
-        event.preventDefault();
-
-        // const state = this.dataStore.get("state");
-        //
-        // if (state != this.GET_ALL_GAMES) {
-        //     this.dataStore.set("state", this.GET_ALL_GAMES);
-        // }
-
+    async renderFulLGameList() {
         let gameHtml = "";                              // Variable named gameHtml that starts as an empty string of HTML information.
         const games = this.dataStore.get("games");
 
-        // if (games) {
         for (let i = 0; i < games.length; i++) {
 
-            // for (const catalogRecord of games) {
             gameHtml += ` 
             
                 <div class = "card">
@@ -143,64 +115,55 @@ class GameSearchPage extends BaseClass {
       
                 `;
 
-            // }
         }
 
-            document.getElementById("games-list").innerHTML = gameHtml;
+        document.getElementById("games-list").innerHTML = gameHtml;
     }
 
 
     async renderUserList() {
-        console.log("render user list 2");                                              // Currently infinitely looping. Very sad will look into this tomorrow.
-        const users = await this.userClient.getAllUsers();
-        this.dataStore.set("users", users)
 
+        console.log("render user list 2");
         let userHtml = "";
 
-        if (users && users.length > 0) {
-            const userList = this.dataStore.get("users");
+        const userList = this.dataStore.get("users");
+        console.log(userList);
 
-            for (let i = 0; i < userList.length; i++) {
-                console.log(userList);
-                userHtml += `
+        for (let i = 0; i < userList.length; i++) {
 
-                <div class = "card">
-                    <h2> ${userList[i].username} </h2>
-                    <div id = "user-info">
-                        <ul>
-                            <li>Name: ${userList[i].name}</li>
-                            <li>Email: ${userList[i].email}</li>
-                            <li>Birthday: ${userList[i].birthday}</li>
-                        </ul>
-                </div>
-                `;
-            }
+            console.log(userList[i]);
 
-        } else if (users.length === 0) {
+            userHtml += `
 
-            this.dataStore.set("state", this.NO_GAMES);
-            this.errorHandler("There are no users listed in our database currently! We don't have friends! Sad :(");
-
-        } else {
-
-            this.errorHandler("Error retrieving users. Try again later!");              // Edit this later for users.
-
+				<div class = "card">
+				
+					<h2> ${userList[i].username} </h2>
+						<div id = "user-info">
+							<ul>
+								<li>Name: ${userList[i].name}</li>
+								<li>Email: ${userList[i].email}</li>
+								<li>Birthday: ${userList[i].birthday}</li>
+							</ul>
+						</div>
+				</div>
+			
+						`;
         }
 
         document.getElementById("user-list").innerHTML = userHtml;
+
     }
+
 
 
 
     // Event Handlers --------------------------------------------------------------------------------------------------
 
 
-    async showUserList(event) {
-        console.log("render user list");
-
-        event.preventDefault();
+    async showUserList() {
+        const users = await this.userClient.getAllUsers(this.errorHandler);
+        this.dataStore.set("users", users);
         this.dataStore.set("state", this.GET_ALL_USERS);
-
     }
 
     async showPopUp(event) {
@@ -210,6 +173,11 @@ class GameSearchPage extends BaseClass {
         this.dataStore.set("state", this.POP_UP_SEARCH);
     }
 
+    async showGameList() {
+        const games = await this.client.getAllGames();
+        this.dataStore.set("games", games);
+        this.dataStore.set("state", this.GET_ALL_GAMES);
+    }
 
 
 
@@ -226,4 +194,3 @@ const main = async () => {
 };
 
 window.addEventListener('DOMContentLoaded', main);
-

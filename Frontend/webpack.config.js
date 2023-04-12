@@ -31,6 +31,16 @@ module.exports = {
       filename: 'index.html',
       inject: false
     }),
+    new HtmlWebpackPlugin({
+      template: './src/admin.html',
+      filename: 'admin.html',
+      inject: false
+    }),
+    new HtmlWebpackPlugin({
+      template: './src/aboutTheDevs.html',
+      filename: 'aboutTheDevs.html',
+      inject: false
+    }),
     new CopyPlugin({
       patterns: [
         {

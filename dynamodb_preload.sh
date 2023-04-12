@@ -137,7 +137,7 @@ aws dynamodb put-item \
   "genre": {"S": "Shooter"},
   "year": {"N": "2017"},
   "description": {"S": "Similar to its predecessor, Destiny 2 is a first-person shooter game that incorporates role-playing and massively multiplayer online game (MMO) elements. The original Destiny includes on-the-fly matchmaking that allowed players to communicate only with other players with whom they were \"matched\" by the game."},
-"platforms": {"L": {"S": "Playstation 3"}, {"S": "Playstation 4"}, {"S": "Playstation 5"}, {"S": "Xbox 360"}, {"S": "Xbox One"}, {"S": "PC"} ]},
+"platforms": {"L": [{"S": "Playstation 3"}, {"S": "Playstation 4"}, {"S": "Playstation 5"}, {"S": "Xbox 360"}, {"S": "Xbox One"}, {"S": "PC"} ]},
 "tags": {"L": [ {"S": "Multiplayer"} ]},
 "image": {"S" : "https://cdn1.epicgames.com/offer/428115def4ca4deea9d69c99c5a5a99e/FR_Bungie_Destiny2_S2_1200x1600_1200x1600-c04030c570b63cdced320be0f88a9f89"}
 }'
