@@ -38,10 +38,10 @@ public class CacheManagerVideoGameTest {
         String developer = mockNeat.strings().valStr();
         String genre = mockNeat.strings().valStr();
         Integer year = 2000;
-        List platforms = new LinkedList();
-        List tags = new LinkedList();
         String description = mockNeat.strings().valStr();
         String country = mockNeat.strings().valStr();
+        String platforms = mockNeat.strings().valStr();
+        String tags = mockNeat.strings().valStr();
         String image = mockNeat.strings().valStr();
 
         Game game = new Game(id,title,developer,genre,year,description,country,platforms,tags,image);
@@ -61,10 +61,10 @@ public class CacheManagerVideoGameTest {
         String developer = mockNeat.strings().valStr();
         String genre = mockNeat.strings().valStr();
         Integer year = 2000;
-        List platforms = new LinkedList();
-        List tags = new LinkedList();
         String description = mockNeat.strings().valStr();
         String country = mockNeat.strings().valStr();
+        String platforms = mockNeat.strings().valStr();
+        String tags = mockNeat.strings().valStr();
         String image = mockNeat.strings().valStr();
 
         Game game = new Game(id,title,developer,genre,year,description,country,platforms,tags,image);

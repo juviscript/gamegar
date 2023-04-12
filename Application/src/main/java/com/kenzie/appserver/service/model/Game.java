@@ -12,12 +12,12 @@ public class Game {
     private Integer year;
     private String description;
     private String country;
-    private List<String> platforms;
-    private List<String> tags;
+    private String platforms;
+    private String tags;
     private String image;
 
     public Game(String id, String title, String developer, String genre, Integer year, String description, String country,
-                List<String> platforms, List<String> tags, String image) {
+                String platforms, String tags, String image) {
         this.id = id;
         this.title = title;
         this.developer = developer;
@@ -58,11 +58,11 @@ public class Game {
         return country;
     }
 
-    public List<String> getPlatforms() {
+    public String getPlatforms() {
         return platforms;
     }
 
-    public List<String> getTags() {
+    public String getTags() {
         return tags;
     }
     public String getImage() {

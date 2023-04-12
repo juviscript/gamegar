@@ -15,8 +15,8 @@ public class CatalogRecord {
     private Integer year;
     private String description;
     private String country;
-    private List<String> platforms;
-    private List<String> tags;
+    private String platforms;
+    private String tags;
     private String image;
 
 //    --------------------------- Getters w/ DynamoDB Annotation ---------------------------
@@ -51,11 +51,11 @@ public class CatalogRecord {
         return country;
     }
     @DynamoDBAttribute(attributeName = "platforms")
-    public List<String> getPlatforms() {
+    public String getPlatforms() {
         return platforms;
     }
     @DynamoDBAttribute(attributeName = "tags")
-    public List<String> getTags() {
+    public String getTags() {
         return tags;
     }
 
@@ -94,11 +94,11 @@ public class CatalogRecord {
         this.country = country;
     }
 
-    public void setPlatforms(List<String> platforms) {
+    public void setPlatforms(String platforms) {
         this.platforms = platforms;
     }
 
-    public void setTags(List<String> tags) {
+    public void setTags(String tags) {
         this.tags = tags;
     }
     public void setImage(String image) {

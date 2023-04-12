@@ -26,10 +26,10 @@ public class CatalogCreateRequest {
     private String country;
 
     @JsonProperty("platforms")
-    private List<String> platforms;
+    private String platforms;
 
     @JsonProperty("tags")
-    private List<String> tags;
+    private String tags;
 
     @JsonProperty("image")
     private String image;
@@ -61,17 +61,17 @@ public class CatalogCreateRequest {
         return country;
     }
 
-    public List<String> getPlatforms() {
+    public String getPlatforms() {
         return platforms;
     }
 
-    public List<String> getTags() {
+    public String getTags() {
         return tags;
     }
+
     public String getImage() {
         return image;
     }
-
 
 
 //    -------------------------------------- Setters ---------------------------------------
@@ -99,14 +99,15 @@ public class CatalogCreateRequest {
         this.country = country;
     }
 
-    public void setPlatforms(List<String> platforms) {
+    public void setPlatforms(String platforms) {
         this.platforms = platforms;
     }
 
-    public void setTags(List<String> tags) {
+    public void setTags(String tags) {
         this.tags = tags;
     }
+
     public void setImage(String image) {
         this.image = image;
     }
-}
+    }
