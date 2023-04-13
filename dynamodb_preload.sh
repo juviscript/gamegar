@@ -63,3 +63,4 @@ aws dynamodb put-item \
 "image": {"S" : "https://cdn.cloudflare.steamstatic.com/steam/apps/242050/capsule_616x353.jpg?t=1670596397"}
 }'
 
+
