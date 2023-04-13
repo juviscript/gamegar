@@ -27,7 +27,7 @@ class GameSearchPage extends BaseClass {
      */
     async mount() {
 
-        document.addEventListener('click', this.showGameList);
+        document.getElementById('all-games-button').addEventListener('click', this.showGameList);
         document.getElementById('search-button').addEventListener('click', this.showPopUp);
         document.getElementById('search-users-button').addEventListener('click', this.showUserList);
         document.getElementById('about-button').addEventListener('click', this.showDevInfo);
@@ -57,7 +57,6 @@ class GameSearchPage extends BaseClass {
             getAllGames.classList.remove("active");
             noGamesSection.classList.remove("active");
             getAllUsers.classList.remove("active");
-            getAllGames.classList.remove("active");
             showDevInfo.classList.remove("active");
         } else if (state === this.GET_ALL_GAMES) {
             popUpSearch.classList.remove("active");
