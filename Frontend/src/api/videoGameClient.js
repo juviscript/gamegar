@@ -60,17 +60,18 @@ export default class VideoGameClient extends BaseClass {
         }
     }
 
-    async createGame(title, developer, genre, year, platforms, tags, description, country, errorCallback) {
+    async createGame(title, developer, genre, year, description, country, platforms, tags, image, errorCallback) {
         try {
             const response = await this.client.post(`games`, {
                 title: title,
                 developer: developer,
                 genre: genre,
                 year: year,
+                description: description,
+                country: country,
                 platforms: platforms,
                 tags: tags,
-                description: description,
-                country: country
+                image: image
             });
             return response.data;
         } catch (error) {
