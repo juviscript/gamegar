@@ -26,7 +26,8 @@ class GameSearchPage extends BaseClass {
      * Once the page has loaded, set up the event handlers and fetch the game list.
      */
     async mount() {
-        .addEventListener('click', this.showGameList);
+
+        document.addEventListener('click', this.showGameList);
         document.getElementById('search-button').addEventListener('click', this.showPopUp);
         document.getElementById('search-users-button').addEventListener('click', this.showUserList);
         document.getElementById('about-button').addEventListener('click', this.showDevInfo);
