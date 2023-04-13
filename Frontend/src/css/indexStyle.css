@@ -40,10 +40,6 @@
 }
 
 
-.button:hover, button:hover {
-    background: #9cc3e4;
-}
-
 .card {
     color: var(--primary-color);
     background-color: var(--secondary-color);
