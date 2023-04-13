@@ -123,4 +123,79 @@ public class UserService {
         }
     }
 
+    //ToDo finish up the adding the favoriteGame, and ownGame List -nicole
+    // public ArrayList<List> favoriteGame;    public void addFavoriteGame(User userId, Game id) {
+    //        User user = findUserById(userId.getUserId());
+    //        if (user == null) {
+    //            System.out.println("User not found");
+    //            return;
+    //        }
+    //
+    //        // Check if the user already has the game in their list of favorite games
+    //        for (List favoriteGame : user.getFavoriteGames()) {
+    //            if (favoriteGame.contains(id)) {
+    //                System.out.println("Game is already a favorite of this user");
+    //                return;
+    //            }
+    //        }
+    //
+    //        // Add the game to the user's list of favorite games
+    //        user.getFavoriteGames().add((List) id);
+    //
+    //        // Print a message indicating that the game has been added to the user's list of favorites
+    //        System.out.println("Game added to user's list of favorites");
+    //    }
+    //    public void deleteFavoriteGame(User userId, Game id) {
+    //        User user = findUserById(userId.getUserId());
+    //        if (user == null) {
+    //            System.out.println("User not found");
+    //            return;
+    //        }
+    //
+    //        // Check if the user already has the game in their list of favorite games
+    //        for (List favoriteGame : user.getFavoriteGames()) {
+    //            if (favoriteGame.contains(id)) {
+    //                user.getFavoriteGames().remove((List) id);
+    //            }
+    //        }
+    //
+    //        // Print a message indicating that the game has been added to the user's list of favorites
+    //        System.out.println("Game remove from user's list of favorites");
+    //    }
+    //    public void addOwnGame(User userId, Game id){
+    //        User user = findUserById(userId.getUserId());
+    //        if (user == null){
+    //            System.out.println("User not found");
+    //            return;
+    //        } for (List ownGame : user.getOwnGames()) {
+    //            if (ownGame.contains(id)) {
+    //                System.out.println("Game is already a favorite of this user");
+    //                return;
+    //            }
+    //        }
+    //
+    //        // Add the game to the user's list of favorite games
+    //        user.getOwnGames().add((List) id);
+    //
+    //        // Print a message indicating that the game has been added to the user's list of favorites
+    //        System.out.println("Game added to user's list of Own");
+    //    }
+    //    public void deleteOwnGame(User userId, Game id) {
+    //        User user = findUserById(userId.getUserId());
+    //        if (user == null) {
+    //            System.out.println("User not found");
+    //            return;
+    //        }
+    //
+    //        // Check if the user already has the game in their list of favorite games
+    //        for (List ownGame : user.getOwnGames()) {
+    //            if (ownGame.contains(id)) {
+    //                user.getOwnGames().remove((List) id);
+    //            }
+    //        }
+    //
+    //        // Print a message indicating that the game has been added to the user's list of favorites
+    //        System.out.println("Game remove from user's list of own");
+    //    }
+
 }
