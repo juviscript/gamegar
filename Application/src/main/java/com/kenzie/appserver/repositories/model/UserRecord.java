@@ -16,10 +16,10 @@ public class UserRecord {
     private String username;
 
     private String birthday;
-    private ArrayList<List> ownGame;
-
-
-    private ArrayList<List> favoriteGame;
+   // private ArrayList<List> ownGame;
+    //
+    //
+    //    private ArrayList<List> favoriteGame;
 
     @DynamoDBHashKey(attributeName = "userId")
     public String getUserId() {
@@ -46,12 +46,12 @@ public class UserRecord {
     public String getBirthday() {                                        // a string in the table (LocalDate -> String) in
         return birthday;                                                    // Will be in ISO_8601 format: Year-Month-Day
     }
-    public ArrayList<List> getOwnGame() {
-        return ownGame;
-    }
-    public ArrayList<List> getFavoriteGame() {
-        return favoriteGame;
-    }
+   // public ArrayList<List> getOwnGame() {
+   //        return ownGame;
+   //    }
+   //    public ArrayList<List> getFavoriteGame() {
+   //        return favoriteGame;
+   //    }
     public void setUserId(String userId) { this.userId = userId; }
 
     public void setName (String name) {
@@ -69,13 +69,13 @@ public class UserRecord {
     public void setBirthday(String birthday) {
         this.birthday = birthday;
     }
-    public void setOwnGame(ArrayList<List> ownGame) {
-        this.ownGame = ownGame;
-    }
+   // public void setOwnGame(ArrayList<List> ownGame) {
+    //        this.ownGame = ownGame;
+    //    }
 
-    public void setFavoriteGame(ArrayList<List> favoriteGame) {
-        this.favoriteGame = favoriteGame;
-    }
+   // public void setFavoriteGame(ArrayList<List> favoriteGame) {
+   //        this.favoriteGame = favoriteGame;
+   //    }
   @Override
     public boolean equals(Object o) {
         if (this == o) return true;

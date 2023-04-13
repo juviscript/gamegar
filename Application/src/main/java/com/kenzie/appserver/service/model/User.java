@@ -14,16 +14,15 @@ public class User {
     private String username;
 
     private String birthday;
-    private ArrayList<List> ownGame;
-    private ArrayList<List> favoriteGame;
-    public User(String userId, String name, String email, String username, String birthday, ArrayList<List> favoriteGame, ArrayList<List> ownGame) {
+    //private ArrayList<List> ownGame;
+    // private ArrayList<List> favoriteGame;
+    public User(String userId, String name, String email, String username, String birthday ) {//ArrayList<List> favoriteGame, ArrayList<List> ownGame
         this.userId = userId;
         this.name = name;
         this.email = email;
         this.username = username;
         this.birthday = birthday;
-        this.favoriteGame = favoriteGame;
-        this.ownGame = ownGame;
+
     }
 
     public String getUserId() {
@@ -46,11 +45,11 @@ public class User {
         return birthday;
     }
 
-    public ArrayList<List> getOwnGames() {
-        return ownGame;
-    }
-
-    public ArrayList<List> getFavoriteGames() {
-        return favoriteGame;
-    }
+    //public ArrayList<List> getOwnGames() {
+    //        return ownGame;
+    //    }
+    //
+    //    public ArrayList<List> getFavoriteGames() {
+    //        return favoriteGame;
+    //    }
 }

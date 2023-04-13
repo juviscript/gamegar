@@ -20,8 +20,8 @@ public class UserResponse {
     private String username;
     @JsonProperty("birthday")
     private String birthday;
-    private ArrayList<List> ownGame;
-    private ArrayList<List> favoriteGame;
+    //private ArrayList<List> ownGame;
+    //    private ArrayList<List> favoriteGame;
 
     /* ---------------- Getters ---------------- */
 
@@ -45,12 +45,12 @@ public class UserResponse {
         return birthday;
     }
 
-    public ArrayList<List> getOwnGame() {
-        return ownGame;
-    }
-    public ArrayList<List> getFavoriteGame() {
-        return favoriteGame;
-    }
+   // public ArrayList<List> getOwnGame() {
+    //        return ownGame;
+    //    }
+    //    public ArrayList<List> getFavoriteGame() {
+    //        return favoriteGame;
+    //    }
     /* ---------------- Setters ---------------- */
 
     public void setUserId(String userId) {
@@ -71,10 +71,10 @@ public class UserResponse {
     public void setBirthday(String birthday) {
         this.birthday = birthday;
     }
-    public void setOwnGame(ArrayList<List> ownGame) {
-        this.ownGame = ownGame;
-    }
-    public void setFavoriteGame(ArrayList<List> favoriteGame) {
-        this.favoriteGame = favoriteGame;
-    }
+   // public void setOwnGame(ArrayList<List> ownGame) {
+    //        this.ownGame = ownGame;
+    //    }
+    //    public void setFavoriteGame(ArrayList<List> favoriteGame) {
+    //        this.favoriteGame = favoriteGame;
+    //    }
 }
