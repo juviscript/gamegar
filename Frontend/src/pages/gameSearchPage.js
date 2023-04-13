@@ -53,7 +53,7 @@ class GameSearchPage extends BaseClass {
             noGamesSection.classList.remove("active")
             getAllUsers.classList.remove("active")
             getAllGames.classList.remove("active")
-            await this.renderPopUpSearch();
+            await this.showPopUp(event);
         } else if (state === this.GET_ALL_GAMES) {
             popUpSearch.classList.remove("active")
             getAllGames.classList.add("active")
