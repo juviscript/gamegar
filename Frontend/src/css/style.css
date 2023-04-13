@@ -97,6 +97,9 @@
 
 }
 
+.circular--square {
+    border-radius: 50%;
+}
 
 .parent {
     border: 1px solid #ccccff;
@@ -272,7 +275,7 @@
 }
 @-webkit-keyframes blink {
   50% {
-    border-color: tranparent;
+    border-color: transparent;
   }
 }
 
