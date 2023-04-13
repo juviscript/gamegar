@@ -87,30 +87,34 @@ class GameSearchPage extends BaseClass {
         for (let i = 0; i < games.length; i++) {
 
             gameHtml += ` 
-            
+
                 <div class = "card">
                     <h2> ${games[i].title} </h2>
-                    <div id = "info-1">
-                        <ul>
-                            <li>Developer: ${games[i].developer}</li>
-                            <li>Country of Origin: ${games[i].country}</li>
-                            <li>Year: ${games[i].year}</li>
-                        </ul>
-                    </div>
-    
-                    <div id = "info-2">
-                        <li>Genre: ${games[i].genre}</li>
-                        <li>Platforms: ${games[i].platforms}</li>
-                        <li>Tags: ${games[i].tags}</li>
-                    </div>
-                    
-                    <div id="description">
-                        <p>
-                            ${games[i].description}
-                         
-                        </p>
+
+                    <div id = "game-image">
                         <img src = ${games[i].image} width="400">
                     </div>
+
+                        <div>
+                            <p id = "info-1">
+                                <ul>
+                                    <li>Developer: ${games[i].developer}</li>
+                                    <li>Country of Origin: ${games[i].country}</li>
+                                    <li>Year: ${games[i].year}</li>
+                                </ul>
+                            </p>
+
+                            <p id = "info-2">
+                                <li>Genre: ${games[i].genre}</li>
+                                <li>Platforms: ${games[i].platforms}</li>
+                                <li>Tags: ${games[i].tags}</li>
+                            </p>
+
+                            <p id = "description">
+                                ${games[i].description}
+                            </p>
+                        </div>
+
                 </div>
       
                 `;
