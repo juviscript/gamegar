@@ -106,6 +106,7 @@ class GameAdmin extends BaseClass {
         const country = document.getElementById('country').value;
         let platforms = document.getElementById('platforms').value;
         const tags = document.getElementById('tags').value;
+        const image = document.getElementById('image').value;
 
         ;
 
@@ -120,7 +121,7 @@ class GameAdmin extends BaseClass {
         // });
 
         // Create the concert
-        const games = await this.client.createGame(title, developer, genre, year, description, country, platforms, tags, this.errorHandler);
+        const games = await this.client.createGame(title, developer, genre, year, description, country, platforms, tags, image, this.errorHandler);
 
         // Reset the form
         document.getElementById("create-game-form").reset();
