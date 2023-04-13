@@ -121,6 +121,7 @@ class GameAdmin extends BaseClass {
         // });
 
         // Create the concert
+
         const games = await this.client.createGame(title, developer, genre, year, description, country, platforms, tags, image, this.errorHandler);
 
         // Reset the form
