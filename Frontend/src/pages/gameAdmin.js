@@ -110,6 +110,7 @@ class GameAdmin extends BaseClass {
 
         ;
 
+<<<<<<< HEAD
         // const output = document.querySelector('output');
         // const form = document.querySelector('form');
         //
@@ -123,6 +124,10 @@ class GameAdmin extends BaseClass {
 
         const games = await this.client.createGame(title, developer, genre, year, description, country, platforms, tags, image, this.errorHandler);
 
+=======
+        // Create the concert
+        const games = await this.client.createGame(title, developer, genre, year, description, country, platforms, tags, this.errorHandler);
+>>>>>>> 63bdd9f (Fixed styling for database and user info cards.)
 
         // Reset the form
         document.getElementById("create-game-form").reset();
