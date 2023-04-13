@@ -35,68 +35,6 @@
     line-height: 40px;
 }
 
-/* Game and User Tiles */
-
-.card {
-    border: 1px solid #DBD3DE;
-    border-radius: 20px;
-    position: relative;
-    margin: 10px auto;
-    padding: 2rem 2rem;
-    text-align: center;
-    max-height: 15%;
-    background-color: #DBD3DE;
-    color: #AB90BD;
-    max-width: 1600px;
-    justify-content: flex-start;
-    font-family: Tahoma;
-    display: flex;
-    align-items: flex-start;
-
-}
-
-.card:hover {
-    transform: scale(102%);
-}
-
-#game-img {
-    max-width: 300px;
-    margin: auto;
-}
-
-#game-img-container {
-    background:Red;
-    display:  inline-block;
-    margin: 5px 20px 5px 40px;
-}
-
-#game-details {
-    width: 1200px;
-    display:  block;
-    float: right;
-    margin: 5px 0px 5px 75px;
-    height: 100%;
-}
-
-#info-2 {
-    text-align: left;
-    margin: auto;
-}
-
-#description {
-     display: block;
-     text-align: center;
-     width: 80%;
-     margin: auto;
-}
-
-h1 {
-    display: block;
-    color: #4F3459;
-    text-align: center;
-    margin: 0px auto 20px;
-}
-
 .card-content .form-field {
     display: flex;
     flex-direction: column;
@@ -178,10 +116,9 @@ h1 {
       border-color: white;
   }
 
-a:link {
-    text-decoration: none;
-    color: black;
-}
+  button:hover {
+    color: lilac;
+  }
 
 
 a:visited {
@@ -197,6 +134,85 @@ a:hover {
 
 a:active {
     text-decoration: none;
+}
+
+/* Game and User Tiles */
+
+.card {
+    border: 1px solid #DBD3DE;
+    border-radius: 20px;
+    position: relative;
+    margin: 10px auto;
+    padding: 2rem 2rem;
+    text-align: center;
+    max-height: 15%;
+    background-color: #DBD3DE;
+    color: #AB90BD;
+    max-width: 1600px;
+    justify-content: flex-start;
+    font-family: Tahoma;
+    display: flex;
+    align-items: flex-start;
+
+}
+
+.card:hover {
+    transform: scale(102%);
+}
+
+#game-img {
+    max-width: 300px;
+    margin: auto;
+}
+
+#game-img-container {
+    display:  inline-block;
+    margin: 5px 20px 5px 40px;
+}
+
+#game-details {
+    width: 1200px;
+    display:  block;
+    float: right;
+    margin: 5px 0px 5px 75px;
+    height: 100%;
+}
+
+#info-2 {
+    text-align: left;
+    margin: auto;
+}
+
+#description {
+     display: block;
+     text-align: center;
+     width: 80%;
+     margin: auto;
+}
+
+h1 {
+    display: block;
+    color: #4F3459;
+    text-align: center;
+    margin: 0px auto 20px;
+}
+
+/* Search Box Styling */
+
+#pop-up-jr {
+    width: 50%;
+    margin: auto;
+    justify-content: center;
+}
+
+#pop-up h1{
+    float: left;
+    margin: 30px 0px 20px 0px;
+}
+
+#pop-up form {
+    float: right;
+    margin: auto;
 }
 
 /* Typing text that shows on reload. */
