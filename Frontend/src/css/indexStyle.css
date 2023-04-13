@@ -61,14 +61,14 @@
 /* Gamegar Header and Logo at top + links */
 
 .parent {
-    border: 1px solid #A569BD;
+    border: 1px solid #A569BD;          /* If you would like to change the background color where the Gamegar logo is, change the #A569BD here and... */
     border-radius: 20px;
     position: relative;
     margin: 10px auto;
     padding: 2rem 2rem;
     text-align: center;
     height: 40%;
-    background-color: #A569BD;
+    background-color: #A569BD;          /* .... here as well! */
     color: white;
     max-width: 1600px;
     justify-content: center;
@@ -140,15 +140,15 @@ a:active {
 
 .card {
     border: 1px solid #DBD3DE;
-    border-radius: 20px;
+    border-radius: 20px;                /* If you want to chang the edges to be more curved, make the number bigger! */
     position: relative;
     margin: 10px auto;
     padding: 2rem 2rem;
     text-align: center;
     max-height: 15%;
-    background-color: #DBD3DE;
-    color: #AB90BD;
-    max-width: 1600px;
+    background-color: #DBD3DE;          /* Here would be the background color for the tiles/cards that the game information is in. */
+    color: #AB90BD;                     /* Here you can change the text color of everything in it. */
+    max-width: 1600px;                  /* But if you want specific things specific colors, then scroll down and look at the other comments. */
     justify-content: flex-start;
     font-family: Tahoma;
     display: flex;
@@ -180,19 +180,19 @@ a:active {
 
 #info-2 {
     text-align: left;
-    margin: auto;
+    margin: auto;                   /* If you want to change the text color of JUST "Developer, Genre, Tags..." etc, then add "color: <insert color here>" under margin. */
 }
 
 #description {
      display: block;
      text-align: center;
      width: 80%;
-     margin: auto;
+     margin: auto;                  /* If you want to change the text color of JUST the description paragraph, then add "color: <insert color here>" under margin. */
 }
 
 h1 {
     display: block;
-    color: #4F3459;
+    color: #4F3459;                 /* If you want to change the text color of JUST the game title, then add the same thing as the other two under here. */
     text-align: center;
     margin: 0px auto 20px;
 }
