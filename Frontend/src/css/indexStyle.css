@@ -39,15 +39,6 @@
     margin-left: 20px;
 }
 
-.button, button {
-    background: #aed9ff;
-    padding: 3px;
-    border-radius: 3px;
-    text-decoration: none;
-    color: black;
-    border: 1px solid black;
-    cursor: pointer;
-}
 
 .button:hover, button:hover {
     background: #9cc3e4;
@@ -63,6 +54,7 @@
 .validated-field:invalid {
     outline: 2px solid var(--error-color);
 }
+
 .validated-field:focus:invalid {
     color: var(--error-color);
 }
@@ -74,10 +66,6 @@
 .card-content .form-field {
     display: flex;
     flex-direction: column;
-}
-
-#concert-list li {
-    margin-bottom: 1rem;
 }
 
 .state {
@@ -101,7 +89,8 @@
 .parent {
     border: 1px solid #ccccff;
     border-radius: 20px;
-    margin: 1rem auto;
+    position: relative;
+    margin: 10px 20px;
     padding: 2rem 2rem;
     text-align: center;
     height: 40%;
@@ -119,6 +108,21 @@
     height: 60%;
     min-width: 600px;
     
+  }
+
+  .link-container {
+    display: block;
+    vertical-align: middle;
+    width: 33%;
+    height: 30px;
+    margin: 0 auto;
+    background-color: gray;
+  }
+
+  .links {
+    width: auto;
+    color: blue;
+    border: 1px solid black;
   }
 
   .typewriter {
