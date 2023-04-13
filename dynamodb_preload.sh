@@ -76,7 +76,7 @@ aws dynamodb put-item \
   "country": {"S": "U.S.A."},
 "platforms": {"S": "Playstation 3, Playstation 4, Xbox 360, Xbox One, Wii U, PC"},
 "tags": {"S": "Single-Player, Multiplayer"},
-"image": {"S" : https://upload.wikimedia.org/wikipedia/en/0/00/Batman_Arkham_City_Game_Cover.jpg}
+"image": {"S" : "https://upload.wikimedia.org/wikipedia/en/0/00/Batman_Arkham_City_Game_Cover.jpg"}
 }'
 
 aws dynamodb put-item \
@@ -92,7 +92,7 @@ aws dynamodb put-item \
   "country": {"S": "Japan"},
 "platforms": {"S": "Playstation, Playstation Portable, Arcade"},
 "tags": {"S": "Single-Player, Multiplayer"},
-"image": {"S" : https://upload.wikimedia.org/wikipedia/en/4/4b/Bloody_Roar_II.jpg}
+"image": {"S" : "https://upload.wikimedia.org/wikipedia/en/4/4b/Bloody_Roar_II.jpg"}
 }'
 
 aws dynamodb put-item \
@@ -108,7 +108,7 @@ aws dynamodb put-item \
   "country": {"S": "U.S.A."},
 "platforms": {"S": "Playstation 3, Playstation 4, Xbox 360, Xbox One, PC"},
 "tags": {"S": "Single-Player, Multiplayer"},
-"image": {"S" : https://www.charlieintel.com/wp-content/uploads/2022/05/modern-warfare-2-multiplayer-beta.jpg}
+"image": {"S" : "https://www.charlieintel.com/wp-content/uploads/2022/05/modern-warfare-2-multiplayer-beta.jpg"}
 }'
 
 aws dynamodb put-item \
@@ -124,7 +124,7 @@ aws dynamodb put-item \
   "country": {"S": "Japan"},
 "platforms": {"S": "Playstation, Playstation Portable"},
 "tags": {"S": "Single-Player"},
-"image": {"S" : https://upload.wikimedia.org/wikipedia/en/e/e6/Crash_Bandicoot_2_Cortex_Strikes_Back_Game_Cover.jpg}
+"image": {"S" : "https://upload.wikimedia.org/wikipedia/en/e/e6/Crash_Bandicoot_2_Cortex_Strikes_Back_Game_Cover.jpg"}
 }'
 
 aws dynamodb put-item \
@@ -139,7 +139,7 @@ aws dynamodb put-item \
   "description": {"S": "Similar to its predecessor, Destiny 2 is a first-person shooter game that incorporates role-playing and massively multiplayer online game (MMO) elements. The original Destiny includes on-the-fly matchmaking that allowed players to communicate only with other players with whom they were \"matched\" by the game."},
 "platforms": {"S": "Playstation 3, Playstation 4, Playstation 5, Xbox 360, Xbox One, PC"},
 "tags": {"S": "Multiplayer"},
-"image": {"S" : https://cdn1.epicgames.com/offer/428115def4ca4deea9d69c99c5a5a99e/FR_Bungie_Destiny2_S2_1200x1600_1200x1600-c04030c570b63cdced320be0f88a9f89}
+"image": {"S" : "https://cdn1.epicgames.com/offer/428115def4ca4deea9d69c99c5a5a99e/FR_Bungie_Destiny2_S2_1200x1600_1200x1600-c04030c570b63cdced320be0f88a9f89"}
 }'
 
 aws dynamodb put-item \
@@ -155,7 +155,7 @@ aws dynamodb put-item \
   "country": {"S": "Japan"},
 "platforms": {"S": "Playstation, PC"},
 "tags": {"S": "Single-Player"},
-"image": {"S" : https://upload.wikimedia.org/wikipedia/en/4/49/Dino_Crisis_2.jpg}
+"image": {"S" : "https://upload.wikimedia.org/wikipedia/en/4/49/Dino_Crisis_2.jpg"}
 }'
 
 aws dynamodb put-item \
@@ -171,7 +171,7 @@ aws dynamodb put-item \
   "country": {"S": "Estonia"},
 "platforms": {"S": "Play Station, Xbox, PC, Nintendo, Stadia"},
 "tags": {"S": "Single-Player"},
-"image": {"S" : https://cdn1.epicgames.com/ff52981b1d9947978153c7a7f8bc6d90/offer/EGS_DiscoElysiumTheFinalCut_ZAUM_S6-1200x1600-486d4da970eede7364b9650d63900bad.jpg}
+"image": {"S" : "https://cdn1.epicgames.com/ff52981b1d9947978153c7a7f8bc6d90/offer/EGS_DiscoElysiumTheFinalCut_ZAUM_S6-1200x1600-486d4da970eede7364b9650d63900bad.jpg"}
 }'
 
 aws dynamodb put-item \
@@ -187,7 +187,7 @@ aws dynamodb put-item \
   "country": {"S": "Japan"},
 "platforms": {"S": "Play Station, Xbox, PC"},
 "tags": {"S": "Single-Player, Multiplayer"},
-"image": {"S" : https://assets-prd.ignimgs.com/2021/06/12/elden-ring-button-03-1623460560664.jpg}
+"image": {"S" : "https://assets-prd.ignimgs.com/2021/06/12/elden-ring-button-03-1623460560664.jpg"}
 }'
 
 aws dynamodb put-item \
@@ -203,7 +203,7 @@ aws dynamodb put-item \
   "country": {"S": "France"},
 "platforms": {"S": "Play Station, Xbox, PC"},
 "tags": {"S": "Single-Player, Multiplayer"},
-"image": {"S" : https://upload.wikimedia.org/wikipedia/en/c/c6/Far_Cry_3_PAL_box_art.jpg}
+"image": {"S" : "https://upload.wikimedia.org/wikipedia/en/c/c6/Far_Cry_3_PAL_box_art.jpg"}
 }'
 
 aws dynamodb put-item \
@@ -219,7 +219,7 @@ aws dynamodb put-item \
   "country": {"S": "Japan"},
 "platforms": {"S": "Play Station, Xbox"},
 "tags": {"S": "Single-Player"},
-"image": {"S" : https://m.media-amazon.com/images/I/51F8MKPQF8L.jpg}
+"image": {"S" : "https://m.media-amazon.com/images/I/51F8MKPQF8L.jpg"}
 }'
 
 aws dynamodb put-item \
@@ -235,7 +235,7 @@ aws dynamodb put-item \
   "country": {"S": "U.S.A."},
 "platforms": {"S": "Play Station, Xbox, PC, Nintendo"},
 "tags": {"S": "Multiplayer"},
-"image": {"S" : https://assets.nintendo.com/image/upload/c_fill,w_1200/q_auto:best/f_auto/dpr_2.0/ncom/software/switch/70010000010192/e5093b66a36367a1abef47f6c8253f256fdb997c0aef25f53e56cafdfc24e5b9}
+"image": {"S" : "https://assets.nintendo.com/image/upload/c_fill,w_1200/q_auto:best/f_auto/dpr_2.0/ncom/software/switch/70010000010192/e5093b66a36367a1abef47f6c8253f256fdb997c0aef25f53e56cafdfc24e5b9"}
 }'
 
 aws dynamodb put-item \
@@ -251,7 +251,7 @@ aws dynamodb put-item \
   "country": {"S": "U.S.A."},
 "platforms": {"S": "Play Station"},
 "tags": {"S": "Single-Player, Multiplayer"},
-"image": {"S" : https://upload.wikimedia.org/wikipedia/en/thumb/b/b6/Ghost_of_Tsushima.jpg/220px-Ghost_of_Tsushima.jpg}
+"image": {"S" : "https://upload.wikimedia.org/wikipedia/en/thumb/b/b6/Ghost_of_Tsushima.jpg/220px-Ghost_of_Tsushima.jpg"}
 }'
 
 aws dynamodb put-item \
@@ -267,7 +267,7 @@ aws dynamodb put-item \
   "country": {"S": "U.S.A."},
 "platforms": {"S": "Play Station"},
 "tags": {"S": "Single-Player"},
-"image": {"S" : https://image.api.playstation.com/vulcan/ap/rnd/202207/1210/4xJ8XB3bi888QTLZYdl7Oi0s.png}
+"image": {"S" : "https://image.api.playstation.com/vulcan/ap/rnd/202207/1210/4xJ8XB3bi888QTLZYdl7Oi0s.png"}
 }'
 
 aws dynamodb put-item \
@@ -283,7 +283,7 @@ aws dynamodb put-item \
   "country": {"S": "U.S.A."},
 "platforms": {"S": "Play Station, Xbox, PC"},
 "tags": {"S": "Single-Player, Multiplayer"},
-"image": {"S" : https://upload.wikimedia.org/wikipedia/en/a/a5/Grand_Theft_Auto_V.png}
+"image": {"S" : "https://upload.wikimedia.org/wikipedia/en/a/a5/Grand_Theft_Auto_V.png"}
 }'
 
 aws dynamodb put-item \
@@ -299,7 +299,7 @@ aws dynamodb put-item \
   "country": {"S": "U.S.A."},
 "platforms": {"S": "Xbox, PC"},,
 "tags": {"S": "Single-Player, Multiplayer"},
-"image": {"S" : https://assets-prd.ignimgs.com/2021/12/06/halo1-1638834266884.jpg}
+"image": {"S" : "https://assets-prd.ignimgs.com/2021/12/06/halo1-1638834266884.jpg"}
 }'
 
 aws dynamodb put-item \
@@ -315,7 +315,7 @@ aws dynamodb put-item \
   "country": {"S": "U.S.A."},
 "platforms": {"S": "Play Station, Xbox, PC, Nintendo"},
 "tags": {"S": "Single-Player"},
-"image": {"S" : https://image.api.playstation.com/vulcan/ap/rnd/202011/0919/cDHU28ds7cCvKAnVQo719gs0.png}
+"image": {"S" : "https://image.api.playstation.com/vulcan/ap/rnd/202011/0919/cDHU28ds7cCvKAnVQo719gs0.png"}
 }'
 
 aws dynamodb put-item \
@@ -331,7 +331,7 @@ aws dynamodb put-item \
   "country": {"S": "Netherlands"},
 "platforms": {"S": "Play Station"},
 "tags": {"S": "Single-Player"},
-"image": {"S" : https://m.media-amazon.com/images/M/MV5BZDQ2NjJjYjAtNDhmMy00OTk0LTliYjctNDIwYTdlYzZjZTYxXkEyXkFqcGdeQXVyMzY0MTE3NzU@._V1_.jpg}
+"image": {"S" : "https://m.media-amazon.com/images/M/MV5BZDQ2NjJjYjAtNDhmMy00OTk0LTliYjctNDIwYTdlYzZjZTYxXkEyXkFqcGdeQXVyMzY0MTE3NzU@._V1_.jpg"}
 }'
 
 aws dynamodb put-item \
@@ -347,7 +347,7 @@ aws dynamodb put-item \
   "country": {"S": "Netherlands"},
 "platforms": {"S": "Play Station, PC"},
 "tags": {"S": "Single-Player"},
-"image": {"S" : https://gmedia.playstation.com/is/image/SIEPDC/horizon-zero-dawn-listing-thumb-01-ps4-ps5-en-02oct20?$facebook$}
+"image": {"S" : "https://gmedia.playstation.com/is/image/SIEPDC/horizon-zero-dawn-listing-thumb-01-ps4-ps5-en-02oct20?$facebook$"}
 }'
 
 aws dynamodb put-item \
@@ -363,7 +363,7 @@ aws dynamodb put-item \
   "country": {"S": "Japan"},
 "platforms": {"S": "Play Station"},
 "tags": {"S": "Single-Player"},
-"image": {"S" : https://m.media-amazon.com/images/M/MV5BNzJiNmQwNzYtMmQ0My00ZDFiLTk2NDctYjVjMTI0MzNjYjc0XkEyXkFqcGdeQXVyMTA0MTM5NjI2._V1_FMjpg_UX1000_.jpg}
+"image": {"S" : "https://m.media-amazon.com/images/M/MV5BNzJiNmQwNzYtMmQ0My00ZDFiLTk2NDctYjVjMTI0MzNjYjc0XkEyXkFqcGdeQXVyMTA0MTM5NjI2._V1_FMjpg_UX1000_.jpg"}
 }'
 
 aws dynamodb put-item \
@@ -379,7 +379,7 @@ aws dynamodb put-item \
   "country": {"S": "Japan"},
 "platforms": {"S": "Play Station, Xbox, PC, Nintendo"},
 "tags": {"S": "Single-Player"},
-"image": {"S" : https://cdn1.epicgames.com/0712176b5e3e49bfa8866c0ee1359f2d/offer/EGS_KINGDOMHEARTSIIIReMindDLC_SquareEnix_S6-1200x1600-54d8b062dc7488c71874fe2455d6c2bd.jpg}
+"image": {"S" : "https://cdn1.epicgames.com/0712176b5e3e49bfa8866c0ee1359f2d/offer/EGS_KINGDOMHEARTSIIIReMindDLC_SquareEnix_S6-1200x1600-54d8b062dc7488c71874fe2455d6c2bd.jpg"}
 }'
 
 aws dynamodb put-item \
@@ -395,7 +395,7 @@ aws dynamodb put-item \
   "country": {"S": "Japan"},
 "platforms": "S": "Nintendo"},
 {"S": "Single-Player, Multiplayer"},
-"image": {"S" : https://upload.wikimedia.org/wikipedia/en/4/44/Kirby_Dream_Buffet_decalless_cover_art.jpg}
+"image": {"S" : "https://upload.wikimedia.org/wikipedia/en/4/44/Kirby_Dream_Buffet_decalless_cover_art.jpg"}
 }'
 
 aws dynamodb put-item \
@@ -411,7 +411,7 @@ aws dynamodb put-item \
   "country": {"S": "U.S.A."},
 "platforms": {"S": "PC"},
 "tags": {"S": "Single-Player, Multiplayer"},
-"image": {"S" : https://cdn1.epicgames.com/offer/24b9b5e323bc40eea252a10cdd3b2f10/LOL_2560x1440-98749e0d718e82d27a084941939bc9d3}
+"image": {"S" : "https://cdn1.epicgames.com/offer/24b9b5e323bc40eea252a10cdd3b2f10/LOL_2560x1440-98749e0d718e82d27a084941939bc9d3"}
 }'
 
 aws dynamodb put-item \
@@ -427,7 +427,7 @@ aws dynamodb put-item \
   "country": {"S": "U.S.A."},
 "platforms": {"S": "Xbox, PC"},
 "tags": {"S": "Single-Player, Multiplayer"},
-"image": {"S" : https://upload.wikimedia.org/wikipedia/en/5/5b/Left4Dead_Windows_cover.jpg}
+"image": {"S" : "https://upload.wikimedia.org/wikipedia/en/5/5b/Left4Dead_Windows_cover.jpg"}
 }'
 
 aws dynamodb put-item \
@@ -443,7 +443,7 @@ aws dynamodb put-item \
   "country": {"S": "Japan"},
 "platforms": {"S": "Wii U, Nintendo"},
 "tags": {"S": "Single-Player, Multiplayer"},
-"image": {"S" : https://assets.nintendo.com/image/upload/c_fill,w_1200/q_auto:best/f_auto/dpr_2.0/ncom/software/switch/70010000000153/de697f487a36d802dd9a5ff0341f717c8486221f2f1219b675af37aca63bc453}
+"image": {"S" : "https://assets.nintendo.com/image/upload/c_fill,w_1200/q_auto:best/f_auto/dpr_2.0/ncom/software/switch/70010000000153/de697f487a36d802dd9a5ff0341f717c8486221f2f1219b675af37aca63bc453"}
 }'
 
 aws dynamodb put-item \
@@ -459,7 +459,7 @@ aws dynamodb put-item \
   "country": {"S": "Japan"},
 "platforms": {"S": "Play Station, PC"},
 "tags": {"S": "Single-Player"},
-"image": {"S" : https://images.gog-statics.com/e7c6ab0d300a11ed9195f0d8bf65954d042a2d4d405d99069edb3fbe3b1906c8.jpg}
+"image": {"S" : "https://images.gog-statics.com/e7c6ab0d300a11ed9195f0d8bf65954d042a2d4d405d99069edb3fbe3b1906c8.jpg"}
 }'
 
 aws dynamodb put-item \
@@ -475,7 +475,7 @@ aws dynamodb put-item \
   "country": {"S": "U.S.A."},
   "platforms": {"S": "PC"},
 "tags": {"S": "Single-Player"},
-"image": {"S" : https://upload.wikimedia.org/wikipedia/en/f/f0/MightAndMagic6Box.jpg}
+"image": {"S" : "https://upload.wikimedia.org/wikipedia/en/f/f0/MightAndMagic6Box.jpg"}
 }'
 
 aws dynamodb put-item \
@@ -491,7 +491,7 @@ aws dynamodb put-item \
   "country": {"S": "Sweden"},
 "platforms": {"S": "Play Station, Xbox, PC, Nintendo, Wii U, iOs"},
 "tags": {"S": "Single-Player, Multiplayer"},
-"image": {"S" : https://upload.wikimedia.org/wikipedia/en/5/51/Minecraft_cover.png}
+"image": {"S" : "https://upload.wikimedia.org/wikipedia/en/5/51/Minecraft_cover.png"}
 }'
 
 aws dynamodb put-item \
@@ -507,7 +507,7 @@ aws dynamodb put-item \
   "country": {"S": "Canada"},
 "platforms": {"S": "Play Station, Xbox, PC, Nintendo"},
 "tags": {"S": "Single-Player"},
-"image": {"S" : https://upload.wikimedia.org/wikipedia/en/a/aa/Outlast_cover.jpg}
+"image": {"S" : "https://upload.wikimedia.org/wikipedia/en/a/aa/Outlast_cover.jpg"}
 }'
 
 aws dynamodb put-item \
@@ -523,7 +523,7 @@ aws dynamodb put-item \
   "country": {"S": "U.S.A."},
 "platforms": {"S": "Play Station, Xbox, PC, Nintendo"},
 "tags": {"S": "Multiplayer"},
-"image": {"S" : https://i.ytimg.com/vi/GKXS_YA9s7E/maxresdefault.jpg}
+"image": {"S" : "https://i.ytimg.com/vi/GKXS_YA9s7E/maxresdefault.jpg"}
 }'
 
 aws dynamodb put-item \
@@ -539,7 +539,7 @@ aws dynamodb put-item \
   "country": {"S": "Japan"},
 "platforms": {"S": "Nintendo"},
 "tags": {"S": "Single-Player, Multiplayer"},
-"image": {"S" : https://upload.wikimedia.org/wikipedia/en/c/cb/PokemonHGSSBox.jpg}
+"image": {"S" : "https://upload.wikimedia.org/wikipedia/en/c/cb/PokemonHGSSBox.jpg"}
 }'
 
 aws dynamodb put-item \
@@ -555,7 +555,7 @@ aws dynamodb put-item \
   "country": {"S": "U.S.A."},
 "platforms": {"S": "Play Station, Xbox, PC, Stadia"},
 "tags": {"S": "Single-Player, Multiplayer"},
-"image": {"S" : https://image.api.playstation.com/cdn/UP1004/CUSA03041_00/Hpl5MtwQgOVF9vJqlfui6SDB5Jl4oBSq.png}
+"image": {"S" : "https://image.api.playstation.com/cdn/UP1004/CUSA03041_00/Hpl5MtwQgOVF9vJqlfui6SDB5Jl4oBSq.png"}
 }'
 
 aws dynamodb put-item \
@@ -571,7 +571,7 @@ aws dynamodb put-item \
   "country": {"S": "Japan"},
 "platforms": {"S": "Play Station, PC, Dreamcast, Gamecube"},
 "tags": {"S": "Single-Player"},
-"image": {"S" : https://upload.wikimedia.org/wikipedia/en/a/a5/Resident_Evil_3_Cover.jpg}
+"image": {"S" : "https://upload.wikimedia.org/wikipedia/en/a/a5/Resident_Evil_3_Cover.jpg"}
 }'
 
 aws dynamodb put-item \
@@ -587,7 +587,7 @@ aws dynamodb put-item \
   "country": {"S": "Japan"},
 "platforms": {"S": "Play Station, Xbox, PC, Stadia"},
 "tags": {"S": "Single-Player, Multiplayer"},
-"image": {"S" : https://upload.wikimedia.org/wikipedia/en/2/29/Rise_of_the_Tomb_Raider.jpg}
+"image": {"S" : "https://upload.wikimedia.org/wikipedia/en/2/29/Rise_of_the_Tomb_Raider.jpg"}
 }'
 
 aws dynamodb put-item \
@@ -603,7 +603,7 @@ aws dynamodb put-item \
   "country": {"S": "Japan"},
 "platforms": {"S": "Play Station"},
 "tags": {"S": "Single-Player"},
-"image": {"S" : https://image.api.playstation.com/vulcan/img/rnd/202010/2319/XtqYrG2LWer39eExYBsh9J5x.png}
+"image": {"S" : "https://image.api.playstation.com/vulcan/img/rnd/202010/2319/XtqYrG2LWer39eExYBsh9J5x.png"}
 }'
 
 aws dynamodb put-item \
@@ -619,7 +619,7 @@ aws dynamodb put-item \
   "country": {"S": "Japan"},
 "platforms": {"S": "Play Station, PC"},
 "tags": {"S": "Single-Player"},
-"image": {"S" : https://upload.wikimedia.org/wikipedia/en/f/f1/Silent_Hill_Homecoming.jpg}
+"image": {"S" : "https://upload.wikimedia.org/wikipedia/en/f/f1/Silent_Hill_Homecoming.jpg"}
 }'
 
 aws dynamodb put-item \
@@ -635,7 +635,7 @@ aws dynamodb put-item \
   "country": {"S": "U.S.A."},
 "platforms": {"S": "Play Station, Xbox, PC, Nintendo"},
 "tags": {"S": "Single-Player"},
-"image": {"S" : https://upload.wikimedia.org/wikipedia/en/1/15/The_Elder_Scrolls_V_Skyrim_cover.png}
+"image": {"S" : "https://upload.wikimedia.org/wikipedia/en/1/15/The_Elder_Scrolls_V_Skyrim_cover.png"}
 }'
 
 aws dynamodb put-item \
@@ -651,7 +651,7 @@ aws dynamodb put-item \
   "country": {"S": "Japan"},
   "platforms": {"S": "Play Station, Xbox, PC, Arcade"},
 "tags": {"S": "Single-Player, Multiplayer"},
-"image": {"S" : https://cdn.cloudflare.steamstatic.com/steam/apps/1364780/capsule_616x353.jpg?t=1678858664}
+"image": {"S" : "https://cdn.cloudflare.steamstatic.com/steam/apps/1364780/capsule_616x353.jpg?t=1678858664"}
 }'
 
 aws dynamodb put-item \
@@ -667,7 +667,7 @@ aws dynamodb put-item \
   "country": {"S": "Japan"},
 "platforms": {"S": "Wii U, Nintendo"},
 "tags": {"S": "Single-Player, Multiplayer"},
-"image": {"S" : https://upload.wikimedia.org/wikipedia/en/5/5e/Super_Mario_3D_World_box_art.jpg}
+"image": {"S" : "https://upload.wikimedia.org/wikipedia/en/5/5e/Super_Mario_3D_World_box_art.jpg"}
 }'
 
 aws dynamodb put-item \
@@ -683,7 +683,7 @@ aws dynamodb put-item \
   "country": {"S": "Japan"},
 "platforms": {"S": "Nintendo"},
 "tags": {"S": "Single-Player"},
-"image": {"S" : https://upload.wikimedia.org/wikipedia/en/6/6a/Super_Mario_64_box_cover.jpg}
+"image": {"S" : "https://upload.wikimedia.org/wikipedia/en/6/6a/Super_Mario_64_box_cover.jpg"}
 }'
 
 aws dynamodb put-item \
@@ -699,7 +699,7 @@ aws dynamodb put-item \
   "country": {"S": "Japan"},
 "platforms": {"S": "Nintendo"},
 "tags": {"S": "Single-Player, Multiplayer"},
-"image": {"S" : https://assets.nintendo.com/image/upload/c_fill,w_1200/q_auto:best/f_auto/dpr_2.0/ncom/software/switch/70010000012332/ac4d1fc9824876ce756406f0525d50c57ded4b2a666f6dfe40a6ac5c3563fad9}
+"image": {"S" : "https://assets.nintendo.com/image/upload/c_fill,w_1200/q_auto:best/f_auto/dpr_2.0/ncom/software/switch/70010000012332/ac4d1fc9824876ce756406f0525d50c57ded4b2a666f6dfe40a6ac5c3563fad9"}
 }'
 
 aws dynamodb put-item \
@@ -715,7 +715,7 @@ aws dynamodb put-item \
   "country": {"S": "U.S.A."},
   "platforms": {"S": "Play Station"},
   "tags": {"S": "Single-Player, Multiplayer"},
-  "image": {"S" : https://upload.wikimedia.org/wikipedia/en/4/46/Video_Game_Cover_-_The_Last_of_Us.jpg}
+  "image": {"S" : "https://upload.wikimedia.org/wikipedia/en/4/46/Video_Game_Cover_-_The_Last_of_Us.jpg"}
 }'
 
 aws dynamodb put-item \
@@ -731,7 +731,7 @@ aws dynamodb put-item \
   "country": {"S": "Japan"},
   "platforms": {"S": "Wii U, Nintendo"},
 "tags": {"S": "Single-Player"},
-"image": {"S" : https://assets.nintendo.com/image/upload/c_fill,w_1200/q_auto:best/f_auto/dpr_2.0/ncom/software/switch/70010000000025/7137262b5a64d921e193653f8aa0b722925abc5680380ca0e18a5cfd91697f58}
+"image": {"S" : "https://assets.nintendo.com/image/upload/c_fill,w_1200/q_auto:best/f_auto/dpr_2.0/ncom/software/switch/70010000000025/7137262b5a64d921e193653f8aa0b722925abc5680380ca0e18a5cfd91697f58"}
 }'
 
 aws dynamodb put-item \
@@ -747,7 +747,7 @@ aws dynamodb put-item \
   "country": {"S": "Japan"},
   "platforms": {"S": "Nintendo, Gamecube"},
 "tags": {"S": "Single-Player"},
-"image": {"S" : https://cdn.europosters.eu/image/750/posters/the-legend-of-zelda-majora-s-mask-i24270.jpg}
+"image": {"S" : "https://cdn.europosters.eu/image/750/posters/the-legend-of-zelda-majora-s-mask-i24270.jpg"}
 }'
 
 aws dynamodb put-item \
@@ -763,7 +763,7 @@ aws dynamodb put-item \
   "country": {"S": "Japan"},
   "platforms": {"S": "Nintendo, Gamecube"},
 "tags": {"S": "Single-Player"},
-"image": {"S" : https://assets-prd.ignimgs.com/2021/12/07/zeldaoot-ignart-1638901927766.jpg}
+"image": {"S" : "https://assets-prd.ignimgs.com/2021/12/07/zeldaoot-ignart-1638901927766.jpg"}
 }'
 
 aws dynamodb put-item \
@@ -779,7 +779,7 @@ aws dynamodb put-item \
   "country": {"S": "U.S.A."},
 "platforms": {"S": "PC"},
 "tags": {"S": "Single-Player"},
-"image": {"S" : https://upload.wikimedia.org/wikipedia/en/2/22/The_Sims_Coverart.png}
+"image": {"S" : "https://upload.wikimedia.org/wikipedia/en/2/22/The_Sims_Coverart.png"}
 }'
 
 aws dynamodb put-item \
@@ -795,7 +795,7 @@ aws dynamodb put-item \
   "country": {"S": "U.S.A."},
   "platforms": {"S": "Play Station, PC, Nintendo, Dreamcast"},
   "tags": {"S": "Single-Player, Multiplayer"},
-  "image": {"S" : https://upload.wikimedia.org/wikipedia/en/thumb/4/41/Tony_Hawk%27s_Pro_Skater_2_cover.png/220px-Tony_Hawk%27s_Pro_Skater_2_cover.png}
+  "image": {"S" : "https://upload.wikimedia.org/wikipedia/en/thumb/4/41/Tony_Hawk%27s_Pro_Skater_2_cover.png/220px-Tony_Hawk%27s_Pro_Skater_2_cover.png"}
 }'
 
 aws dynamodb put-item \
@@ -811,7 +811,7 @@ aws dynamodb put-item \
   "country": {"S": "Japan"},
   "platforms": {"S": "Play Station"},
   "tags": {"S": "Single-Player, Multiplayer"},
-  "image": {"S" : https://assets-prd.ignimgs.com/2021/12/10/uncharted2-1639126191037.jpeg}
+  "image": {"S" : "https://assets-prd.ignimgs.com/2021/12/10/uncharted2-1639126191037.jpeg"}
 }'
 
 aws dynamodb put-item \
@@ -827,6 +827,6 @@ aws dynamodb put-item \
   "country": {"S": "U.S.A."},
   "platforms": {"S": "PC"},
 "tags": {"S": "Multiplayer"},
-"image": {"S" : https://assets-prd.ignimgs.com/2022/04/19/wow-dragonflight-button-1-1650398895381.jpg}
+"image": {"S" : "https://assets-prd.ignimgs.com/2022/04/19/wow-dragonflight-button-1-1650398895381.jpg"}
 }'
 
