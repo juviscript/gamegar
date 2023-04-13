@@ -35,17 +35,63 @@
     line-height: 40px;
 }
 
-.about {
-    margin-left: 20px;
-}
-
 
 .card {
-    color: var(--primary-color);
-    background-color: var(--secondary-color);
-    margin: 20px;
-    padding: 10px 20px;
+    border: 1px solid #DBD3DE;
+    border-radius: 20px;
+    position: relative;
+    margin: 10px auto;
+    padding: 2rem 2rem;
+    text-align: center;
+    max-height: 10%;
+    background-color: #DBD3DE;
+    color: white;
+    max-width: 1600px;
+    justify-content: flex-start;
+    font-family: Tahoma;
+    display: flex;
+    align-items: flex-start;
+
 }
+
+#game-img {
+    max-width: 200px;
+}
+
+#game-img-container {
+
+    background:Red;
+    max-width: 210px;
+    display:  flex;
+    flex-direction: row;
+
+}
+#game-details {
+    width: 1000px;
+    display:  flex;
+    flex-direction: row;
+}
+
+#info-2 {
+    float: right;
+}
+
+#description {
+ display: block;
+}
+
+ul {
+    list-style-type: none;
+}
+
+#game-title {
+    color: #4F3459;
+    justify-content: center;
+    margin: 2px;
+    padding: 0;
+}
+
+
 
 .validated-field:invalid {
     outline: 2px solid var(--error-color);
@@ -82,6 +128,8 @@
 }
 
 
+/* Gamegar Header and Logo at top + links */
+
 .parent {
     border: 1px solid #A569BD;
     border-radius: 20px;
@@ -109,15 +157,14 @@
 
   .link-container {
     display: block;
-    vertical-align: middle;
-    align-items: center;
-    justify-content: center;
+        vertical-align: middle;
+        align-items: center;
+        justify-content: center;
     min-width: 50%;
     max-width: 40%;
-
     margin: 10px auto;
     background-color: #BB8FCE;
-      border-radius: 10px;
+    border-radius: 10px;
   }
 
   .links {
@@ -136,21 +183,31 @@
       font-family: Tahoma;
       font-weight: bold;
       border-radius: 5px;
-      border-color: none;
+      border-color: white;
   }
 
-a:link { text-decoration: none;
-color: black;}
+a:link {
+    text-decoration: none;
+    color: black;
+}
 
 
-a:visited { text-decoration: none; }
+a:visited {
+    text-decoration: none;
+}
 
 
-a:hover { text-decoration: none;
-background-color: rebeccapurple;}
+a:hover {
+    text-decoration: none;
+    background-color: rebeccapurple;
+}
 
 
-a:active { text-decoration: none; }
+a:active {
+    text-decoration: none;
+}
+
+/* Typing text that shows on reload. */
 
   .typewriter {
       float: left;

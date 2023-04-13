@@ -89,13 +89,18 @@ class GameSearchPage extends BaseClass {
             gameHtml += ` 
 
                 <div class = "card">
-                    <h2> ${games[i].title} </h2>
-
-                    <div id = "game-image">
-                        <img src = ${games[i].image} width="400">
+                
+                    <div id = "game-title">
+                        <h2> ${games[i].title} </h2>
+                    </div>
+                    
+                    <div id = "game-image-container">
+                        <img src = ${games[i].image} id = "game-img">
                     </div>
 
-                        <div>
+                        <div id = "game-details">
+                            
+
                             <p id = "info-1">
                                 <ul>
                                     <li>Developer: ${games[i].developer}</li>
@@ -105,11 +110,13 @@ class GameSearchPage extends BaseClass {
                             </p>
 
                             <p id = "info-2">
-                                <li>Genre: ${games[i].genre}</li>
-                                <li>Platforms: ${games[i].platforms}</li>
-                                <li>Tags: ${games[i].tags}</li>
+                                <ul>
+                                    <li>Genre: ${games[i].genre}</li>
+                                    <li>Platforms: ${games[i].platforms}</li>
+                                    <li>Tags: ${games[i].tags}</li>
+                                </ul>
                             </p>
-
+                            <br>
                             <p id = "description">
                                 ${games[i].description}
                             </p>
