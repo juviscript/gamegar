@@ -109,16 +109,6 @@ class GameAdmin extends BaseClass {
 
         ;
 
-        // const output = document.querySelector('output');
-        // const form = document.querySelector('form');
-        //
-        // form.addEventListener('input', (e) => {
-        //     const data = new FormData(form);
-        //     const url = new URL(form.action, window.location.href);              https://www.aleksandrhovhannisyan.com/blog/serializing-html-form-data-with-javascript/
-        //     url.search = new URLSearchParams(data).toString();
-        //     // do whatever you want with the URL
-        // });
-
         // Create the concert
         const games = await this.client.createGame(title, developer, genre, year, description, country, platforms, tags, this.errorHandler);
 

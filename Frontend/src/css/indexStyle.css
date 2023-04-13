@@ -35,6 +35,7 @@
     line-height: 40px;
 }
 
+/* Game and User Tiles */
 
 .card {
     border: 1px solid #DBD3DE;
@@ -43,9 +44,9 @@
     margin: 10px auto;
     padding: 2rem 2rem;
     text-align: center;
-    max-height: 10%;
+    max-height: 15%;
     background-color: #DBD3DE;
-    color: white;
+    color: #AB90BD;
     max-width: 1600px;
     justify-content: flex-start;
     font-family: Tahoma;
@@ -54,55 +55,46 @@
 
 }
 
+.card:hover {
+    transform: scale(102%);
+}
+
 #game-img {
-    max-width: 200px;
+    max-width: 300px;
+    margin: auto;
 }
 
 #game-img-container {
-
     background:Red;
-    max-width: 210px;
-    display:  flex;
-    flex-direction: row;
-
+    display:  inline-block;
+    margin: 5px 20px 5px 40px;
 }
+
 #game-details {
-    width: 1000px;
-    display:  flex;
-    flex-direction: row;
+    width: 1200px;
+    display:  block;
+    float: right;
+    margin: 5px 0px 5px 75px;
+    height: 100%;
 }
 
 #info-2 {
-    float: right;
+    text-align: left;
+    margin: auto;
 }
 
 #description {
- display: block;
+     display: block;
+     text-align: center;
+     width: 80%;
+     margin: auto;
 }
 
-ul {
-    list-style-type: none;
-}
-
-#game-title {
+h1 {
+    display: block;
     color: #4F3459;
-    justify-content: center;
-    margin: 2px;
-    padding: 0;
-}
-
-
-
-.validated-field:invalid {
-    outline: 2px solid var(--error-color);
-}
-
-.validated-field:focus:invalid {
-    color: var(--error-color);
-}
-
-.card-content {
-    max-width: 500px;
+    text-align: center;
+    margin: 0px auto 20px;
 }
 
 .card-content .form-field {
