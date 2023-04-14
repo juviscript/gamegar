@@ -123,6 +123,18 @@ class GameAdmin extends BaseClass {
 
     }
 
+    async createUser(email, password) {
+        try {
+            const response = await this.client.post('/userTable/register', {
+                email: email,
+                password: password
+            });
+            return response.data;
+        } catch (error) {
+            throw error;
+        }
+    }
+
 
 
 }
