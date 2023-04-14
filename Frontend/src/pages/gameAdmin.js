@@ -72,13 +72,12 @@ class GameAdmin extends BaseClass {
                 `;
             }
         } else {
-            gameHtml = `<div> There are no games... :( </div>`;
+            gameHtml = `<div> Thank you for using our website :) </div>`;
         }
 
 
         document.getElementById("games-list").innerHTML = gameHtml;
     }
-
 
 
     // Event Handlers --------------------------------------------------------------------------------------------------
@@ -111,10 +110,19 @@ class GameAdmin extends BaseClass {
         ;
 
         // Create the concert
-        const games = await this.client.createGame(title, developer, genre, year, description, country, platforms, tags, image, this.errorHandler);
+        const createdGame = await this.client.createGame(title, developer, genre, year, description, country, platforms, tags, image, this.errorHandler);
 
         // Reset the form
         document.getElementById("create-game-form").reset();
+
+        this.dataStore.set("game", createdGame);
+
+        if (createdGame) {
+            this.showMessage(`Added ${createdGame.title} to the database!`)
+            console.log(`Added ${createdGame.title} to the database!`)
+        } else {
+            this.errorHandler("Please try again.");
+        }
 
         // Re-enable the form
         createButton.innerText = 'Create';
@@ -122,20 +130,6 @@ class GameAdmin extends BaseClass {
         this.onRefresh();
 
     }
-
-    async createUser(email, password) {
-        try {
-            const response = await this.client.post('/userTable/register', {
-                email: email,
-                password: password
-            });
-            return response.data;
-        } catch (error) {
-            throw error;
-        }
-    }
-
-
 
 }
 
