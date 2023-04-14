@@ -3,6 +3,7 @@ import DataStore from "../util/DataStore";
 import VideoGameClient from "../api/videoGameClient";
 import UserClient from "../api/userClient";
 
+
 /**
  * Logic needed for the view playlist page of the website.
  */
@@ -10,7 +11,7 @@ class GameSearchPage extends BaseClass {
 
     constructor() {
         super();
-        this.bindClassMethods(['onStateChange', 'renderFulLGameList', 'renderUserList', 'onPopUpSubmit', 'showUserList', 'showPopUp', 'showGameList', 'showDevInfo'], this);
+        this.bindClassMethods(['onStateChange', 'renderFulLGameList', 'renderUserList', 'onPopUpSubmit', 'showUserList', 'showPopUp', 'showGameList', 'showDevInfo', 'renderSearchedGame'], this);
         this.dataStore = new DataStore();
 
         // Possible loading states of the page.
@@ -143,6 +144,8 @@ class GameSearchPage extends BaseClass {
                         <b>Platforms:</b> ${games[i].platforms}
                         <br>
                         <b>Tags:</b> ${games[i].tags}
+                        <br>
+                        <b>Game ID:</b> ${games[i].id}
                         </p>
                         <br>
                         <p id = "description">
@@ -193,6 +196,51 @@ class GameSearchPage extends BaseClass {
 
     }
 
+    async renderSearchedGame() {
+        let resultArea = document.getElementById("pop-up-search-list");
+        const gameById = this.dataStore.get("game");
+
+        let gameHTML = "";
+        if (gameById) {
+            gameHTML += `
+                <div class = "card">
+                    <div id = "game-image-container">
+                        <img src = ${gameById.image} id = "game-img">
+                    </div>
+
+                    <div id = "game-details">
+                        <p id = "info-2">
+                          <h1> ${gameById.title} </h1>
+                        <b>Developer:</b> ${gameById.developer}
+                        <br>
+                        <b>Country of Origin:</b> ${gameById.country}
+                        <br>
+                        <b>Year:</b> ${gameById.year}
+                        <br>
+                        <b>Genre:</b> ${gameById.genre}
+                        <br>
+                        <b>Platforms:</b> ${gameById.platforms}
+                        <br>
+                        <b>Tags:</b> ${gameById.tags}
+                        <br>
+                        <b>Game ID:</b> ${gameById.id}
+                        </p>
+                        <br>
+                        <p id = "description">
+                            ${gameById.description}
+                        </p>
+                    </div>
+
+                    </div>
+                    `
+                } else {
+                    resultArea.innerHTML = "Naw fam.";
+                }
+
+                document.getElementById("pop-up-search-list").innerHTML = gameHTML;
+    }
+
+
 
 
 
@@ -228,97 +276,30 @@ class GameSearchPage extends BaseClass {
 
     async onPopUpSubmit(event) {
             event.preventDefault();
-            console.log("Pop up search rendering...");
+            console.log("Pop up search submitting...");
 
             let submitButton = document.getElementById('pop-up-search-submit');
-            submitButton.innerText = 'Loading...'
+            submitButton.innerText = 'Searching...'
             submitButton.disabled = true;
 
-            const games = await this.client.getAllGames(this.errorHandler);
-            this.dataStore.set("games", games);
-            this.dataStore.get("games");
+            let gameId = document.getElementById("game-search-id").value;
+            console.log(gameId);
+            this.dataStore.set("game", null);
 
-            let gameId = document.getElementById('all-games-button')
-            let foundGame = null;
+            const game = await this.client.getGameById(gameId, this.errorHandler)
+            console.log(game);
+            this.dataStore.set("game", game);
 
+            if (game) {
+                console.log("Game found! Rendering...");
+                await this.renderSearchedGame();
+            } else {
+                console.log("Error finding parameter...");
+            }
 
-
-//            let gameId = document.getElementById("game-search-id").value;
-//            const game = await this.client.getGameById(gameId, this.errorHandler);
-//            let gameHtml = "";
-//
-//
-//            gameHtml += `
-//
-//                <div class = "card">
-//
-//
-//                    <div id = "game-details">
-//                        <p id = "info-2">
-//                          <h1> ${game.title} </h1>
-//                        <b>Developer:</b> ${game.developer}
-//                        <br>
-//                        <b>Country of Origin:</b> ${game.country}
-//                        <br>
-//                        <b>Year:</b> ${game.year}
-//                        <br>
-//                        <b>Genre:</b> ${game.genre}
-//                        <br>
-//                        <b>Platforms:</b> ${game.platforms}
-//                        <br>
-//                        <b>Tags:</b> ${game.tags}
-//                        </p>
-//                        <br>
-//                        <p id = "description">
-//                            ${game.description}
-//                        </p>
-//                    </div>
-//
-//                </div>
-//
-//                        `;
-
-//
-//
-//            let gameHtml = "";
-//
-//            for (const game of games) {
-//                if (game.id === gameId) {
-//                    gameHtml += `
-//                        <div class = "card">
-//                            <div id = "game-image-container">
-//                                <img src = ${game.image} id = "game-img">
-//                            </div>
-//
-//                            <div id = "game-details">
-//                                <p id = "info-2">
-//                                  <h1> ${game.title} </h1>
-//                                <b>Developer:</b> ${game.developer}
-//                                <br>
-//                                <b>Country of Origin:</b> ${game.country}
-//                                <br>
-//                                <b>Year:</b> ${game.year}
-//                                <br>
-//                                <b>Genre:</b> ${game.genre}
-//                                <br>
-//                                <b>Platforms:</b> ${game.platforms}
-//                                <br>
-//                                <b>Tags:</b> ${game.tags}
-//                                </p>
-//                                <br>
-//                                <p id = "description">
-//                                    ${game.description}
-//                                </p>
-//                            </div>
-//
-//                        </div>
-//                            `;
-//                } else {
-//                        gameHtml = "No games with that specific value found!"
-//                }
-                document.getElementById("pop-up-search-list").innerHTML = gameHtml;
-        }
-
+            submitButton.innerText = "Submit";
+            submitButton.disabled = false;
+    }
 }
 
 

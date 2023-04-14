@@ -45,7 +45,7 @@ export default class VideoGameClient extends BaseClass {
     async getGameById(id, errorCallback) {
         try {
             const response = await this.client.get(`/games/${id}`);
-            return response.data.game;
+            return response.data;
         } catch (error) {
             this.handleError("getGameById", error, errorCallback)
         }
