@@ -38,7 +38,7 @@
         </div>
     </div>
 
-    <div class = "admin">
+
         <div class = "link-container">
 
             <div class = "links">
@@ -48,8 +48,9 @@
 
         </div>
 
-
+    <div class = "admin">
     <div class = "card" id = "create-new-game">
+        <h2> Add a Game: </h2>
         <form class = "game-content" id = "create-game-form" >
             <p class = "form-field">
                 <label>Title:</label>
@@ -81,11 +82,13 @@
             </p>
             <p class = "form-field">
                 <label>Short Description:</label>
-            <input type = "textbox" id = "description">
+            <input type = "textarea" id = "description">
             </p>
             <p class = "form-field">
                 <label>Add image link:</label>
                 <input type = "text" id = "image">
+                <br>
+                <br>
                 <button type="submit" id="create-game">Create</button>
             </p>
         </form>

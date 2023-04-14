@@ -14,11 +14,12 @@ class GameSearchPage extends BaseClass {
         this.dataStore = new DataStore();
 
         // Possible loading states of the page.
-        this.GET_ALL_GAMES = 0;
-        this.POP_UP_SEARCH = 1;
-        this.NO_GAMES = 2;
-        this.GET_ALL_USERS = 3;
-        this.SHOW_DEV_INFO = 4;
+        this.HOME = 0;
+        this.GET_ALL_GAMES = 1;
+        this.POP_UP_SEARCH = 2;
+        this.NO_GAMES = 3;
+        this.GET_ALL_USERS = 4;
+        this.SHOW_DEV_INFO = 5;
     }
 
 
@@ -37,9 +38,9 @@ class GameSearchPage extends BaseClass {
         this.client = new VideoGameClient();
         this.userClient = new UserClient();
         console.log("mount");
-        const games = await this.client.getAllGames();
-        this.dataStore.set("games", games);
-        this.dataStore.set("state", this.GET_ALL_GAMES); //Set the state to get all games and render them
+        // const games = await this.client.getAllGames();
+        // this.dataStore.set("games", games);
+        this.dataStore.set("state", this.HOME); //Set the state to get all games and render them
 
     }
 
@@ -50,7 +51,10 @@ class GameSearchPage extends BaseClass {
         const getAllGames = document.getElementById("games-list");
         const noGamesSection = document.getElementById("empty-games");
         const getAllUsers = document.getElementById("user-list");
-        const showDevInfo = document.getElementById("about-the-devs")
+        const showDevInfo = document.getElementById("about-the-devs");
+        const headerCard = document.getElementById("css-typing");
+        const headerCard2 = document.getElementById("css-typing-2");
+
 ;
         if (state === this.POP_UP_SEARCH) {
             popUpSearch.classList.add("active");
@@ -58,12 +62,16 @@ class GameSearchPage extends BaseClass {
             noGamesSection.classList.remove("active");
             getAllUsers.classList.remove("active");
             showDevInfo.classList.remove("active");
+            headerCard.classList.add("active");
+            headerCard2.classList.remove("active");
         } else if (state === this.GET_ALL_GAMES) {
             popUpSearch.classList.remove("active");
             getAllGames.classList.add("active");
             getAllUsers.classList.remove("active");
             noGamesSection.classList.remove("active");
             showDevInfo.classList.remove("active");
+            headerCard.classList.add("active");
+            headerCard2.classList.remove("active");
             await this.renderFulLGameList(); //renders gamelist
         } else if (state === this.NO_GAMES) {
             popUpSearch.classList.remove("active");
@@ -71,12 +79,16 @@ class GameSearchPage extends BaseClass {
             noGamesSection.classList.add("active");
             getAllUsers.classList.remove("active");
             showDevInfo.classList.remove("active");
+            headerCard.classList.add("active");
+            headerCard2.classList.remove("active");
         } else if (state === this.GET_ALL_USERS) {
             popUpSearch.classList.remove("active");
             getAllGames.classList.remove("active");
             noGamesSection.classList.remove("active");
             getAllUsers.classList.add("active");
             showDevInfo.classList.remove("active");
+            headerCard.classList.add("active");
+            headerCard2.classList.remove("active");
             await this.renderUserList(); //renders userlist
         } else if (state === this.SHOW_DEV_INFO) {
             popUpSearch.classList.remove("active");
@@ -84,6 +96,16 @@ class GameSearchPage extends BaseClass {
             noGamesSection.classList.remove("active");
             getAllUsers.classList.remove("active");
             showDevInfo.classList.add("active");
+            headerCard.classList.remove("active");
+            headerCard2.classList.add("active");
+        } else if (state === this.HOME) {
+            popUpSearch.classList.remove("active");
+            getAllGames.classList.remove("active");
+            noGamesSection.classList.remove("active");
+            getAllUsers.classList.remove("active");
+            showDevInfo.classList.remove("active");
+            headerCard.classList.add("active");
+            headerCard2.classList.remove("active");
         }
     }
 

@@ -5,12 +5,6 @@
     --error-color: rgba(194, 0, 0, 0.71);
 }
 
-.background {
-    background-color:white;
-    margin: 0;
-    counter-reset: section;
-}
-
 .header {
     /* Flexbox: https://css-tricks.com/snippets/css/a-guide-to-flexbox/ */
     display: flex;
@@ -60,15 +54,20 @@
 
 /* Gamegar Header and Logo at top + links */
 
+#gamegar {
+    float: right;
+    max-width: 600px;
+}
+
 .parent {
-    border: 1px solid #A569BD;          /* If you would like to change the background color where the Gamegar logo is, change the #A569BD here and... */
+    border: 1px solid #9b72cf;          /* If you would like to change the background color where the Gamegar logo is, change the #A569BD here and... */
     border-radius: 20px;
     position: relative;
     margin: 10px auto;
     padding: 2rem 2rem;
     text-align: center;
     height: 40%;
-    background-color: #A569BD;          /* .... here as well! */
+    background-color: #9b72cf;          /* .... here as well! */
     color: white;
     max-width: 1600px;
     justify-content: center;
@@ -85,69 +84,65 @@
     
   }
 
-  .link-container {
+.link-container {
     display: block;
-        vertical-align: middle;
-        align-items: center;
-        justify-content: center;
+    vertical-align: middle;
+    align-items: center;
+    justify-content: center;
     min-width: 50%;
     max-width: 40%;
     margin: 10px auto;
-    background-color: #BB8FCE;
+    background-color: #c8b1e4;
     border-radius: 10px;
-  }
+}
 
-  .links {
+.links {
     align-items: center;
     justify-content: center;
     text-align: center;
     width: auto;
     color: blue;
     padding: 10px;
-      font-family: Tahoma;
-    border: 3px solid #BB8FCE;
-      border-radius: 10px;
-  }
+    font-family: Tahoma;
+    border: 3px solid #c8b1e4;
+    border-radius: 10px;
+}
 
-  button {
-      font-family: Tahoma;
-      font-weight: bold;
-      border-radius: 5px;
-      border-color: white;
-  }
+button {
+  font-family: Tahoma;
+  font-weight: bold;
+  border-radius: 5px;
+  border-color: white;
+}
 
-  button:hover {
+button:hover {
     color: lilac;
-  }
-
-
-a:visited {
-    text-decoration: none;
 }
 
 
-a:hover {
-    text-decoration: none;
-    background-color: rebeccapurple;
-}
+a:link { text-decoration: none; }
 
 
-a:active {
-    text-decoration: none;
-}
+a:visited { text-decoration: none; }
+
+
+a:hover { text-decoration: none; }
+
+
+a:active { text-decoration: none; }
 
 /* Game and User Tiles */
 
 .card {
-    border: 1px solid #DBD3DE;
+    border: 1px solid #c8b1e4;
     border-radius: 20px;                /* If you want to chang the edges to be more curved, make the number bigger! */
     position: relative;
     margin: 10px auto;
     padding: 2rem 2rem;
     text-align: center;
     max-height: 15%;
-    background-color: #DBD3DE;          /* Here would be the background color for the tiles/cards that the game information is in. */
-    color: #AB90BD;                     /* Here you can change the text color of everything in it. */
+    background-color: #f4effa;          /* Here would be the background color for the tiles/cards that the game information is in. */
+    color: #532b88;                     /* Here you can change the text color of everything in it. */
     max-width: 1600px;                  /* But if you want specific things specific colors, then scroll down and look at the other comments. */
     justify-content: flex-start;
     font-family: Tahoma;
@@ -179,8 +174,11 @@ a:active {
 }
 
 #info-2 {
-    text-align: left;
-    margin: auto;                   /* If you want to change the text color of JUST "Developer, Genre, Tags..." etc, then add "color: <insert color here>" under margin. */
+    display:-moz-inline-stack;
+    display:inline-block;
+    zoom:1;
+    *display:inline;
+    text-align: left;              /* If you want to change the text color of JUST "Developer, Genre, Tags..." etc, then add "color: <insert color here>" under margin. */
 }
 
 #description {
@@ -192,9 +190,11 @@ a:active {
 
 h1 {
     display: block;
-    color: #4F3459;                 /* If you want to change the text color of JUST the game title, then add the same thing as the other two under here. */
+    color: #220135;                 /* If you want to change the text color of JUST the game title, then add the same thing as the other two under here. */
     text-align: center;
     margin: 0px auto 20px;
+    padding-top: 12px;
+    padding-bottom: 10px;
 }
 
 /* Search Box Styling */
@@ -215,24 +215,99 @@ h1 {
     margin: auto;
 }
 
-/* Typing text that shows on reload. */
 
-  .typewriter {
-      float: left;
-  }
 
-  #gamegar {
-      float: right;
-      max-width: 600px;
-  }
+#about-the-devs {
+    border: 1px solid #DBD3DE;
+    border-radius: 20px;
+    margin: 10px auto;
+    padding: 2rem 2rem;
+    text-align: center;
+    color: #AB90BD;
+    max-width: 1600px;
+    font-family: Tahoma;
+    font-weight: bold;
+    font-size: 15px;
+}
 
+.devs {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-column-gap: 5px;
+    grid-row-gap: 5px;
+    width: 1200px;
+    margin: auto;
+}
+
+
+
+#juvi {
+    grid-area: 1 / 1 / 2 / 2;
+    border: 5px solid #f4effa;
+    border-radius: 20px;
+    background-color: #f4effa;
+    color: #3a015c;
+}
+#melissa {
+    grid-area: 1 / 2 / 2 / 3;
+    border: 5px solid #f4effa;
+    border-radius: 20px;
+    background-color: #f4effa;
+    color: #3a015c;
+}
+
+#khristian {
+    grid-area: 2 / 1 / 3 / 2;
+    border: 5px solid #f4effa;
+    border-radius: 20px;
+    background-color: #f4effa;
+    color: #3a015c;
+}
+
+#nicole{
+    grid-area: 2 / 2 / 3 / 3;
+    border: 5px solid #f4effa;
+    border-radius: 20px;
+    background-color: #f4effa;
+    color: #3a015c;
+}
+
+#deets {
+    display:-moz-inline-stack;
+    display:inline-block;
+    zoom:1;
+    *display:inline;
+    text-align: left;
+}
+
+img {
+    display: block;
+    margin: auto;
+}
+
+#deets-jr {
+    margin: auto;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    text-align: center;
+}
 
 .circular--square {
     border-radius: 50%;
 }
 
 
- .css-typing p {
+/* Typing text that shows on reload. */
+
+.typewriter {
+    float: left;
+}
+
+
+
+
+ #css-typing p, #css-typing-2 p {
   border-right: .50em solid purple;                   /* Reference: https://css-tricks.com/snippets/css/typewriter-effect/ */
   font-family: Tahoma;
   font-weight: bold;
@@ -241,7 +316,7 @@ h1 {
   overflow: hidden;                                   /* Any text that bleeds over the borders will be hidden. */
   text-align: left;                                   /* Keeps the text oriented to the left. */
 }
-.css-typing p:nth-child(1) {                          /* 1st paragraph in the 'css-typing' class in the HTML file. */
+#css-typing p:nth-child(1), #css-typing-2 p:nth-child(1) {                          /* 1st paragraph in the 'css-typing' class in the HTML file. */
   width: 90%;                                         /* How much of the container this text animation will occupy. */
   -webkit-animation: type 1s steps(60);          
    animation: type 1s steps(60);                      
@@ -249,7 +324,7 @@ h1 {
   animation-fill-mode: forwards;                      
 }
 
-.css-typing p:nth-child(2) {
+#css-typing p:nth-child(2), #css-typing-2 p:nth-child(2) {
   width: 90%;                                         
   opacity: 0;
   -webkit-animation: type2 1s steps(80, end);
@@ -260,7 +335,7 @@ h1 {
   animation-fill-mode: forwards;
 }
 
-.css-typing p:nth-child(3) {
+#css-typing p:nth-child(3), #css-typing-2 p:nth-child(3) {
   width: 60%;
   opacity: 0;
   -webkit-animation: type3 1s steps(100, end), blink .5s step-end infinite alternate;

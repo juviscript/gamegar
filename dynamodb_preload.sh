@@ -393,8 +393,8 @@ aws dynamodb put-item \
   "year": {"N": "2022"},
   "description": {"S": "Kirby'\''s Dream Buffet is a multiplayer game where four ball-shaped Kirbys roll through food-themed courses and compete to collect the most strawberries. Players can defeat enemies and use special abilities on the stage to attack each other and collect bonuses. The game can be played both locally and online with both random matching and private lobbies."},
   "country": {"S": "Japan"},
-"platforms": "S": "Nintendo"},
-{"S": "Single-Player, Multiplayer"},
+  "platforms": {"S": "Nintendo"},
+  "tags": {"S": "Single-Player, Multiplayer"},
 "image": {"S" : "https://upload.wikimedia.org/wikipedia/en/4/44/Kirby_Dream_Buffet_decalless_cover_art.jpg"}
 }'
 
