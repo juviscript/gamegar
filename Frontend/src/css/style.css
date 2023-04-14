@@ -11,6 +11,7 @@
     counter-reset: section;
 }
 
+
 .header {
     /* Flexbox: https://css-tricks.com/snippets/css/a-guide-to-flexbox/ */
     display: flex;
@@ -39,20 +40,6 @@
     margin-left: 20px;
 }
 
-.button, button {
-    background: #aed9ff;
-    padding: 3px;
-    border-radius: 3px;
-    text-decoration: none;
-    color: black;
-    border: 1px solid black;
-    cursor: pointer;
-}
-
-.button:hover, button:hover {
-    background: #9cc3e4;
-}
-
 .card {
     color: var(--primary-color);
     background-color: var(--secondary-color);
@@ -71,14 +58,6 @@
     max-width: 500px;
 }
 
-.card-content .form-field {
-    display: flex;
-    flex-direction: column;
-}
-
-#concert-list li {
-    margin-bottom: 1rem;
-}
 
 .state {
     display: none;
@@ -102,16 +81,17 @@
 }
 
 .parent {
-    border: 1px solid #ccccff;
+    border: 1px solid #acace6;
     border-radius: 20px;
-    margin: 1rem auto;
+    margin: 10px auto;
     padding: 2rem 2rem;
     text-align: center;
     height: 40%;
-    background-color: #ccccff;
+    background-color: #acace6;
     color: white;
     max-width: 1600px;
     justify-content: center;
+    font-family: Tahoma;
   }
 
 .child {
@@ -123,6 +103,57 @@
     min-width: 600px;
     
   }
+
+.link-container {
+    display: block;
+    vertical-align: middle;
+    align-items: center;
+    justify-content: center;
+    min-width: 50%;
+    max-width: 40%;
+    margin: 10px auto;
+    background-color: #ccccff;
+    border-radius: 10px;
+}
+
+.links {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: auto;
+    color: black;
+    padding: 10px;
+    font-family: Tahoma;
+    border: 3px solid #ccccff;
+    border-radius: 10px;
+}
+
+button {
+    font-family: Tahoma;
+    font-size: 15px;
+    font-weight: bold;
+    border-radius: 5px;
+    border-color: white;
+}
+
+button:hover {
+    color: lilac;
+}
+
+a {
+    text-decoration: none;
+}
+
+
+a:visited {
+    text-decoration: none;
+}
+
+
+a:hover {
+    text-decoration: none;
+    background-color: rebeccapurple;
+}
 
   .typewriter {
       float: left;
