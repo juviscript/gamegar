@@ -297,7 +297,7 @@ aws dynamodb put-item \
   "year": {"N": "2001"},
   "description": {"S": "Halo is set in the twenty-sixth century, with the player assuming the role of the Master Chief, a cybernetically enhanced supersoldier. The Chief is accompanied by Cortana, an artificial intelligence. Players battle aliens as they attempt to uncover the secrets of the eponymous Halo, a ring-shaped artificial world."},
   "country": {"S": "U.S.A."},
-"platforms": {"S": "Xbox, PC"},,
+"platforms": {"S": "Xbox, PC"},
 "tags": {"S": "Single-Player, Multiplayer"},
 "image": {"S" : "https://assets-prd.ignimgs.com/2021/12/06/halo1-1638834266884.jpg"}
 }'
