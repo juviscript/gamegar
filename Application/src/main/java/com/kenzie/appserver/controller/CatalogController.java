@@ -27,6 +27,8 @@ public class CatalogController {
 
     }
 
+    // TODO: Fix this. Throwing 500 error when testing in Swagger.
+
     @GetMapping("/{id}")
     public ResponseEntity<CatalogResponse> searchGameById(@PathVariable("id") String id) {
 

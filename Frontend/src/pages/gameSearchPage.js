@@ -203,7 +203,7 @@ class GameSearchPage extends BaseClass {
         const gameByTitle = this.dataStore.get("gameByTitle");
 
         let gameHTML = "";
-        if (gameById || gameByTitle) {
+        if (gameById) {
             gameHTML += `
                 <div class = "card">
                     <div id = "game-image-container">
@@ -288,17 +288,17 @@ class GameSearchPage extends BaseClass {
             console.log("Search by ID: " + gameId);
             this.dataStore.set("gameById", null);
 
-            let gameTitle = document.getElementById("game-search-title").value;
-            console.log("Search by Title: " + gameTitle);
+//            let gameTitle = document.getElementById("game-search-title").value;
+//            console.log("Search by Title: " + gameTitle);
 
             const game = await this.client.getGameById(gameId, this.errorHandler)
-            const title = await this.client.getGameByTitle(gameTitle, this.errorHandler);
+//            const title = await this.client.getGameByTitle(gameTitle, this.errorHandler);
             console.log(game);
             console.log(title);
             this.dataStore.set("game", game);
             this.dataStore.set("gameByTitle", title);
 
-            if (game || title) {
+            if (game) {
                 console.log("Game found! Rendering...");
                 await this.renderSearchedGame();
             } else {
