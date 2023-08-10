@@ -77,6 +77,28 @@ public class CatalogService {
 
     }
 
+    public Game findGameByTitle (String title) {
+        Game gameTitle = catalogRepository
+                .findByTitle(title)
+                .map(game -> new Game(game.getId(),
+                        game.getTitle(),
+                        game.getDeveloper(),
+                        game.getGenre(),
+                        game.getYear(),
+                        game.getDescription(),
+                        game.getCountry(),
+                        game.getPlatforms(),
+                        game.getTags(),
+                        game.getImage()))
+                .orElse(null);
+
+        if (gameTitle != null) {
+            cache.add(gameTitle.getId(), gameTitle);
+        }
+
+        return gameTitle;
+    }
+
     public Game addNewGame(Game game) {
 
         CatalogRecord catalogRecord = new CatalogRecord();

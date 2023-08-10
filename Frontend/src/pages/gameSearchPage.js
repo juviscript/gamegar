@@ -39,8 +39,9 @@ class GameSearchPage extends BaseClass {
         this.client = new VideoGameClient();
         this.userClient = new UserClient();
         console.log("mount");
-        // const games = await this.client.getAllGames();
-        // this.dataStore.set("games", games);
+        const games = await this.client.getAllGames();
+        console.log(games)
+        this.dataStore.set("games", games);
         this.dataStore.set("state", this.HOME); //Set the state to get all games and render them
 
     }
@@ -119,8 +120,8 @@ class GameSearchPage extends BaseClass {
     async renderFulLGameList() {
         console.log("Rendering full game list...")
         let gameHtml = "";                              // Variable named gameHtml that starts as an empty string of HTML information.
-        const games = this.dataStore.get("games");
-
+        const games = this.dataStore.get("games")
+        console.log(games)
         for (let i = 0; i < games.length; i++) {
 
             gameHtml += `
@@ -198,10 +199,11 @@ class GameSearchPage extends BaseClass {
 
     async renderSearchedGame() {
         let resultArea = document.getElementById("pop-up-search-list");
-        const gameById = this.dataStore.get("game");
+        const gameById = this.dataStore.get("gameById");
+        const gameByTitle = this.dataStore.get("gameByTitle");
 
         let gameHTML = "";
-        if (gameById) {
+        if (gameById || gameByTitle) {
             gameHTML += `
                 <div class = "card">
                     <div id = "game-image-container">
@@ -283,14 +285,20 @@ class GameSearchPage extends BaseClass {
             submitButton.disabled = true;
 
             let gameId = document.getElementById("game-search-id").value;
-            console.log(gameId);
-            this.dataStore.set("game", null);
+            console.log("Search by ID: " + gameId);
+            this.dataStore.set("gameById", null);
+
+            let gameTitle = document.getElementById("game-search-title").value;
+            console.log("Search by Title: " + gameTitle);
 
             const game = await this.client.getGameById(gameId, this.errorHandler)
+            const title = await this.client.getGameByTitle(gameTitle, this.errorHandler);
             console.log(game);
+            console.log(title);
             this.dataStore.set("game", game);
+            this.dataStore.set("gameByTitle", title);
 
-            if (game) {
+            if (game || title) {
                 console.log("Game found! Rendering...");
                 await this.renderSearchedGame();
             } else {

@@ -87,7 +87,7 @@ public class CatalogController {
 
     }
 
-    @GetMapping
+    @GetMapping("/all")
     public ResponseEntity<List<CatalogResponse>> getAllGames() {
 
         List<Game> games = catalogService.findAllGames();
@@ -103,6 +103,20 @@ public class CatalogController {
             for (Game game : games) {
                 response.add(this.createCatalogResponse(game));
             }
+
+        return ResponseEntity.ok(response);
+    }
+
+    @GetMapping("/{title}")
+    public ResponseEntity<CatalogResponse> getGameByTitle(String title) {
+
+        Game game = catalogService.findGameByTitle(title);
+
+        if (game == null) {
+            return ResponseEntity.status(204).build();
+        }
+
+        CatalogResponse response = new CatalogResponse();
 
         return ResponseEntity.ok(response);
     }

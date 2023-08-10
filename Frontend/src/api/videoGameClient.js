@@ -29,7 +29,7 @@ export default class VideoGameClient extends BaseClass {
      */
     async getAllGames(errorCallback) {
         try {
-            const response = await this.client.get(`/games`);
+            const response = await this.client.get(`/games/all`);
             return response.data;
         } catch(error) {
             this.handleError("getAllGames", error, errorCallback);
@@ -87,7 +87,7 @@ export default class VideoGameClient extends BaseClass {
      */
     async getGameByTitle(title, errorCallback) {
         try {
-            const response = await this.client.get(`games/${title}`);
+            const response = await this.client.get(`/games/${title}`);
             return response.data;
         } catch (error) {
             this.handleError("getGameByTitle", error, errorCallback);
